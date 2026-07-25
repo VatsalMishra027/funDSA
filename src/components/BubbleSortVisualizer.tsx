@@ -27,7 +27,6 @@ interface StepState {
   isFullySorted?: boolean;
 }
 
-// Web Audio API Synthesizer with distinct click, sorting & party celebration SFX
 export const playAudioSFX = (type: 'click' | 'compare' | 'swap' | 'sorted' | 'party', enabled: boolean = true) => {
   if (!enabled || typeof window === 'undefined') return;
   try {
@@ -87,7 +86,6 @@ export const playAudioSFX = (type: 'click' | 'compare' | 'swap' | 'sorted' | 'pa
         noteOsc.stop(now + i * 0.07 + 0.18);
       });
     } else if (type === 'party') {
-      // Festive Party Fanfare Chord: C5 - E5 - G5 - C6 - E6
       const notes = [523.25, 659.25, 783.99, 1046.5, 1318.51];
       notes.forEach((freq, i) => {
         const noteOsc = ctx.createOscillator();
@@ -322,19 +320,17 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
               playAudioSFX('click', true);
               setSoundEnabled(!soundEnabled);
             }}
-            className="px-3.5 py-1.5 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent text-xs font-bold transition-all flex items-center gap-1.5"
+            className="px-3.5 py-2 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent text-xs font-bold transition-all flex items-center gap-2"
           >
-            <span>{soundEnabled ? '🔊 Sound On' : '🔇 Muted'}</span>
+            <svg className="w-4 h-4 fill-current text-accent" viewBox="0 0 24 24">
+              <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z" />
+            </svg>
+            <span>{soundEnabled ? 'Sound ON' : 'Muted'}</span>
           </button>
 
-          <span className="bg-bg border border-textSecondary/30 text-textSecondary text-xs px-3.5 py-1.5 rounded-xl font-mono font-bold">
+          <span className="bg-bg border border-textSecondary/30 text-textSecondary text-xs px-3.5 py-2 rounded-xl font-mono font-bold">
             Pass: <strong className="text-accent text-sm font-extrabold">{currentStep.pass}</strong>
           </span>
-          {currentStep.isFullySorted && (
-            <span className="bg-focusBg border border-focusBorder text-focusText text-xs px-3.5 py-1.5 rounded-xl font-extrabold animate-bounce">
-              ✓ SORTED!
-            </span>
-          )}
         </div>
       </div>
 
@@ -432,44 +428,73 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
         })}
       </div>
 
+      {/* Control Toolbar with Modern Vector SVG Icons */}
       <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-3">
+          {/* Autoplay / Pause Button */}
           <button
             onClick={() => {
               playAudioSFX('click', soundEnabled);
               setIsPlaying(!isPlaying);
             }}
             disabled={currentStepIndex >= steps.length - 1 && !isPlaying}
-            className="btn-primary px-5 py-2.5 rounded-xl font-bold text-sm shadow-sm flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="btn-primary px-6 py-3 rounded-xl font-black text-sm shadow-md flex items-center gap-2.5 hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isPlaying ? '⏸️ Pause' : '▶️ Autoplay'}
+            {isPlaying ? (
+              <>
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                </svg>
+                <span>Pause</span>
+              </>
+            ) : (
+              <>
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+                <span>Autoplay</span>
+              </>
+            )}
           </button>
 
+          {/* Prev Step Button */}
           <button
             onClick={handleStepBackward}
             disabled={currentStepIndex === 0 || isPlaying}
-            className="px-3.5 py-2.5 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent text-sm font-bold disabled:opacity-40 disabled:cursor-not-allowed"
+            className="px-4 py-3 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent hover:-translate-y-0.5 text-sm font-bold flex items-center gap-1.5 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
           >
-            ⏮️ Prev
+            <svg className="w-4 h-4 fill-current text-textSecondary" viewBox="0 0 24 24">
+              <path d="M11 18V6l-8.5 6L11 18zm.5-6l8.5 6V6l-8.5 6z" />
+            </svg>
+            <span>Prev</span>
           </button>
 
+          {/* Next Step Button */}
           <button
             onClick={handleStepForward}
             disabled={currentStepIndex >= steps.length - 1 || isPlaying}
-            className="px-3.5 py-2.5 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent text-sm font-bold disabled:opacity-40 disabled:cursor-not-allowed"
+            className="px-4 py-3 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent hover:-translate-y-0.5 text-sm font-bold flex items-center gap-1.5 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
           >
-            Next ⏭️
+            <span>Next</span>
+            <svg className="w-4 h-4 fill-current text-textSecondary" viewBox="0 0 24 24">
+              <path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z" />
+            </svg>
           </button>
 
+          {/* Reset Button */}
           <button
             onClick={handleReset}
-            className="px-3.5 py-2.5 rounded-xl border border-textSecondary/30 bg-bg text-textSecondary hover:text-main hover:border-textSecondary text-sm font-semibold"
+            className="px-4 py-3 rounded-xl border border-textSecondary/30 bg-bg text-textSecondary hover:text-main hover:border-textSecondary hover:-translate-y-0.5 text-sm font-bold flex items-center gap-1.5 transition-all"
           >
-            🔄 Reset
+            <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
+            </svg>
+            <span>Reset</span>
           </button>
         </div>
 
-        <div className="flex items-center gap-2.5 text-xs font-bold text-textSecondary bg-bg border border-textSecondary/20 px-3.5 py-2 rounded-xl">
+        {/* Speed Slider */}
+        <div className="flex items-center gap-2.5 text-xs font-bold text-textSecondary bg-bg border border-textSecondary/20 px-4 py-2.5 rounded-xl">
           <span>Speed:</span>
           <input
             type="range"
