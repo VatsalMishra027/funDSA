@@ -1,58 +1,60 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import LiveMovingBanner from '../components/LiveMovingBanner';
 ---
 
-<Layout title="Bubble Sort Seekho | funDSA">
+<Layout title="DSA 101 | Visual Algorithm Learning Platform">
   <div class="space-y-16 py-6 sm:py-10">
     {/* Hero Section */}
-    <section class="max-w-3xl mx-auto text-center space-y-6">
-      <div class="inline-flex items-center gap-2 bg-focusBg border border-focusBorder text-focusText text-sm font-extrabold px-4 py-2 rounded-full uppercase tracking-wider shadow-sm">
-        <span>🚀 Master Data Structures & Algorithms</span>
+    <section class="max-w-4xl mx-auto text-center space-y-6">
+      <div class="inline-flex items-center gap-3 bg-focusBg border-2 border-focusBorder text-focusText text-sm sm:text-base font-black px-5 py-2 rounded-full uppercase tracking-wider shadow-sm hover:scale-105 transition-transform">
+        <span>🚀 DSA 101 VISUAL PLATFORM</span>
         <span>•</span>
-        <span>Fun, Interactive & Practical</span>
+        <span>Interactive Algorithm Engine</span>
       </div>
 
-      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">
-        Bubble Sort Seekho <br />
-        <span class="text-accent font-handwritten text-5xl sm:text-7xl">Bina Kisi Stress Ke!</span>
+      <h1 class="text-4xl sm:text-7xl font-black tracking-tight leading-tight">
+        Master Algorithms <br />
+        <span class="text-accent font-handwritten text-5xl sm:text-8xl">Visual, Fun & Interactive!</span>
       </h1>
 
-      <p class="text-textSecondary text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
-        Algorithm seekhna ab bilkul aasan hai. Interactive step-by-step visualizer, 
-        audio feedback, aur intuitive examples ke sath Bubble Sort ko master karo!
+      <p class="text-textSecondary text-lg sm:text-2xl max-w-2xl mx-auto leading-relaxed font-medium">
+        Data Structures & Algorithms seekhna ab bilkul easy hai. Live step-by-step audio visualizers, 
+        interactive playground, aur real-life analogies ke sath DSA ko master karo!
       </p>
 
       {/* Main CTA Buttons */}
       <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
         <a
           href="/onboarding"
-          class="w-full sm:w-auto btn-primary px-9 py-4 rounded-xl font-extrabold text-lg sm:text-xl shadow-chalk flex items-center justify-center gap-2 tracking-wide"
+          class="w-full sm:w-auto btn-primary px-10 py-4 sm:py-5 rounded-2xl font-black text-xl shadow-chalk flex items-center justify-center gap-3 tracking-wide hover:scale-105 transition-transform"
         >
           <span>Shuru Karo</span>
           <span class="text-2xl">🚀</span>
         </a>
         <a
           href="/learn"
-          class="w-full sm:w-auto px-7 py-4 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent text-base sm:text-lg font-bold transition-all flex items-center justify-center gap-2"
+          class="w-full sm:w-auto px-8 py-4 sm:py-5 rounded-2xl border-2 border-textSecondary/30 bg-bg text-main hover:border-accent hover:shadow-lg text-lg font-extrabold transition-all flex items-center justify-center gap-3 hover:-translate-y-1"
         >
           <span>Complete Learn Guide</span>
           <span>📖</span>
         </a>
       </div>
 
-      <p class="text-sm text-textSecondary font-semibold">
-        ⏱️ Pura learning flow 15 min mein complete ho jayega. No signups required!
-      </p>
+      {/* Live Moving Algorithm Ticker Hero Component */}
+      <div class="pt-6">
+        <LiveMovingBanner client:load />
+      </div>
     </section>
 
-    {/* Visual Card Preview Illustration */}
+    {/* Visual Card Preview Illustration with Hover Effects */}
     <section class="max-w-4xl mx-auto">
-      <div class="bg-card border border-textSecondary/20 rounded-3xl p-6 sm:p-8 shadow-md space-y-6">
+      <div class="bg-card border-2 border-textSecondary/20 rounded-3xl p-6 sm:p-8 shadow-md hover:shadow-2xl hover:border-accent/40 transition-all duration-300 space-y-6">
         <div class="flex items-center justify-between border-b border-textSecondary/15 pb-4">
           <div class="flex items-center gap-2">
             <span class="w-3.5 h-3.5 rounded-full bg-accent inline-block"></span>
             <span class="w-3.5 h-3.5 rounded-full bg-accent2 inline-block"></span>
-            <span class="text-sm font-mono text-textSecondary ml-2">bubble-sort-visualizer.preview</span>
+            <span class="text-sm font-mono text-textSecondary font-bold ml-2">bubble-sort-visualizer.preview</span>
           </div>
           <span class="text-xs sm:text-sm font-mono bg-focusBg text-focusText border border-focusBorder px-3 py-1 rounded-lg font-extrabold">
             Pass 1: Comparing & Swapping
@@ -61,40 +63,40 @@ import Layout from '../layouts/Layout.astro';
 
         {/* Mock Comparison Graphic */}
         <div class="flex items-end justify-center gap-3 sm:gap-6 py-6 border-b border-textSecondary/10">
-          <div class="flex flex-col items-center gap-2">
+          <div class="flex flex-col items-center gap-2 hover:-translate-y-1 transition-transform">
             <span class="text-xs font-mono text-textSecondary font-bold">Index [0]</span>
-            <div class="bg-bg border border-textSecondary/30 p-3.5 sm:p-4 rounded-xl text-center font-bold text-base w-22 sm:w-28">
+            <div class="bg-bg border border-textSecondary/30 p-4 rounded-2xl text-center font-bold text-base w-24 sm:w-28 shadow-xs">
               <div class="text-2xl mb-1">🥟</div>
               <div>Samosa</div>
-              <div class="text-sm font-mono text-accent">₹15</div>
+              <div class="text-sm font-mono text-accent font-extrabold">₹15</div>
             </div>
           </div>
 
-          <div class="text-2xl text-accent font-bold animate-pulse pb-6">
+          <div class="text-3xl text-accent font-bold animate-pulse pb-6">
             ⇄
           </div>
 
-          <div class="flex flex-col items-center gap-2">
+          <div class="flex flex-col items-center gap-2 hover:-translate-y-1 transition-transform">
             <span class="text-xs font-mono text-accent font-bold">Index [1]</span>
-            <div class="bg-accent text-onAccent border border-accent p-3.5 sm:p-4 rounded-xl text-center font-bold text-base w-22 sm:w-28 shadow-md scale-105">
+            <div class="bg-accent text-onAccent border border-accent p-4 rounded-2xl text-center font-bold text-base w-24 sm:w-28 shadow-md scale-105 ring-2 ring-accent/40">
               <div class="text-2xl mb-1">🍕</div>
               <div>Pizza</div>
-              <div class="text-sm font-mono">₹250</div>
+              <div class="text-sm font-mono font-extrabold">₹250</div>
             </div>
           </div>
 
-          <div class="flex flex-col items-center gap-2">
+          <div class="flex flex-col items-center gap-2 hover:-translate-y-1 transition-transform">
             <span class="text-xs font-mono text-textSecondary font-bold">Index [2]</span>
-            <div class="bg-bg border border-textSecondary/30 p-3.5 sm:p-4 rounded-xl text-center font-bold text-base w-22 sm:w-28 opacity-60">
+            <div class="bg-bg border border-textSecondary/30 p-4 rounded-2xl text-center font-bold text-base w-24 sm:w-28 opacity-60">
               <div class="text-2xl mb-1">☕</div>
               <div>Chai</div>
-              <div class="text-sm font-mono text-textSecondary">₹10</div>
+              <div class="text-sm font-mono text-textSecondary font-bold">₹10</div>
             </div>
           </div>
         </div>
 
         {/* Hinglish Callout Quote */}
-        <div class="dhyan-do-box p-4 sm:p-5 rounded-xl text-sm sm:text-base font-semibold">
+        <div class="dhyan-do-box p-5 rounded-2xl text-base font-semibold shadow-xs">
           <strong>Dhyan do! 💡</strong> Pehle do items compare honge. Agar pehla wala bada hai, toh simply jagah swap kar do. Phir repeat!
         </div>
       </div>
@@ -102,39 +104,39 @@ import Layout from '../layouts/Layout.astro';
 
     {/* Why Learn With Us Features Grid */}
     <section class="max-w-4xl mx-auto space-y-8">
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-center tracking-tight">
-        Kyun funDSA sabse best hai? 🌟
+      <h2 class="text-3xl sm:text-4xl font-black text-center tracking-tight">
+        Kyun DSA 101 sabse best hai? 🌟
       </h2>
 
-      <div class="grid sm:grid-cols-2 gap-5 sm:gap-7">
-        <div class="bg-card border border-textSecondary/20 p-6 rounded-2xl space-y-2">
-          <div class="text-3xl">🍿</div>
-          <h3 class="font-extrabold text-xl text-main">Personalized Analogies</h3>
-          <p class="text-sm sm:text-base text-textSecondary leading-relaxed font-medium">
+      <div class="grid sm:grid-cols-2 gap-6 sm:gap-8">
+        <div class="bg-card border border-textSecondary/20 p-6 sm:p-7 rounded-3xl space-y-3 shadow-sm hover:shadow-xl hover:border-accent/40 hover:-translate-y-1.5 transition-all duration-300">
+          <div class="text-4xl">🍿</div>
+          <h3 class="font-extrabold text-2xl text-main">Personalized Analogies</h3>
+          <p class="text-base text-textSecondary leading-relaxed font-medium">
             Cricket, Gaming, ya Food — jo tum select karoge, hum examples wahi se banayenge!
           </p>
         </div>
 
-        <div class="bg-card border border-textSecondary/20 p-6 rounded-2xl space-y-2">
-          <div class="text-3xl">🧼</div>
-          <h3 class="font-extrabold text-xl text-main">Single Comprehensive Guide</h3>
-          <p class="text-sm sm:text-base text-textSecondary leading-relaxed font-medium">
+        <div class="bg-card border border-textSecondary/20 p-6 sm:p-7 rounded-3xl space-y-3 shadow-sm hover:shadow-xl hover:border-accent/40 hover:-translate-y-1.5 transition-all duration-300">
+          <div class="text-4xl">🧼</div>
+          <h3 class="font-extrabold text-2xl text-main">Single Comprehensive Guide</h3>
+          <p class="text-base text-textSecondary leading-relaxed font-medium">
             No fragmented steps! Saare core concepts ek hi unified learning page par available hain.
           </p>
         </div>
 
-        <div class="bg-card border border-textSecondary/20 p-6 rounded-2xl space-y-2">
-          <div class="text-3xl">⚡</div>
-          <h3 class="font-extrabold text-xl text-main">Interactive Visualizer & Audio</h3>
-          <p class="text-sm sm:text-base text-textSecondary leading-relaxed font-medium">
+        <div class="bg-card border border-textSecondary/20 p-6 sm:p-7 rounded-3xl space-y-3 shadow-sm hover:shadow-xl hover:border-accent/40 hover:-translate-y-1.5 transition-all duration-300">
+          <div class="text-4xl">⚡</div>
+          <h3 class="font-extrabold text-2xl text-main">Live Visualizer & Audio SFX</h3>
+          <p class="text-base text-textSecondary leading-relaxed font-medium">
             Audio sound effects aur step-by-step control ke sath dekho elements kaise slide karke sort hote hain.
           </p>
         </div>
 
-        <div class="bg-card border border-textSecondary/20 p-6 rounded-2xl space-y-2">
-          <div class="text-3xl">🎯</div>
-          <h3 class="font-extrabold text-xl text-main">Master Quiz & Certificate</h3>
-          <p class="text-sm sm:text-base text-textSecondary leading-relaxed font-medium">
+        <div class="bg-card border border-textSecondary/20 p-6 sm:p-7 rounded-3xl space-y-3 shadow-sm hover:shadow-xl hover:border-accent/40 hover:-translate-y-1.5 transition-all duration-300">
+          <div class="text-4xl">🎯</div>
+          <h3 class="font-extrabold text-2xl text-main">Master Quiz & Certificate</h3>
+          <p class="text-base text-textSecondary leading-relaxed font-medium">
             6-question master quiz attempt karke instant completion badge and WhatsApp share certificate claim karo!
           </p>
         </div>
@@ -142,15 +144,15 @@ import Layout from '../layouts/Layout.astro';
     </section>
 
     {/* Bottom Call to Action */}
-    <section class="max-w-2xl mx-auto text-center bg-card border border-textSecondary/20 p-8 sm:p-10 rounded-3xl space-y-5 shadow-sm">
-      <h3 class="text-3xl font-extrabold">Tayyar Ho Seekhne Ke Liye?</h3>
-      <p class="text-base sm:text-lg text-textSecondary font-medium">
-        Chalo apne favourite topics select karo aur bubble sort ko mast tariqe se samjho!
+    <section class="max-w-3xl mx-auto text-center bg-card border-2 border-accent/30 p-8 sm:p-12 rounded-3xl space-y-6 shadow-md hover:shadow-2xl hover:border-accent transition-all duration-300">
+      <h3 class="text-3xl sm:text-4xl font-black">Tayyar Ho Seekhne Ke Liye?</h3>
+      <p class="text-lg text-textSecondary font-medium">
+        Chalo apne favourite topics select karo aur DSA 101 visual platform par algorithms master karo!
       </p>
       <div class="pt-2">
         <a
           href="/onboarding"
-          class="btn-primary inline-flex items-center gap-2 px-9 py-4 rounded-xl font-extrabold text-lg sm:text-xl shadow-chalk"
+          class="btn-primary inline-flex items-center gap-3 px-10 py-4.5 rounded-2xl font-black text-xl shadow-chalk hover:scale-105 transition-transform"
         >
           <span>Shuru Karo</span>
           <span>→</span>

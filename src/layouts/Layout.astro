@@ -38,27 +38,42 @@ const {
   </head>
   <body class="bg-bg text-main min-h-screen flex flex-col selection:bg-accent2 selection:text-focusText">
     <!-- Navigation Header -->
-    <header class="border-b border-textSecondary/20 bg-card/80 backdrop-blur-md sticky top-0 z-40">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        <!-- Platform Brand Title -->
-        <a href="/" class="flex items-center gap-2.5 group">
-          <span class="bg-accent text-onAccent text-xs font-black px-2.5 py-1 rounded-lg tracking-widest uppercase font-mono shadow-xs">
+    <header class="border-b border-textSecondary/20 bg-card/85 backdrop-blur-md sticky top-0 z-40 shadow-xs">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+        
+        <!-- Big & Bold DSA 101 Platform Brand Logo -->
+        <a href="/" class="flex items-center gap-3 group">
+          <span class="bg-accent text-onAccent text-lg sm:text-2xl font-black px-3.5 py-1.5 rounded-xl tracking-widest uppercase font-mono shadow-md border border-accent2/60 group-hover:scale-105 group-hover:bg-accent/90 transition-all duration-300">
             DSA 101
           </span>
-          <span class="font-extrabold text-lg sm:text-xl tracking-tight group-hover:text-accent transition-colors">
-            Visual Platform <span class="text-xs font-mono font-bold text-accent2 bg-focusBg px-2 py-0.5 rounded border border-focusBorder ml-1.5 hidden sm:inline-block">Bubble Sort Active</span>
-          </span>
+          <div class="flex flex-col">
+            <span class="font-black text-xl sm:text-2xl tracking-tight text-main group-hover:text-accent transition-colors leading-tight">
+              Visual Platform
+            </span>
+            <span class="text-[11px] font-mono font-bold text-textSecondary tracking-wide">
+              Data Structures & Algorithms
+            </span>
+          </div>
         </a>
 
-        <!-- Header Nav Links -->
-        <div class="flex items-center gap-3 sm:gap-6">
-          <a href="/learn" class="text-sm font-bold text-textSecondary hover:text-accent transition-colors hidden sm:inline-block">
+        <!-- Header Nav Links with Hover Effects -->
+        <div class="flex items-center gap-4 sm:gap-7">
+          <a
+            href="/learn"
+            class="text-sm sm:text-base font-extrabold text-textSecondary hover:text-accent hover:-translate-y-0.5 transition-all duration-200 hidden sm:inline-block"
+          >
             Learn Guide
           </a>
-          <a href="/playground" class="text-sm font-bold text-textSecondary hover:text-accent transition-colors hidden sm:inline-block">
+          <a
+            href="/playground"
+            class="text-sm sm:text-base font-extrabold text-textSecondary hover:text-accent hover:-translate-y-0.5 transition-all duration-200 hidden sm:inline-block"
+          >
             Playground
           </a>
-          <a href="/quiz" class="text-sm font-bold text-textSecondary hover:text-accent transition-colors hidden sm:inline-block">
+          <a
+            href="/quiz"
+            class="text-sm sm:text-base font-extrabold text-textSecondary hover:text-accent hover:-translate-y-0.5 transition-all duration-200 hidden sm:inline-block"
+          >
             Master Quiz
           </a>
 
@@ -66,7 +81,7 @@ const {
           <button
             id="theme-toggle"
             type="button"
-            class="p-2.5 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent transition-all flex items-center gap-2 text-sm font-semibold"
+            class="p-2.5 sm:p-3 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent hover:shadow-md transition-all flex items-center gap-2 text-sm font-bold"
             aria-label="Toggle Theme"
           >
             <span class="dark:hidden flex items-center gap-1.5">
@@ -86,16 +101,17 @@ const {
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-textSecondary/20 bg-card py-6 mt-12 text-center text-sm text-textSecondary">
+    <footer class="border-t border-textSecondary/20 bg-card py-8 mt-16 text-center text-sm text-textSecondary">
       <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p class="font-semibold">
-          DSA 101 🧼 | Interactive Visual Algorithm Platform
-        </p>
-        <div class="flex items-center gap-4 font-bold text-xs">
-          <a href="/learn" class="hover:text-accent">Learn Guide</a>
-          <a href="/playground" class="hover:text-accent">Playground</a>
-          <a href="/examples" class="hover:text-accent">Examples</a>
-          <a href="/quiz" class="hover:text-accent">Master Quiz</a>
+        <div class="flex items-center gap-2">
+          <span class="bg-accent text-onAccent text-xs font-black px-2 py-0.5 rounded font-mono">DSA 101</span>
+          <span class="font-bold text-main">Visual Algorithm Learning Platform</span>
+        </div>
+        <div class="flex items-center gap-5 font-extrabold text-xs sm:text-sm">
+          <a href="/learn" class="hover:text-accent hover:underline">Learn Guide</a>
+          <a href="/playground" class="hover:text-accent hover:underline">Playground</a>
+          <a href="/examples" class="hover:text-accent hover:underline">Examples</a>
+          <a href="/quiz" class="hover:text-accent hover:underline">Master Quiz</a>
         </div>
       </div>
     </footer>

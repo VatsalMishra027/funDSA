@@ -1,50 +1,134 @@
-import React, { useState } from 'react';
-import BubbleSortVisualizer, { type VisualizerItem } from './BubbleSortVisualizer';
+import React, { useState, useEffect } from 'react';
+import { useStore } from '@nanostores/react';
+import { studentStore } from '../stores/student';
+import BubbleSortVisualizer, { type VisualizerItem, playAudioSFX } from './BubbleSortVisualizer';
 
-const PRESET_LISTS: { name: string; icon: string; items: VisualizerItem[] }[] = [
+interface InterestPreset {
+  interest: string;
+  name: string;
+  icon: string;
+  items: VisualizerItem[];
+}
+
+const INTEREST_PRESETS: InterestPreset[] = [
   {
+    interest: 'Cricket',
     name: 'IPL High Scores',
     icon: '🏏',
     items: [
-      { label: 'Kohli', value: 183, icon: '🏏' },
-      { label: 'Rohit', value: 264, icon: '💥' },
-      { label: 'Dhoni', value: 148, icon: '🧤' },
       { label: 'Gill', value: 91, icon: '⭐' },
       { label: 'Pant', value: 125, icon: '🔥' },
+      { label: 'Dhoni', value: 148, icon: '🧤' },
+      { label: 'Kohli', value: 183, icon: '🏏' },
+      { label: 'Rohit', value: 264, icon: '💥' },
     ],
   },
   {
-    name: 'School Canteen Bill (₹)',
+    interest: 'Food',
+    name: 'Canteen Menu Bill (₹)',
     icon: '🥟',
     items: [
+      { label: 'Chai', value: 10, icon: '☕' },
       { label: 'Samosa', value: 15, icon: '🥟' },
       { label: 'Maggi', value: 45, icon: '🍜' },
-      { label: 'Chai', value: 10, icon: '☕' },
-      { label: 'Pizza', value: 250, icon: '🍕' },
       { label: 'Roll', value: 80, icon: '🌯' },
+      { label: 'Pizza', value: 250, icon: '🍕' },
     ],
   },
   {
+    interest: 'Gaming',
     name: 'PUBG Squad Kills',
     icon: '🎮',
     items: [
-      { label: 'Sniper', value: 14, icon: '🎯' },
-      { label: 'Rusher', value: 22, icon: '⚡' },
       { label: 'Medic', value: 4, icon: '💊' },
       { label: 'Scout', value: 11, icon: '🔭' },
+      { label: 'Sniper', value: 14, icon: '🎯' },
+      { label: 'Rusher', value: 22, icon: '⚡' },
+    ],
+  },
+  {
+    interest: 'Bollywood/Movies',
+    name: 'Movie Ratings (%)',
+    icon: '🎬',
+    items: [
+      { label: 'Flop', value: 30, icon: '🍅' },
+      { label: 'Average', value: 65, icon: '🎟️' },
+      { label: 'Hit', value: 82, icon: '🍿' },
+      { label: 'Blockbuster', value: 96, icon: '🏆' },
+    ],
+  },
+  {
+    interest: 'Music/Singing',
+    name: 'Playlist Stream Counts (M)',
+    icon: '🎧',
+    items: [
+      { label: 'Indie Song', value: 12, icon: '🎸' },
+      { label: 'Acoustic', value: 45, icon: '🎙️' },
+      { label: 'Pop Hit', value: 120, icon: '🎧' },
+      { label: 'Viral Track', value: 340, icon: '🔥' },
+    ],
+  },
+  {
+    interest: 'Fitness',
+    name: 'Workout Bench Press (kg)',
+    icon: '🏋️‍♂️',
+    items: [
+      { label: 'Warmup', value: 40, icon: '👟' },
+      { label: 'Set 1', value: 60, icon: '🏋️‍♂️' },
+      { label: 'Set 2', value: 85, icon: '💪' },
+      { label: 'PR Max', value: 110, icon: '⚡' },
+    ],
+  },
+  {
+    interest: 'Fashion',
+    name: 'Designer Sneaker Prices ($)',
+    icon: '👗',
+    items: [
+      { label: 'Canvas', value: 50, icon: '👟' },
+      { label: 'Streetwear', value: 120, icon: '🧢' },
+      { label: 'Vintage', value: 250, icon: '👗' },
+      { label: 'Limited Ed', value: 500, icon: '💎' },
+    ],
+  },
+  {
+    interest: 'Travel',
+    name: 'Flight Distances (km)',
+    icon: '✈️',
+    items: [
+      { label: 'Short Hop', value: 450, icon: '🚕' },
+      { label: 'Domestic', value: 1200, icon: '🚆' },
+      { label: 'Island Trip', value: 2800, icon: '🏖️' },
+      { label: 'Overseas', value: 7500, icon: '✈️' },
     ],
   },
 ];
 
 export const PlaygroundBuilder: React.FC = () => {
-  const [items, setItems] = useState<VisualizerItem[]>(PRESET_LISTS[0].items);
+  const profile = useStore(studentStore);
+  const studentInterests = profile.interests || [];
+
+  // Filter presets to prioritize student's selected onboarding interests
+  const userMatchedPresets = INTEREST_PRESETS.filter((p) =>
+    studentInterests.includes(p.interest)
+  );
+  const displayPresets =
+    userMatchedPresets.length > 0 ? userMatchedPresets : INTEREST_PRESETS.slice(0, 4);
+
+  const [items, setItems] = useState<VisualizerItem[]>(displayPresets[0].items);
   const [newLabel, setNewLabel] = useState<string>('');
   const [newValue, setNewValue] = useState<string>('');
   const [newIcon, setNewIcon] = useState<string>('⭐');
   const [error, setError] = useState<string>('');
 
+  useEffect(() => {
+    if (displayPresets.length > 0) {
+      setItems(displayPresets[0].items);
+    }
+  }, [profile.interests]);
+
   const handleAddItem = (e: React.FormEvent) => {
     e.preventDefault();
+    playAudioSFX('click', true);
     setError('');
 
     if (items.length >= 6) {
@@ -78,6 +162,7 @@ export const PlaygroundBuilder: React.FC = () => {
   };
 
   const handleRemoveItem = (index: number) => {
+    playAudioSFX('click', true);
     if (items.length <= 3) {
       setError('Kam se kam 3 items hone chahiye sorting ke liye! ⚠️');
       return;
@@ -87,19 +172,20 @@ export const PlaygroundBuilder: React.FC = () => {
   };
 
   const loadPreset = (presetItems: VisualizerItem[]) => {
+    playAudioSFX('click', true);
     setError('');
     setItems([...presetItems]);
   };
 
   return (
     <div className="space-y-8">
-      {/* Controls Card */}
-      <div className="bg-card border border-textSecondary/20 rounded-2xl p-5 sm:p-6 shadow-sm space-y-6">
+      {/* Controls Card with Hover Glow Effects */}
+      <div className="bg-card border border-textSecondary/20 rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-xl hover:border-accent/40 transition-all duration-300 space-y-6">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-textSecondary/15 pb-4">
           <div>
-            <h3 className="font-bold text-lg text-main">Build Your Own List (4-6 Items)</h3>
-            <p className="text-xs text-textSecondary">
-              Apne custom items add karo ya presets try karo. Watch them bubble sort live!
+            <h3 className="font-extrabold text-xl text-main">Build Your Custom List</h3>
+            <p className="text-sm text-textSecondary font-medium">
+              {profile.name ? `${profile.name}'s Onboarding Interests matched below!` : 'Pick from your selected interests or create custom items:'}
             </p>
           </div>
           <span className="text-xs font-mono bg-bg border border-textSecondary/20 px-3 py-1.5 rounded-lg text-textSecondary font-bold">
@@ -107,21 +193,32 @@ export const PlaygroundBuilder: React.FC = () => {
           </span>
         </div>
 
-        {/* Quick Presets */}
-        <div className="space-y-2">
-          <label className="block text-xs font-bold text-textSecondary uppercase tracking-wider">
-            ⚡ Quick Presets Load Karo:
-          </label>
-          <div className="flex flex-wrap gap-2">
-            {PRESET_LISTS.map((preset, idx) => (
+        {/* Selected Hobbies & Interests Presets Bar */}
+        <div className="space-y-2.5">
+          <div className="flex items-center justify-between">
+            <label className="block text-xs font-extrabold text-accent uppercase tracking-wider">
+              🎯 Your Selected Interest Options:
+            </label>
+            {studentInterests.length > 0 && (
+              <span className="text-xs font-mono text-textSecondary">
+                Matched: {studentInterests.join(', ')}
+              </span>
+            )}
+          </div>
+
+          <div className="flex flex-wrap gap-2.5">
+            {displayPresets.map((preset, idx) => (
               <button
                 key={idx}
                 type="button"
                 onClick={() => loadPreset(preset.items)}
-                className="px-3 py-1.5 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent text-xs font-semibold flex items-center gap-1.5 transition-all"
+                className="px-4 py-2.5 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent hover:bg-accent/10 hover:-translate-y-0.5 text-xs sm:text-sm font-extrabold flex items-center gap-2 transition-all duration-200 shadow-xs"
               >
-                <span>{preset.icon}</span>
+                <span className="text-base">{preset.icon}</span>
                 <span>{preset.name}</span>
+                <span className="text-[10px] font-mono bg-focusBg text-focusText border border-focusBorder px-1.5 py-0.5 rounded font-bold">
+                  {preset.interest}
+                </span>
               </button>
             ))}
           </div>
@@ -129,14 +226,14 @@ export const PlaygroundBuilder: React.FC = () => {
 
         {/* Current Items Pills */}
         <div className="space-y-2">
-          <label className="block text-xs font-bold text-textSecondary uppercase tracking-wider">
-            📋 Current List Items:
+          <label className="block text-xs font-extrabold text-textSecondary uppercase tracking-wider">
+            📋 Current Active Items in Visualizer:
           </label>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2.5">
             {items.map((item, idx) => (
               <div
                 key={idx}
-                className="bg-bg border border-textSecondary/30 text-main text-xs font-bold px-3 py-1.5 rounded-xl flex items-center gap-2 shadow-xs"
+                className="bg-bg border border-textSecondary/30 text-main text-xs sm:text-sm font-bold px-3.5 py-2 rounded-xl flex items-center gap-2 shadow-xs hover:border-accent transition-colors"
               >
                 <span>{item.icon}</span>
                 <span>{item.label}</span>
@@ -144,7 +241,7 @@ export const PlaygroundBuilder: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => handleRemoveItem(idx)}
-                  className="text-textSecondary hover:text-accent font-bold ml-1"
+                  className="text-textSecondary hover:text-accent font-bold ml-1 text-sm"
                   title="Remove item"
                 >
                   ✕
@@ -163,7 +260,7 @@ export const PlaygroundBuilder: React.FC = () => {
                 value={newLabel}
                 onChange={(e) => setNewLabel(e.target.value)}
                 placeholder="Item Label (e.g. Samosa)"
-                className="w-full px-3.5 py-2.5 rounded-xl border border-textSecondary/30 bg-bg text-main text-sm focus:outline-none focus:ring-2 focus:ring-accent2"
+                className="w-full px-4 py-3 rounded-xl border border-textSecondary/30 bg-bg text-main text-sm font-medium focus:outline-none focus:ring-2 focus:ring-accent2"
               />
             </div>
 
@@ -173,7 +270,7 @@ export const PlaygroundBuilder: React.FC = () => {
                 value={newValue}
                 onChange={(e) => setNewValue(e.target.value)}
                 placeholder="Value (e.g. 45)"
-                className="w-full px-3.5 py-2.5 rounded-xl border border-textSecondary/30 bg-bg text-main text-sm focus:outline-none focus:ring-2 focus:ring-accent2 font-mono"
+                className="w-full px-4 py-3 rounded-xl border border-textSecondary/30 bg-bg text-main text-sm font-mono font-medium focus:outline-none focus:ring-2 focus:ring-accent2"
               />
             </div>
 
@@ -181,7 +278,7 @@ export const PlaygroundBuilder: React.FC = () => {
               <select
                 value={newIcon}
                 onChange={(e) => setNewIcon(e.target.value)}
-                className="px-3 py-2.5 rounded-xl border border-textSecondary/30 bg-bg text-main text-sm focus:outline-none focus:ring-2 focus:ring-accent2"
+                className="px-3 py-3 rounded-xl border border-textSecondary/30 bg-bg text-main text-sm font-medium focus:outline-none focus:ring-2 focus:ring-accent2"
               >
                 <option value="⭐">⭐ Star</option>
                 <option value="🥟">🥟 Samosa</option>
@@ -193,7 +290,7 @@ export const PlaygroundBuilder: React.FC = () => {
 
               <button
                 type="submit"
-                className="btn-primary flex-1 py-2.5 rounded-xl font-bold text-sm shadow-sm flex items-center justify-center gap-1"
+                className="btn-primary flex-1 py-3 rounded-xl font-extrabold text-sm shadow-sm hover:-translate-y-0.5 flex items-center justify-center gap-1 transition-all"
               >
                 <span>+ Add Item</span>
               </button>
@@ -211,12 +308,12 @@ export const PlaygroundBuilder: React.FC = () => {
 
       {/* Live Interactive Visualizer Instance */}
       <div className="space-y-2">
-        <h3 className="font-bold text-lg text-main flex items-center gap-2">
-          <span>⚡</span> Sorting Playground Visualizer
+        <h3 className="font-extrabold text-xl text-main flex items-center gap-2">
+          <span>⚡</span> Live Sorting Visualizer
         </h3>
         <BubbleSortVisualizer
           items={items}
-          title="Custom Playground List"
+          title="Custom List sorting"
         />
       </div>
     </div>
