@@ -1,0 +1,83 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Advanced: Time Complexity & Naming | Bubble Sort">
+  <div class="max-w-3xl mx-auto py-6 sm:py-10 space-y-8">
+    {/* Page Header */}
+    <div class="text-center space-y-3">
+      <span class="bg-focusBg border border-focusBorder text-focusText text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+        Optional Bonus Module • For Curious Minds
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">
+        Advanced: <span class="text-accent font-handwritten text-4xl sm:text-6xl">Time Complexity & Naming</span> 🤓
+      </h1>
+      <p class="text-textSecondary text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+        Yeh section optional hai! Agar tum exam ya interview context samajhna chahte ho, toh yahan toggles khol kar dekho.
+      </p>
+    </div>
+
+    {/* Section 1: Naming & Etymology */}
+    <div class="bg-card border border-textSecondary/20 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4">
+      <h2 class="text-xl font-bold text-main flex items-center gap-2">
+        <span>🧼</span> Kyun Bolte Hain "Bubble Sort"?
+      </h2>
+      <p class="text-sm text-main leading-relaxed">
+        Jaise cold drink ya paani mein halke air bubbles upar ki taraf float karke surface par aate hain, 
+        waise hi bubble sort mein har pass ke baad sabse bada number (heavy element) sliding pairs swap ho kar 
+        end par (surface par) <strong>"bubble up"</strong> kar jata hai! Isi analogy se iska naam Bubble Sort pada.
+      </p>
+    </div>
+
+    {/* Section 2: Time Complexity Collapsible Box */}
+    <details class="bg-card border border-textSecondary/20 rounded-3xl p-6 sm:p-8 shadow-sm group cursor-pointer">
+      <summary class="font-bold text-lg text-main flex items-center justify-between list-none">
+        <span class="flex items-center gap-2">
+          <span>⏱️</span> Time Complexity: O(N²) Kyun Hai? (Click to reveal)
+        </span>
+        <span class="text-accent group-open:rotate-180 transition-transform">▼</span>
+      </summary>
+
+      <div class="pt-4 space-y-4 text-sm leading-relaxed border-t border-textSecondary/15 mt-4">
+        <div class="dhyan-do-box p-4 rounded-xl space-y-1">
+          <p class="font-bold">Worst & Average Case: O(N²)</p>
+          <p className="text-xs">
+            Agar list completely reversed order mein hai (e.g. 5, 4, 3, 2, 1), toh har pass mein (N-1) comparisons 
+            karne padte hain. Total comparisons ~ N × (N-1) / 2 = <strong>O(N²)</strong>.
+          </p>
+        </div>
+
+        <div class="bg-focusBg border border-focusBorder text-focusText p-4 rounded-xl space-y-1">
+          <p class="font-bold">Best Case: O(N)</p>
+          <p className="text-xs">
+            Agar list pehle se 100% sorted hai (e.g. 1, 2, 3, 4, 5), toh pehle hi pass mein 0 swaps hongi aur algorithm 
+            wahi ruk jayegi. Total comparisons = N-1 = <strong>O(N)</strong>.
+          </p>
+        </div>
+
+        <div class="bg-bg border border-textSecondary/30 p-4 rounded-xl space-y-1">
+          <p class="font-bold text-main">Space Complexity: O(1)</p>
+          <p className="text-xs text-textSecondary">
+            Bubble sort ko koi alag se extra memory/array nahi chahiye hota. Bas usi array mein swapping hoti hai (In-place sorting).
+          </p>
+        </div>
+      </div>
+    </details>
+
+    {/* Navigation */}
+    <div class="pt-4 text-center flex justify-center gap-4">
+      <a
+        href="/quiz"
+        class="px-5 py-2.5 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent text-sm font-semibold"
+      >
+        ← Back to Quiz
+      </a>
+      <a
+        href="/complete"
+        class="btn-primary px-7 py-2.5 rounded-xl text-sm font-bold shadow-sm"
+      >
+        Get Certificate →
+      </a>
+    </div>
+  </div>
+</Layout>

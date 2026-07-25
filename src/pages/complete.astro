@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CompletionBadge from '../components/CompletionBadge';
+---
+
+<Layout title="Congratulations! | Bubble Sort Complete">
+  <div class="max-w-2xl mx-auto space-y-8 py-4 sm:py-8">
+    {/* Celebration Header */}
+    <div class="text-center space-y-3">
+      <span class="bg-focusBg border border-focusBorder text-focusText text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+        Level Cleared • Mission Accomplished
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">
+        You Mastered <span class="text-accent font-handwritten text-4xl sm:text-6xl">Bubble Sort!</span>
+      </h1>
+      <p class="text-textSecondary text-sm sm:text-base leading-relaxed">
+        Koi formal exam nahi, fir bhi saara logic dimaag mein fit ho gaya!
+      </p>
+    </div>
+
+    {/* Completion Island */}
+    <CompletionBadge client:load />
+  </div>
+</Layout>

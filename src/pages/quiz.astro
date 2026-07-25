@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RecapQuiz from '../components/RecapQuiz';
+---
+
+<Layout title="Funny Recap Quiz | Bubble Sort">
+  <div class="max-w-3xl mx-auto space-y-8 py-4 sm:py-8">
+    {/* Header */}
+    <div class="text-center space-y-3">
+      <span class="bg-focusBg border border-focusBorder text-focusText text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+        Recap Test • Zero Stress
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">
+        Funny <span class="text-accent font-handwritten text-4xl sm:text-6xl">Recap Quiz</span>
+      </h1>
+      <p class="text-textSecondary text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+        Dekho tumne bubble sort ke saare 5 concepts kitne acche se samjhe hain. 
+        Wrong answers par gussa nahi, sirf funny tip milegi!
+      </p>
+    </div>
+
+    {/* Quiz Island */}
+    <RecapQuiz client:load />
+  </div>
+</Layout>
