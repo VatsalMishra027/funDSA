@@ -27,8 +27,8 @@ interface StepState {
   isFullySorted?: boolean;
 }
 
-// Web Audio API Synthesizer with distinct click & sorting SFX
-export const playAudioSFX = (type: 'click' | 'compare' | 'swap' | 'sorted', enabled: boolean = true) => {
+// Web Audio API Synthesizer with distinct click, sorting & party celebration SFX
+export const playAudioSFX = (type: 'click' | 'compare' | 'swap' | 'sorted' | 'party', enabled: boolean = true) => {
   if (!enabled || typeof window === 'undefined') return;
   try {
     const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
@@ -37,7 +37,6 @@ export const playAudioSFX = (type: 'click' | 'compare' | 'swap' | 'sorted', enab
     const now = ctx.currentTime;
 
     if (type === 'click') {
-      // Crisp subtle UI Click sound
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = 'sine';
@@ -87,6 +86,21 @@ export const playAudioSFX = (type: 'click' | 'compare' | 'swap' | 'sorted', enab
         noteOsc.start(now + i * 0.07);
         noteOsc.stop(now + i * 0.07 + 0.18);
       });
+    } else if (type === 'party') {
+      // Festive Party Fanfare Chord: C5 - E5 - G5 - C6 - E6
+      const notes = [523.25, 659.25, 783.99, 1046.5, 1318.51];
+      notes.forEach((freq, i) => {
+        const noteOsc = ctx.createOscillator();
+        const noteGain = ctx.createGain();
+        noteOsc.type = 'triangle';
+        noteOsc.frequency.setValueAtTime(freq, now + i * 0.09);
+        noteGain.gain.setValueAtTime(0.22, now + i * 0.09);
+        noteGain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.09 + 0.35);
+        noteOsc.connect(noteGain);
+        noteGain.connect(ctx.destination);
+        noteOsc.start(now + i * 0.09);
+        noteOsc.stop(now + i * 0.09 + 0.35);
+      });
     }
   } catch (e) {
     // Silent catch
@@ -134,7 +148,6 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
         const itemA = arr[j];
         const itemB = arr[j + 1];
 
-        // Step 1: Compare
         generatedSteps.push({
           items: [...arr],
           compareIndices: [j, j + 1],
@@ -147,7 +160,6 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
         if (arr[j].value > arr[j + 1].value) {
           swappedInThisPass = true;
 
-          // Step 2: Highlighting swap intention with symbol
           generatedSteps.push({
             items: [...arr],
             compareIndices: [j, j + 1],
@@ -157,12 +169,10 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
             message: `${itemA.value} > ${itemB.value} (Left > Right) — Swapping positions! 🔀`,
           });
 
-          // Perform swap
           const temp = arr[j];
           arr[j] = arr[j + 1];
           arr[j + 1] = temp;
 
-          // Step 3: Swapped state
           generatedSteps.push({
             items: [...arr],
             compareIndices: [j, j + 1],
@@ -172,7 +182,6 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
             message: `Swapped! Ab ${arr[j].label} pehle aa gaya, ${arr[j + 1].label} aage chala gaya.`,
           });
         } else {
-          // No swap
           generatedSteps.push({
             items: [...arr],
             compareIndices: [j, j + 1],
@@ -231,7 +240,6 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
     setIsPlaying(false);
   }, [initialItems]);
 
-  // Trigger sound effect on step changes
   useEffect(() => {
     const step = steps[currentStepIndex];
     if (step) {
@@ -245,7 +253,6 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
     }
   }, [currentStepIndex, soundEnabled, steps]);
 
-  // Autoplay timer
   useEffect(() => {
     if (isPlaying) {
       timerRef.current = setTimeout(() => {
@@ -300,7 +307,6 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
 
   return (
     <div className="w-full bg-card border border-textSecondary/20 rounded-3xl p-5 sm:p-7 shadow-md transition-all relative overflow-hidden">
-      {/* Header Info */}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
         <div>
           <h3 className="text-2xl font-extrabold tracking-tight text-main">{title}</h3>
@@ -310,7 +316,6 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
         </div>
 
         <div className="flex items-center gap-3">
-          {/* Sound Toggle Button */}
           <button
             type="button"
             onClick={() => {
@@ -322,7 +327,6 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
             <span>{soundEnabled ? '🔊 Sound On' : '🔇 Muted'}</span>
           </button>
 
-          {/* Pass Badge */}
           <span className="bg-bg border border-textSecondary/30 text-textSecondary text-xs px-3.5 py-1.5 rounded-xl font-mono font-bold">
             Pass: <strong className="text-accent text-sm font-extrabold">{currentStep.pass}</strong>
           </span>
@@ -334,7 +338,6 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
         </div>
       </div>
 
-      {/* Status Banner */}
       <div
         className={`mb-6 p-4 rounded-xl text-base font-semibold border transition-all duration-300 ${
           currentStep.isPassComplete || currentStep.isFullySorted
@@ -358,10 +361,7 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
         </div>
       </div>
 
-      {/* Array Cards Visualization Row with Floating Swap Symbol & Spring Animation */}
       <div className="relative my-8 min-h-[260px] flex items-end justify-center gap-3 sm:gap-6 px-3 py-8 border-b border-textSecondary/15 overflow-x-auto">
-        
-        {/* Floating Swap Indicator Badge */}
         {currentStep.isSwapping && currentStep.compareIndices && (
           <div className="absolute top-2 left-1/2 -translate-x-1/2 z-30 bg-accent text-onAccent font-extrabold text-xs px-4 py-1.5 rounded-full shadow-lg border-2 border-onAccent animate-bounce flex items-center gap-1.5 tracking-wider uppercase font-mono">
             <span>🔀</span>
@@ -385,7 +385,6 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
               cardStyle =
                 'bg-accent text-onAccent border-accent font-extrabold scale-110 shadow-xl ring-4 ring-accent/50 z-20';
               
-              // Smooth sliding spring transforms
               if (currentStep.compareIndices && currentStep.compareIndices[0] === idx) {
                 transformStyle = 'translate-x-4 -translate-y-4 rotate-3';
               } else if (currentStep.compareIndices && currentStep.compareIndices[1] === idx) {
@@ -402,7 +401,6 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
               key={item.id}
               className={`flex flex-col items-center flex-1 max-w-[95px] min-w-[64px] transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] transform ${transformStyle}`}
             >
-              {/* Dynamic Value Height Bar */}
               <div className="w-full flex flex-col justify-end items-center h-36 mb-2">
                 <div
                   className={`w-full rounded-t-xl transition-all duration-700 flex items-center justify-center text-xs font-mono font-extrabold shadow-xs ${
@@ -420,7 +418,6 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
                 </div>
               </div>
 
-              {/* Card Badge */}
               <div
                 className={`w-full p-3 rounded-2xl border text-center transition-all duration-700 flex flex-col items-center justify-center gap-1 ${cardStyle}`}
               >
@@ -435,7 +432,6 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
         })}
       </div>
 
-      {/* Control Toolbar */}
       <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
         <div className="flex items-center gap-2.5">
           <button
@@ -473,7 +469,6 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
           </button>
         </div>
 
-        {/* Speed Slider */}
         <div className="flex items-center gap-2.5 text-xs font-bold text-textSecondary bg-bg border border-textSecondary/20 px-3.5 py-2 rounded-xl">
           <span>Speed:</span>
           <input

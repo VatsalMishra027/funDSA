@@ -83,6 +83,11 @@ export const RecapQuiz: React.FC = () => {
     setUserAnswers({ ...userAnswers, [qId]: optIndex });
   };
 
+  const handleSubmitQuiz = () => {
+    playAudioSFX('party', true);
+    setSubmitted(true);
+  };
+
   const calculateScore = () => {
     let score = 0;
     MASTER_QUIZ_QUESTIONS.forEach((q) => {
@@ -98,7 +103,7 @@ export const RecapQuiz: React.FC = () => {
 
   return (
     <div className="space-y-8">
-      {/* Questions Stack */}
+      {/* Questions Stack with Hover Lift Effects */}
       <div className="space-y-6">
         {MASTER_QUIZ_QUESTIONS.map((q, idx) => {
           const selected = userAnswers[q.id];
@@ -107,37 +112,37 @@ export const RecapQuiz: React.FC = () => {
           return (
             <div
               key={q.id}
-              className="bg-card border border-textSecondary/20 rounded-2xl p-5 sm:p-6 shadow-sm space-y-3"
+              className="bg-card border border-textSecondary/20 rounded-3xl p-5 sm:p-7 shadow-sm hover:shadow-xl hover:border-accent/40 hover:-translate-y-1 transition-all duration-300 space-y-4"
             >
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono bg-bg border border-textSecondary/20 px-2.5 py-1 rounded text-textSecondary font-bold">
+                <span className="text-xs font-mono bg-bg border border-textSecondary/20 px-3 py-1 rounded-lg text-textSecondary font-extrabold">
                   Q{idx + 1}. {q.concept}
                 </span>
                 {submitted && (
-                  <span className={`text-xs font-bold px-2.5 py-1 rounded ${isCorrect ? 'bg-focusBg text-focusText' : 'bg-accent/15 text-accent'}`}>
+                  <span className={`text-xs font-bold px-3 py-1 rounded-lg ${isCorrect ? 'bg-focusBg text-focusText border border-focusBorder' : 'bg-accent/15 text-accent border border-accent'}`}>
                     {isCorrect ? '✓ Correct' : '✕ Wrong'}
                   </span>
                 )}
               </div>
 
-              <h3 className="font-bold text-base sm:text-lg text-main leading-relaxed">
+              <h3 className="font-extrabold text-base sm:text-xl text-main leading-relaxed">
                 {q.question}
               </h3>
 
-              <div className="space-y-2 pt-1">
+              <div className="space-y-2.5 pt-1">
                 {q.options.map((opt, optIdx) => {
                   let btnStyle =
-                    'border-textSecondary/30 bg-bg text-main hover:border-accent2';
+                    'border-textSecondary/30 bg-bg text-main hover:border-accent hover:bg-accent/5 hover:-translate-y-0.5';
 
                   if (selected === optIdx) {
                     btnStyle =
-                      'bg-accent/15 border-accent text-accent font-semibold ring-1 ring-accent';
+                      'bg-accent/15 border-accent text-accent font-extrabold ring-2 ring-accent scale-[1.01]';
                   }
 
                   if (submitted) {
                     if (optIdx === q.correctIndex) {
                       btnStyle =
-                        'bg-focusBg border-focusBorder text-focusText font-bold ring-2 ring-focusBorder';
+                        'bg-focusBg border-focusBorder text-focusText font-extrabold ring-2 ring-focusBorder';
                     } else if (selected === optIdx && !isCorrect) {
                       btnStyle =
                         'bg-accent/20 border-accent text-accent line-through opacity-80';
@@ -150,11 +155,11 @@ export const RecapQuiz: React.FC = () => {
                       type="button"
                       onClick={() => handleSelectOption(q.id, optIdx)}
                       disabled={submitted}
-                      className={`w-full p-3.5 rounded-xl border text-sm sm:text-base text-left transition-all font-medium flex items-center justify-between ${btnStyle}`}
+                      className={`w-full p-4 rounded-2xl border text-sm sm:text-base text-left transition-all duration-200 font-semibold flex items-center justify-between shadow-xs ${btnStyle}`}
                     >
                       <span>{opt}</span>
                       {selected === optIdx && !submitted && (
-                        <span className="text-accent font-bold">●</span>
+                        <span className="text-accent font-black">●</span>
                       )}
                     </button>
                   );
@@ -162,55 +167,52 @@ export const RecapQuiz: React.FC = () => {
               </div>
 
               {submitted && (
-                <p className="text-xs sm:text-sm font-medium text-textSecondary pt-1">
+                <div className="bg-bg border border-textSecondary/20 p-3.5 rounded-xl text-xs sm:text-sm font-medium text-textSecondary">
                   💡 <strong>Explanation:</strong> {q.explanation}
-                </p>
+                </div>
               )}
             </div>
           );
         })}
       </div>
 
-      {/* Action / Result Box */}
-      <div className="bg-card border border-textSecondary/20 rounded-2xl p-6 sm:p-8 text-center space-y-4 shadow-md">
+      {/* Action / Result Box with Party Sound */}
+      <div className="bg-card border-2 border-accent/40 rounded-3xl p-6 sm:p-10 text-center space-y-5 shadow-md hover:shadow-2xl hover:border-accent transition-all duration-300">
         {!submitted ? (
           <div>
             <button
               type="button"
-              onClick={() => {
-                playAudioSFX('click', true);
-                setSubmitted(true);
-              }}
+              onClick={handleSubmitQuiz}
               disabled={!allAnswered}
-              className="btn-primary px-9 py-4 rounded-xl font-extrabold text-lg shadow-chalk disabled:opacity-50 disabled:cursor-not-allowed"
+              className="btn-primary px-10 py-4.5 rounded-2xl font-black text-xl shadow-chalk hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
             >
               Submit Master Quiz Answers 🚀
             </button>
             {!allAnswered && (
-              <p className="text-xs text-textSecondary font-semibold mt-2">
+              <p className="text-xs text-textSecondary font-bold mt-3">
                 Pehle saare 6 questions ke options select kar lo! ({Object.keys(userAnswers).length}/6 answered)
               </p>
             )}
           </div>
         ) : (
-          <div className="space-y-4 animate-fadeIn">
-            <div className="inline-block bg-focusBg border border-focusBorder text-focusText text-xs sm:text-sm font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider">
-              Master Quiz Completed! 🎯
+          <div className="space-y-5 animate-fadeIn">
+            <div className="inline-block bg-focusBg border-2 border-focusBorder text-focusText text-sm sm:text-base font-black px-5 py-2 rounded-full uppercase tracking-wider shadow-sm animate-bounce">
+              🎉 Master Quiz Completed! (Party Time 🥳)
             </div>
 
-            <h3 className="text-3xl sm:text-4xl font-extrabold text-main">
-              Tumhara Score: <span className="text-accent">{finalScore}/6</span>
+            <h3 className="text-3xl sm:text-5xl font-black text-main tracking-tight">
+              Tumhara Score: <span className="text-accent font-mono">{finalScore}/6</span>
             </h3>
 
-            <p className="text-base font-semibold text-textSecondary max-w-md mx-auto">
+            <p className="text-lg font-bold text-textSecondary max-w-md mx-auto leading-relaxed">
               {finalScore === 6
-                ? '🏆 BUBBLE SORT MASTER! 100% Score! Saare concepts crystal clear hain!'
+                ? '🏆 BUBBLE SORT MASTER! 100% Perfect Score! Saare concepts crystal clear hain!'
                 : finalScore >= 4
                 ? '🌟 SHABASH! Zabarjast performance. Bas 1-2 minor points revision chahiye.'
                 : '👍 GOOD TRY! Koi tension nahi, concept guide dobara dekho aur retry karo.'}
             </p>
 
-            <div className="pt-2 flex flex-wrap justify-center gap-4">
+            <div className="pt-3 flex flex-wrap justify-center gap-4">
               <button
                 type="button"
                 onClick={() => {
@@ -218,7 +220,7 @@ export const RecapQuiz: React.FC = () => {
                   setSubmitted(false);
                   setUserAnswers({});
                 }}
-                className="px-5 py-2.5 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent text-sm font-semibold"
+                className="px-6 py-3 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent hover:-translate-y-0.5 text-base font-bold transition-all"
               >
                 🔄 Retry Quiz
               </button>
@@ -226,7 +228,7 @@ export const RecapQuiz: React.FC = () => {
               <a
                 href="/complete"
                 onClick={() => playAudioSFX('click', true)}
-                className="btn-primary px-7 py-2.5 rounded-xl font-bold text-sm shadow-sm flex items-center gap-1.5"
+                className="btn-primary px-8 py-3 rounded-xl font-extrabold text-base shadow-sm hover:scale-105 transition-transform flex items-center gap-2"
               >
                 <span>Get Completion Badge</span>
                 <span>🏆</span>

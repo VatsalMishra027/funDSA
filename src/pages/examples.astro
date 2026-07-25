@@ -2,86 +2,86 @@
 import Layout from '../layouts/Layout.astro';
 import BubbleSortVisualizer from '../components/BubbleSortVisualizer';
 
+// Unsorted initial arrays so students can watch real sorting action!
 const examplesList = [
   {
     id: 'cricket',
-    title: '🏏 Example 1: Indian Cricket ODI Highest Scores',
+    title: '🏏 Example 1: Indian Cricket ODI Scores (Unsorted)',
     interest: 'Cricket',
-    description: 'Rohit, Kohli, Dhoni, Gill, aur Pant ke scores ko lowest-to-highest sort karte hain.',
+    description: 'Watch how Rohit (264), Gill (91), Kohli (183), Pant (125), and Dhoni (148) get sorted from lowest to highest.',
     items: [
+      { label: 'Rohit', value: 264, icon: '💥' },
       { label: 'Gill', value: 91, icon: '⭐' },
+      { label: 'Kohli', value: 183, icon: '🏏' },
       { label: 'Pant', value: 125, icon: '🔥' },
       { label: 'Dhoni', value: 148, icon: '🧤' },
-      { label: 'Kohli', value: 183, icon: '🏏' },
-      { label: 'Rohit', value: 264, icon: '💥' },
     ],
   },
   {
     id: 'canteen',
-    title: '🥟 Example 2: School Canteen Price List (in ₹)',
+    title: '🥟 Example 2: School Canteen Price List (Unsorted)',
     interest: 'Food',
-    description: 'Chai (₹10) se lekar Pizza (₹250) tak canteen menu prices ko budget order mein lagana.',
+    description: 'Pizza (₹250), Chai (₹10), Maggi (₹45), Samosa (₹15), and Roll (₹80) sorting into budget order.',
     items: [
-      { label: 'Chai', value: 10, icon: '☕' },
-      { label: 'Samosa', value: 15, icon: '🥟' },
-      { label: 'Maggi', value: 45, icon: '🍜' },
-      { label: 'Roll', value: 80, icon: '🌯' },
       { label: 'Pizza', value: 250, icon: '🍕' },
+      { label: 'Chai', value: 10, icon: '☕' },
+      { label: 'Maggi', value: 45, icon: '🍜' },
+      { label: 'Samosa', value: 15, icon: '🥟' },
+      { label: 'Roll', value: 80, icon: '🌯' },
     ],
   },
   {
     id: 'gaming',
-    title: '🎮 Example 3: PUBG Match Squad Kills',
+    title: '🎮 Example 3: PUBG Squad Kills Leaderboard (Unsorted)',
     interest: 'Gaming',
-    description: 'Match ke baad alag-alag squads ke total kills ko leaderboard order mein arrange karna.',
+    description: 'Squad Alpha (22), Squad Beta (4), Squad Delta (14), and Squad Omega (11) sorting in ascending order.',
     items: [
-      { label: 'Squad Delta', value: 4, icon: '🛡️' },
-      { label: 'Squad Beta', value: 11, icon: '🔭' },
-      { label: 'Squad Alpha', value: 14, icon: '🎯' },
-      { label: 'Squad Omega', value: 22, icon: '⚡' },
+      { label: 'Squad Alpha', value: 22, icon: '⚡' },
+      { label: 'Squad Beta', value: 4, icon: '🛡️' },
+      { label: 'Squad Delta', value: 14, icon: '🎯' },
+      { label: 'Squad Omega', value: 11, icon: '🔭' },
     ],
   },
   {
     id: 'movies',
-    title: '🎬 Example 4: Bollywood Movie Ratings (%)',
+    title: '🎬 Example 4: Bollywood Movie Box Office Ratings (Unsorted)',
     interest: 'Bollywood/Movies',
-    description: 'Audience ratings ke hisab se movies ko sort karke blockbuster order mein set karna.',
+    description: 'Blockbuster (96%), Flop (30%), Hit (82%), and Average (65%) sorting into rank order.',
     items: [
-      { label: 'Flop Show', value: 30, icon: '🍅' },
-      { label: 'Average Pic', value: 65, icon: '🎟️' },
-      { label: 'Hit Film', value: 82, icon: '🍿' },
       { label: 'Blockbuster', value: 96, icon: '🏆' },
+      { label: 'Flop', value: 30, icon: '🍅' },
+      { label: 'Hit', value: 82, icon: '🍿' },
+      { label: 'Average', value: 65, icon: '🎟️' },
     ],
   },
 ];
 ---
 
-<Layout title="Worked Examples Gallery | Bubble Sort">
+<Layout title="Worked Examples Gallery | DSA 101">
   <div class="max-w-4xl mx-auto space-y-10 py-4 sm:py-8">
     {/* Page Header */}
     <div class="text-center space-y-3">
-      <span class="bg-focusBg border border-focusBorder text-focusText text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+      <span class="bg-focusBg border border-focusBorder text-focusText text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
         Real-Life Gallery 🖼️
       </span>
-      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">
+      <h1 class="text-3xl sm:text-5xl font-black tracking-tight">
         Worked <span class="text-accent font-handwritten text-4xl sm:text-6xl">Examples</span>
       </h1>
-      <p class="text-textSecondary text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-        Dekho kaise alag-alag hobbies (Cricket, Food, Gaming, Movies) ke real data par 
-        Bubble Sort kaam karta hai.
+      <p class="text-textSecondary text-base sm:text-lg max-w-xl mx-auto leading-relaxed font-medium">
+        All examples below start in <strong>unsorted order</strong>. Click Autoplay or Next to watch adjacent pairs compare and swap in real-time!
       </p>
     </div>
 
-    {/* Examples Showcase Cards */}
+    {/* Examples Showcase Cards with Hover Lift Effects */}
     <div class="space-y-12">
       {examplesList.map((ex) => (
-        <div class="bg-card border border-textSecondary/20 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4">
+        <div class="bg-card border border-textSecondary/20 rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-2xl hover:border-accent/40 hover:-translate-y-1 transition-all duration-300 space-y-4">
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-textSecondary/15 pb-4">
             <div>
-              <h2 class="text-xl font-extrabold text-main">{ex.title}</h2>
-              <p class="text-xs text-textSecondary mt-1">{ex.description}</p>
+              <h2 class="text-xl sm:text-2xl font-extrabold text-main">{ex.title}</h2>
+              <p class="text-sm text-textSecondary font-medium mt-1">{ex.description}</p>
             </div>
-            <span class="bg-focusBg border border-focusBorder text-focusText text-xs font-bold px-3 py-1 rounded-lg">
+            <span class="bg-focusBg border border-focusBorder text-focusText text-xs sm:text-sm font-extrabold px-3 py-1 rounded-xl">
               {ex.interest}
             </span>
           </div>
@@ -89,7 +89,7 @@ const examplesList = [
           <BubbleSortVisualizer
             client:visible
             items={ex.items}
-            title={`${ex.interest} Sorting Example`}
+            title={`${ex.interest} Unsorted Example`}
           />
         </div>
       ))}
@@ -99,15 +99,15 @@ const examplesList = [
     <div class="pt-6 text-center flex justify-center gap-4">
       <a
         href="/playground"
-        class="px-5 py-2.5 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent text-sm font-semibold"
+        class="px-6 py-3 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent hover:-translate-y-0.5 text-base font-bold transition-all"
       >
         🧪 Try Playground
       </a>
       <a
         href="/quiz"
-        class="btn-primary px-6 py-2.5 rounded-xl text-sm font-bold shadow-sm"
+        class="btn-primary px-7 py-3 rounded-xl text-base font-extrabold shadow-sm hover:scale-105 transition-transform"
       >
-        Take Recap Quiz →
+        Take Master Quiz →
       </a>
     </div>
   </div>
