@@ -62,19 +62,17 @@ export const OnboardingForm: React.FC = () => {
       return;
     }
 
-    // Save to nanostore
     setStudentName(trimmedName);
     setStudentInterests(selectedInterests);
 
-    // Route to intro module
-    window.location.href = '/learn/intro';
+    // Route directly to the single comprehensive learning guide page
+    window.location.href = '/learn';
   };
 
   const isSelectionValid = selectedInterests.length >= 2 && selectedInterests.length <= 3 && name.trim().length > 0;
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Student Name Input */}
       <div className="space-y-2">
         <label htmlFor="student-name" className="block text-sm font-bold text-main">
           Tumhara Naam Kya Hai? <span className="text-accent">*</span>
@@ -91,11 +89,10 @@ export const OnboardingForm: React.FC = () => {
           className="w-full px-4 py-3 rounded-xl border border-textSecondary/30 bg-bg text-main focus:outline-none focus:ring-2 focus:ring-accent2/80 font-medium text-base placeholder:text-textSecondary/60 transition-all"
         />
         <p className="text-xs text-textSecondary">
-          No formal roll numbers! Bas wohi naam likho jisse dost bulate hain.
+          Bas wohi naam likho jisse dost bulate hain!
         </p>
       </div>
 
-      {/* Interests Selection */}
       <div className="space-y-3 pt-2">
         <div className="flex items-center justify-between">
           <label className="block text-sm font-bold text-main">
@@ -107,10 +104,9 @@ export const OnboardingForm: React.FC = () => {
         </div>
 
         <p className="text-xs text-textSecondary leading-relaxed">
-          Hum inhi me se funny real-life analogies banayenge. Select exactly <strong>2 ya 3</strong> chips:
+          Select <strong>2 ya 3</strong> chips to customize your learning guide:
         </p>
 
-        {/* Chips Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-1">
           {INTEREST_CHIPS.map((chip) => {
             const isSelected = selectedInterests.includes(chip.id);
@@ -133,7 +129,6 @@ export const OnboardingForm: React.FC = () => {
         </div>
       </div>
 
-      {/* Hinglish Error / Hint Banner */}
       {errorMsg && (
         <div className="p-3.5 rounded-xl bg-accent/15 border border-accent text-accent text-xs font-semibold flex items-center gap-2 animate-shake">
           <span>⚠️</span>
@@ -147,7 +142,6 @@ export const OnboardingForm: React.FC = () => {
         </div>
       )}
 
-      {/* Submit Button */}
       <div className="pt-4">
         <button
           type="submit"

@@ -7,7 +7,7 @@ interface Props {
 }
 
 const {
-  title = 'Bubble Sort | DSA Made Fun & Easy',
+  title = 'Bubble Sort | funDSA',
   description = 'Learn Bubble Sort algorithm with fun analogies, step-by-step visualizations, and zero stress!',
 } = Astro.props;
 ---
@@ -41,15 +41,26 @@ const {
     <header class="border-b border-textSecondary/20 bg-card/80 backdrop-blur-md sticky top-0 z-40">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <a href="/" class="flex items-center gap-2 group">
-          <span class="bg-accent text-onAccent text-xs font-extrabold px-2 py-1 rounded tracking-wider uppercase font-mono">
-            DSA 101
+          <span class="bg-accent text-onAccent text-xs font-extrabold px-2.5 py-1 rounded tracking-wider uppercase font-mono">
+            funDSA
           </span>
           <span class="font-bold text-lg sm:text-xl tracking-tight group-hover:text-accent transition-colors">
             Bubble Sort <span class="font-handwritten text-xl sm:text-2xl text-accent2 font-bold ml-1">apne style mein</span>
           </span>
         </a>
 
-        <div class="flex items-center gap-4">
+        <!-- Header Nav Links -->
+        <div class="flex items-center gap-3 sm:gap-5">
+          <a href="/learn" class="text-sm font-bold text-textSecondary hover:text-accent transition-colors hidden sm:inline-block">
+            Learn Guide
+          </a>
+          <a href="/playground" class="text-sm font-bold text-textSecondary hover:text-accent transition-colors hidden sm:inline-block">
+            Playground
+          </a>
+          <a href="/quiz" class="text-sm font-bold text-textSecondary hover:text-accent transition-colors hidden sm:inline-block">
+            Master Quiz
+          </a>
+
           <!-- Theme Toggle Button -->
           <button
             id="theme-toggle"
@@ -75,10 +86,16 @@ const {
 
     <!-- Footer -->
     <footer class="border-t border-textSecondary/20 bg-card py-6 mt-12 text-center text-sm text-textSecondary">
-      <div class="max-w-6xl mx-auto px-4">
+      <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p class="font-semibold">
-          Koi tension nahi, sirf comparison aur swapping 🧼 | Built for students & passionate learners
+          funDSA 🧼 | Koi tension nahi, sirf comparison aur swapping
         </p>
+        <div class="flex items-center gap-4 font-bold text-xs">
+          <a href="/learn" class="hover:text-accent">Learn Guide</a>
+          <a href="/playground" class="hover:text-accent">Playground</a>
+          <a href="/examples" class="hover:text-accent">Examples</a>
+          <a href="/quiz" class="hover:text-accent">Quiz</a>
+        </div>
       </div>
     </footer>
 
