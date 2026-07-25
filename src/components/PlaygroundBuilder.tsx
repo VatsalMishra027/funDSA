@@ -7,6 +7,8 @@ interface InterestPreset {
   interest: string;
   name: string;
   icon: string;
+  criteriaExplanation: string;
+  placeholderHint: string;
   items: VisualizerItem[];
 }
 
@@ -15,6 +17,8 @@ const INTEREST_PRESETS: InterestPreset[] = [
     interest: 'Cricket',
     name: 'IPL High Scores',
     icon: '🏏',
+    criteriaExplanation: '🏏 Cricket Sorting Basis: Players ke Highest ODI Scores (Runs) ke basis par lowest se highest order mein sort kiya jata hai.',
+    placeholderHint: 'Item Label (e.g. Kohli, Dhoni)',
     items: [
       { label: 'Gill', value: 91, icon: '⭐' },
       { label: 'Pant', value: 125, icon: '🔥' },
@@ -27,6 +31,8 @@ const INTEREST_PRESETS: InterestPreset[] = [
     interest: 'Food',
     name: 'Canteen Menu Bill (₹)',
     icon: '🥟',
+    criteriaExplanation: '🥟 Food Sorting Basis: Canteen items ke Price (in ₹) ke basis par sabse saste se mehange order mein sort kiya jata hai.',
+    placeholderHint: 'Item Label (e.g. Samosa, Pizza)',
     items: [
       { label: 'Chai', value: 10, icon: '☕' },
       { label: 'Samosa', value: 15, icon: '🥟' },
@@ -39,6 +45,8 @@ const INTEREST_PRESETS: InterestPreset[] = [
     interest: 'Gaming',
     name: 'PUBG Squad Kills',
     icon: '🎮',
+    criteriaExplanation: '🎮 Gaming Sorting Basis: Players/Squads ke total Kill Counts ke basis par lowest kills se maximum kills (Leaderboard) order mein sort kiya jata hai.',
+    placeholderHint: 'Item Label (e.g. Sniper, Rusher)',
     items: [
       { label: 'Medic', value: 4, icon: '💊' },
       { label: 'Scout', value: 11, icon: '🔭' },
@@ -50,6 +58,8 @@ const INTEREST_PRESETS: InterestPreset[] = [
     interest: 'Bollywood/Movies',
     name: 'Movie Ratings (%)',
     icon: '🎬',
+    criteriaExplanation: '🎬 Bollywood Sorting Basis: Movies ke Audience Rating Percentage (%) ke basis par flop se blockbuster order mein sort kiya jata hai.',
+    placeholderHint: 'Item Label (e.g. Hit Film, Blockbuster)',
     items: [
       { label: 'Flop', value: 30, icon: '🍅' },
       { label: 'Average', value: 65, icon: '🎟️' },
@@ -61,6 +71,8 @@ const INTEREST_PRESETS: InterestPreset[] = [
     interest: 'Music/Singing',
     name: 'Playlist Stream Counts (M)',
     icon: '🎧',
+    criteriaExplanation: '🎧 Music Sorting Basis: Songs ke total Stream Counts (Millions mein) ke basis par least played se viral hit order mein sort kiya jata hai.',
+    placeholderHint: 'Item Label (e.g. Pop Song, Acoustic)',
     items: [
       { label: 'Indie Song', value: 12, icon: '🎸' },
       { label: 'Acoustic', value: 45, icon: '🎙️' },
@@ -72,6 +84,8 @@ const INTEREST_PRESETS: InterestPreset[] = [
     interest: 'Fitness',
     name: 'Workout Bench Press (kg)',
     icon: '🏋️‍♂️',
+    criteriaExplanation: '🏋️‍♂️ Fitness Sorting Basis: Exercises/Sets ke Weight (in kg) ke basis par light weight se Personal Record (PR Max) order mein sort kiya jata hai.',
+    placeholderHint: 'Item Label (e.g. Bench Press, Squat)',
     items: [
       { label: 'Warmup', value: 40, icon: '👟' },
       { label: 'Set 1', value: 60, icon: '🏋️‍♂️' },
@@ -83,6 +97,8 @@ const INTEREST_PRESETS: InterestPreset[] = [
     interest: 'Fashion',
     name: 'Designer Sneaker Prices ($)',
     icon: '👗',
+    criteriaExplanation: '👗 Fashion Sorting Basis: Outfits/Sneakers ke Price (in $) ke basis par affordable se limited edition luxury order mein sort kiya jata hai.',
+    placeholderHint: 'Item Label (e.g. Sneakers, Jacket)',
     items: [
       { label: 'Canvas', value: 50, icon: '👟' },
       { label: 'Streetwear', value: 120, icon: '🧢' },
@@ -94,6 +110,8 @@ const INTEREST_PRESETS: InterestPreset[] = [
     interest: 'Travel',
     name: 'Flight Distances (km)',
     icon: '✈️',
+    criteriaExplanation: '✈️ Travel Sorting Basis: Travel destinations ke Distance (in km) ke basis par nearby trip se overseas flight order mein sort kiya jata hai.',
+    placeholderHint: 'Item Label (e.g. Short Hop, Overseas)',
     items: [
       { label: 'Short Hop', value: 450, icon: '🚕' },
       { label: 'Domestic', value: 1200, icon: '🚆' },
@@ -107,13 +125,13 @@ export const PlaygroundBuilder: React.FC = () => {
   const profile = useStore(studentStore);
   const studentInterests = profile.interests || [];
 
-  // Filter presets to prioritize student's selected onboarding interests
   const userMatchedPresets = INTEREST_PRESETS.filter((p) =>
     studentInterests.includes(p.interest)
   );
   const displayPresets =
     userMatchedPresets.length > 0 ? userMatchedPresets : INTEREST_PRESETS.slice(0, 4);
 
+  const [activePreset, setActivePreset] = useState<InterestPreset>(displayPresets[0]);
   const [items, setItems] = useState<VisualizerItem[]>(displayPresets[0].items);
   const [newLabel, setNewLabel] = useState<string>('');
   const [newValue, setNewValue] = useState<string>('');
@@ -122,9 +140,17 @@ export const PlaygroundBuilder: React.FC = () => {
 
   useEffect(() => {
     if (displayPresets.length > 0) {
+      setActivePreset(displayPresets[0]);
       setItems(displayPresets[0].items);
     }
   }, [profile.interests]);
+
+  const handleSelectPreset = (preset: InterestPreset) => {
+    playAudioSFX('click', true);
+    setError('');
+    setActivePreset(preset);
+    setItems([...preset.items]);
+  };
 
   const handleAddItem = (e: React.FormEvent) => {
     e.preventDefault();
@@ -140,7 +166,7 @@ export const PlaygroundBuilder: React.FC = () => {
     const numValue = Number(newValue);
 
     if (!trimmedLabel) {
-      setError('Item ka naam toh daalo! (e.g. Samosa, Kohli) ✏️');
+      setError(`Item ka naam toh daalo! (${activePreset.placeholderHint}) ✏️`);
       return;
     }
 
@@ -171,12 +197,6 @@ export const PlaygroundBuilder: React.FC = () => {
     setItems(items.filter((_, idx) => idx !== index));
   };
 
-  const loadPreset = (presetItems: VisualizerItem[]) => {
-    playAudioSFX('click', true);
-    setError('');
-    setItems([...presetItems]);
-  };
-
   return (
     <div className="space-y-8">
       {/* Controls Card with Hover Glow Effects */}
@@ -194,33 +214,51 @@ export const PlaygroundBuilder: React.FC = () => {
         </div>
 
         {/* Selected Hobbies & Interests Presets Bar */}
-        <div className="space-y-2.5">
+        <div className="space-y-3">
           <div className="flex items-center justify-between">
             <label className="block text-xs font-extrabold text-accent uppercase tracking-wider">
               🎯 Your Selected Interest Options:
             </label>
             {studentInterests.length > 0 && (
-              <span className="text-xs font-mono text-textSecondary">
+              <span className="text-xs font-mono text-textSecondary font-semibold">
                 Matched: {studentInterests.join(', ')}
               </span>
             )}
           </div>
 
           <div className="flex flex-wrap gap-2.5">
-            {displayPresets.map((preset, idx) => (
-              <button
-                key={idx}
-                type="button"
-                onClick={() => loadPreset(preset.items)}
-                className="px-4 py-2.5 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent hover:bg-accent/10 hover:-translate-y-0.5 text-xs sm:text-sm font-extrabold flex items-center gap-2 transition-all duration-200 shadow-xs"
-              >
-                <span className="text-base">{preset.icon}</span>
-                <span>{preset.name}</span>
-                <span className="text-[10px] font-mono bg-focusBg text-focusText border border-focusBorder px-1.5 py-0.5 rounded font-bold">
-                  {preset.interest}
-                </span>
-              </button>
-            ))}
+            {displayPresets.map((preset, idx) => {
+              const isActive = activePreset.interest === preset.interest;
+              return (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => handleSelectPreset(preset)}
+                  className={`px-4 py-2.5 rounded-xl border text-xs sm:text-sm font-extrabold flex items-center gap-2 transition-all duration-200 shadow-xs ${
+                    isActive
+                      ? 'bg-accent text-onAccent border-accent shadow-md scale-105 ring-2 ring-accent/40'
+                      : 'bg-bg text-main border-textSecondary/30 hover:border-accent hover:bg-accent/10 hover:-translate-y-0.5'
+                  }`}
+                >
+                  <span className="text-base">{preset.icon}</span>
+                  <span>{preset.name}</span>
+                  <span className="text-[10px] font-mono bg-focusBg text-focusText border border-focusBorder px-1.5 py-0.5 rounded font-bold">
+                    {preset.interest}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Active Hobby Sorting Criteria Explanation Box */}
+          <div className="dhyan-do-box p-4 sm:p-5 rounded-2xl space-y-1 mt-3 animate-fadeIn">
+            <div className="font-extrabold text-xs sm:text-sm flex items-center gap-2">
+              <span>💡</span>
+              <span>HOW SORTING WORKS FOR THIS HOBBY:</span>
+            </div>
+            <p className="text-sm sm:text-base font-semibold leading-relaxed">
+              {activePreset.criteriaExplanation}
+            </p>
           </div>
         </div>
 
@@ -251,7 +289,7 @@ export const PlaygroundBuilder: React.FC = () => {
           </div>
         </div>
 
-        {/* Add Item Form */}
+        {/* Add Item Form with Hobby-Specific Dynamic Placeholder */}
         <form onSubmit={handleAddItem} className="space-y-3 pt-2">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
@@ -259,8 +297,8 @@ export const PlaygroundBuilder: React.FC = () => {
                 type="text"
                 value={newLabel}
                 onChange={(e) => setNewLabel(e.target.value)}
-                placeholder="Item Label (e.g. Samosa)"
-                className="w-full px-4 py-3 rounded-xl border border-textSecondary/30 bg-bg text-main text-sm font-medium focus:outline-none focus:ring-2 focus:ring-accent2"
+                placeholder={activePreset.placeholderHint}
+                className="w-full px-4 py-3 rounded-xl border border-textSecondary/30 bg-bg text-main text-sm font-medium focus:outline-none focus:ring-2 focus:ring-accent2 placeholder:text-textSecondary/60"
               />
             </div>
 
@@ -281,7 +319,7 @@ export const PlaygroundBuilder: React.FC = () => {
                 className="px-3 py-3 rounded-xl border border-textSecondary/30 bg-bg text-main text-sm font-medium focus:outline-none focus:ring-2 focus:ring-accent2"
               >
                 <option value="⭐">⭐ Star</option>
-                <option value="🥟">🥟 Samosa</option>
+                <option value="🥟">🥟 Food</option>
                 <option value="🏏">🏏 Cricket</option>
                 <option value="🎮">🎮 Gaming</option>
                 <option value="🍕">🍕 Pizza</option>
@@ -309,11 +347,11 @@ export const PlaygroundBuilder: React.FC = () => {
       {/* Live Interactive Visualizer Instance */}
       <div className="space-y-2">
         <h3 className="font-extrabold text-xl text-main flex items-center gap-2">
-          <span>⚡</span> Live Sorting Visualizer
+          <span>⚡</span> Live Sorting Visualizer ({activePreset.name})
         </h3>
         <BubbleSortVisualizer
           items={items}
-          title="Custom List sorting"
+          title={`${activePreset.interest} Custom List`}
         />
       </div>
     </div>
