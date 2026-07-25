@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import OnboardingForm from '../components/OnboardingForm';
+---
+
+<Layout title="Student Setup | Bubble Sort Made Fun">
+  <div class="max-w-xl mx-auto py-6 sm:py-10 space-y-6">
+    {/* Page Header */}
+    <div class="text-center space-y-3">
+      <span class="bg-focusBg border border-focusBorder text-focusText text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+        Pehle Thoda Setup • Step 1 of 2
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+        Apne baare mein <span class="text-accent font-handwritten text-4xl sm:text-5xl">thoda batao</span>
+      </h1>
+      <p class="text-textSecondary text-sm sm:text-base leading-relaxed">
+        Koi formal exam registration nahi hai. Hum tumhare interests ke according 
+        funny examples aur real-life scenarios custom banayenge!
+      </p>
+    </div>
+
+    {/* Form Card */}
+    <div class="bg-card border border-textSecondary/20 rounded-2xl p-6 sm:p-8 shadow-md">
+      <OnboardingForm client:load />
+    </div>
+
+    {/* Footer encouragement */}
+    <p class="text-center text-xs text-textSecondary">
+      🔒 Secret info nahi hai — tumhare preferences tumhare browser mein hi save rahenge.
+    </p>
+  </div>
+</Layout>
