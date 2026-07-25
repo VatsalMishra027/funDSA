@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: #F6F2EA;
+    --color-card: #FFFFFF;
+    --color-text: #21231F;
+    --color-text-secondary: #6C6A5F;
+    --color-accent: #D14E33;
+    --color-on-accent: #FFFFFF;
+    --color-accent2: #E3B34F;
+    --color-focus-bg: #FBEFC9;
+    --color-focus-border: #E3B34F;
+    --color-focus-text: #6B4E0C;
+  }
+
+  .dark {
+    --color-bg: #16211C;
+    --color-card: #1E2C25;
+    --color-text: #F1EFE4;
+    --color-text-secondary: #9FB0A5;
+    --color-accent: #F07A5C;
+    --color-on-accent: #1A241E;
+    --color-accent2: #F0C868;
+    --color-focus-bg: #2B3A2C;
+    --color-focus-border: #F0C868;
+    --color-focus-text: #F4DFA0;
+  }
+
+  * {
+    border-color: var(--color-text-secondary);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  }
+}
+
+/* Helper Utilities for Focus Callout & Buttons */
+.dhyan-do-box {
+  background-color: var(--color-focus-bg);
+  border-left: 4px solid var(--color-focus-border);
+  color: var(--color-focus-text);
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
+  transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}

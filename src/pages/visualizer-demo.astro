@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BubbleSortVisualizer from '../components/BubbleSortVisualizer';
+
+const cricketData = [
+  { label: 'Kohli', value: 183, icon: '🏏' },
+  { label: 'Rohit', value: 264, icon: '💥' },
+  { label: 'Dhoni', value: 148, icon: '🧤' },
+  { label: 'Gill', value: 91, icon: '⭐' },
+  { label: 'Pant', value: 125, icon: '🔥' },
+];
+
+const tiffinData = [
+  { label: 'Samosa', value: 15, icon: '🥟' },
+  { label: 'Maggi', value: 45, icon: '🍜' },
+  { label: 'Chai', value: 10, icon: '☕' },
+  { label: 'Pizza', value: 250, icon: '🍕' },
+  { label: 'Roll', value: 80, icon: '🌯' },
+];
+---
+
+<Layout title="Bubble Sort Visualizer Demo | DSA Seekho">
+  <div class="max-w-4xl mx-auto space-y-8 py-4">
+    {/* Intro Header */}
+    <div class="text-center space-y-3">
+      <span class="bg-focusBg border border-focusBorder text-focusText text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+        Interactive Demo Page
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+        Bubble Sort Visualizer <span class="text-accent font-handwritten text-4xl sm:text-5xl">Live Action</span>
+      </h1>
+      <p class="text-textSecondary text-sm sm:text-base max-w-xl mx-auto">
+        Test the visualizer island with real-life data sets. Autoplay to watch elements bubble up or click step-by-step!
+      </p>
+    </div>
+
+    {/* Visualizer Instance 1: Cricket High Scores */}
+    <div class="space-y-3">
+      <h2 class="text-lg font-bold text-main flex items-center gap-2">
+        <span>🏏</span> Example 1: Indian Cricket Highest ODI Scores
+      </h2>
+      <BubbleSortVisualizer
+        client:load
+        items={cricketData}
+        title="Cricket Scores (Ascending Order)"
+      />
+    </div>
+
+    {/* Visualizer Instance 2: Canteen Prices */}
+    <div class="space-y-3 pt-6">
+      <h2 class="text-lg font-bold text-main flex items-center gap-2">
+        <span>🍿</span> Example 2: School Canteen Menu Prices (in ₹)
+      </h2>
+      <BubbleSortVisualizer
+        client:load
+        items={tiffinData}
+        title="Canteen Food Prices (Ascending Order)"
+      />
+    </div>
+
+    {/* Quick Navigation Footer */}
+    <div class="pt-8 text-center flex justify-center gap-4">
+      <a href="/" class="px-5 py-2.5 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent text-sm font-semibold">
+        ← Back to Home
+      </a>
+      <a href="/onboarding" class="btn-primary px-6 py-2.5 rounded-xl text-sm font-bold shadow-sm">
+        Start Onboarding →
+      </a>
+    </div>
+  </div>
+</Layout>
