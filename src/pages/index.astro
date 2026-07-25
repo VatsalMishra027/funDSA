@@ -6,10 +6,10 @@ import Layout from '../layouts/Layout.astro';
   <div class="space-y-16 py-6 sm:py-10">
     {/* Hero Section */}
     <section class="max-w-3xl mx-auto text-center space-y-6">
-      <div class="inline-flex items-center gap-2 bg-focusBg border border-focusBorder text-focusText text-xs font-bold px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-sm">
-        <span>⚡ Class 11th & 12th Special</span>
+      <div class="inline-flex items-center gap-2 bg-focusBg border border-focusBorder text-focusText text-sm font-extrabold px-4 py-2 rounded-full uppercase tracking-wider shadow-sm">
+        <span>🚀 Master Data Structures & Algorithms</span>
         <span>•</span>
-        <span>Zero Prior Coding Needed</span>
+        <span>Fun, Interactive & Practical</span>
       </div>
 
       <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight">
@@ -17,31 +17,31 @@ import Layout from '../layouts/Layout.astro';
         <span class="text-accent font-handwritten text-5xl sm:text-7xl">Bina Kisi Stress Ke!</span>
       </h1>
 
-      <p class="text-textSecondary text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
-        Suno, DSA se darna bilkul band karo. Yahan koi boring computer definitions nahi hain — 
-        sirf tiffin box, canteen line, aur tumhare favourite hobbies ke sath step-by-step seekhenge!
+      <p class="text-textSecondary text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
+        Algorithm seekhna ab bilkul aasan hai. Interactive step-by-step visualizer, 
+        audio feedback, aur real-life examples ke sath Bubble Sort ko easily master karo!
       </p>
 
       {/* Main CTA Button */}
       <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
         <a
           href="/onboarding"
-          class="w-full sm:w-auto btn-primary px-9 py-4 rounded-xl font-bold text-lg shadow-chalk flex items-center justify-center gap-2 tracking-wide"
+          class="w-full sm:w-auto btn-primary px-9 py-4 rounded-xl font-extrabold text-lg sm:text-xl shadow-chalk flex items-center justify-center gap-2 tracking-wide"
         >
           <span>Shuru Karo</span>
-          <span class="text-xl">🚀</span>
+          <span class="text-2xl">🚀</span>
         </a>
         <a
           href="/visualizer-demo"
-          class="w-full sm:w-auto px-6 py-4 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent text-base font-semibold transition-all flex items-center justify-center gap-2"
+          class="w-full sm:w-auto px-7 py-4 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent text-base sm:text-lg font-bold transition-all flex items-center justify-center gap-2"
         >
           <span>Quick Demo Dekho</span>
           <span>👀</span>
         </a>
       </div>
 
-      <p class="text-xs text-textSecondary font-medium">
-        ⏱️ Pura course sirf 15-20 min mein complete ho jayega. No logins required!
+      <p class="text-sm text-textSecondary font-semibold">
+        ⏱️ Pura learning flow 15 min mein complete ho jayega. No signups required!
       </p>
     </section>
 
@@ -50,11 +50,11 @@ import Layout from '../layouts/Layout.astro';
       <div class="bg-card border border-textSecondary/20 rounded-3xl p-6 sm:p-8 shadow-md space-y-6">
         <div class="flex items-center justify-between border-b border-textSecondary/15 pb-4">
           <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-accent inline-block"></span>
-            <span class="w-3 h-3 rounded-full bg-accent2 inline-block"></span>
-            <span class="text-xs font-mono text-textSecondary ml-2">bubble-sort-visualizer.preview</span>
+            <span class="w-3.5 h-3.5 rounded-full bg-accent inline-block"></span>
+            <span class="w-3.5 h-3.5 rounded-full bg-accent2 inline-block"></span>
+            <span class="text-sm font-mono text-textSecondary ml-2">bubble-sort-visualizer.preview</span>
           </div>
-          <span class="text-xs font-mono bg-focusBg text-focusText border border-focusBorder px-2.5 py-1 rounded font-bold">
+          <span class="text-xs sm:text-sm font-mono bg-focusBg text-focusText border border-focusBorder px-3 py-1 rounded-lg font-extrabold">
             Pass 1: Comparing & Swapping
           </span>
         </div>
@@ -62,39 +62,39 @@ import Layout from '../layouts/Layout.astro';
         {/* Mock Comparison Graphic */}
         <div class="flex items-end justify-center gap-3 sm:gap-6 py-6 border-b border-textSecondary/10">
           <div class="flex flex-col items-center gap-2">
-            <span class="text-xs font-mono text-textSecondary">Index [0]</span>
-            <div class="bg-bg border border-textSecondary/30 p-3 sm:p-4 rounded-xl text-center font-bold text-sm w-20 sm:w-24">
-              <div class="text-xl mb-1">🥟</div>
+            <span class="text-xs font-mono text-textSecondary font-bold">Index [0]</span>
+            <div class="bg-bg border border-textSecondary/30 p-3.5 sm:p-4 rounded-xl text-center font-bold text-base w-22 sm:w-28">
+              <div class="text-2xl mb-1">🥟</div>
               <div>Samosa</div>
-              <div class="text-xs font-mono text-accent">₹15</div>
+              <div class="text-sm font-mono text-accent">₹15</div>
             </div>
           </div>
 
-          <div class="text-xl text-accent font-bold animate-pulse pb-6">
+          <div class="text-2xl text-accent font-bold animate-pulse pb-6">
             ⇄
           </div>
 
           <div class="flex flex-col items-center gap-2">
             <span class="text-xs font-mono text-accent font-bold">Index [1]</span>
-            <div class="bg-accent text-onAccent border border-accent p-3 sm:p-4 rounded-xl text-center font-bold text-sm w-20 sm:w-24 shadow-md scale-105">
-              <div class="text-xl mb-1">🍕</div>
+            <div class="bg-accent text-onAccent border border-accent p-3.5 sm:p-4 rounded-xl text-center font-bold text-base w-22 sm:w-28 shadow-md scale-105">
+              <div class="text-2xl mb-1">🍕</div>
               <div>Pizza</div>
-              <div class="text-xs font-mono">₹250</div>
+              <div class="text-sm font-mono">₹250</div>
             </div>
           </div>
 
           <div class="flex flex-col items-center gap-2">
-            <span class="text-xs font-mono text-textSecondary">Index [2]</span>
-            <div class="bg-bg border border-textSecondary/30 p-3 sm:p-4 rounded-xl text-center font-bold text-sm w-20 sm:w-24 opacity-60">
-              <div class="text-xl mb-1">☕</div>
+            <span class="text-xs font-mono text-textSecondary font-bold">Index [2]</span>
+            <div class="bg-bg border border-textSecondary/30 p-3.5 sm:p-4 rounded-xl text-center font-bold text-base w-22 sm:w-28 opacity-60">
+              <div class="text-2xl mb-1">☕</div>
               <div>Chai</div>
-              <div class="text-xs font-mono text-textSecondary">₹10</div>
+              <div class="text-sm font-mono text-textSecondary">₹10</div>
             </div>
           </div>
         </div>
 
         {/* Hinglish Callout Quote */}
-        <div class="dhyan-do-box p-4 rounded-xl text-xs sm:text-sm font-medium">
+        <div class="dhyan-do-box p-4 sm:p-5 rounded-xl text-sm sm:text-base font-semibold">
           <strong>Dhyan do! 💡</strong> Pehle do items compare honge. Agar pehla wala bada hai, toh simply jagah swap kar do. Phir repeat!
         </div>
       </div>
@@ -102,55 +102,55 @@ import Layout from '../layouts/Layout.astro';
 
     {/* Why Learn With Us Features Grid */}
     <section class="max-w-4xl mx-auto space-y-8">
-      <h2 class="text-2xl sm:text-3xl font-extrabold text-center tracking-tight">
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-center tracking-tight">
         Kyun yeh tarika sabse best hai? 🌟
       </h2>
 
-      <div class="grid sm:grid-cols-2 gap-4 sm:gap-6">
-        <div class="bg-card border border-textSecondary/20 p-5 rounded-2xl space-y-2">
-          <div class="text-2xl">🍿</div>
-          <h3 class="font-bold text-lg text-main">Personalized Analogies</h3>
-          <p class="text-xs sm:text-sm text-textSecondary leading-relaxed">
+      <div class="grid sm:grid-cols-2 gap-5 sm:gap-7">
+        <div class="bg-card border border-textSecondary/20 p-6 rounded-2xl space-y-2">
+          <div class="text-3xl">🍿</div>
+          <h3 class="font-extrabold text-xl text-main">Personalized Analogies</h3>
+          <p class="text-sm sm:text-base text-textSecondary leading-relaxed font-medium">
             Cricket, Gaming, ya Food — jo tum select karoge, hum examples wahi se banayenge!
           </p>
         </div>
 
-        <div class="bg-card border border-textSecondary/20 p-5 rounded-2xl space-y-2">
-          <div class="text-2xl">🧼</div>
-          <h3 class="font-bold text-lg text-main">No Hard CS Jargon</h3>
-          <p class="text-xs sm:text-sm text-textSecondary leading-relaxed">
-            Pehle aam Hinglish language mein samjhenge. Technical words ("Array", "Pass") sirf baad mein glossary popup ke sath aayenge.
+        <div class="bg-card border border-textSecondary/20 p-6 rounded-2xl space-y-2">
+          <div class="text-3xl">🧼</div>
+          <h3 class="font-extrabold text-xl text-main">Intuitive Explanations</h3>
+          <p class="text-sm sm:text-base text-textSecondary leading-relaxed font-medium">
+            Pehle intuitive Hinglish language mein samjhenge. Technical terms hover glossary popup ke sath aayenge.
           </p>
         </div>
 
-        <div class="bg-card border border-textSecondary/20 p-5 rounded-2xl space-y-2">
-          <div class="text-2xl">⚡</div>
-          <h3 class="font-bold text-lg text-main">Interactive Visualizer</h3>
-          <p class="text-xs sm:text-sm text-textSecondary leading-relaxed">
-            Step-by-step play/pause karke dekho elements kaise sliding motion mein apni jagah pahunchte hain.
+        <div class="bg-card border border-textSecondary/20 p-6 rounded-2xl space-y-2">
+          <div class="text-3xl">⚡</div>
+          <h3 class="font-extrabold text-xl text-main">Interactive Visualizer & Audio</h3>
+          <p class="text-sm sm:text-base text-textSecondary leading-relaxed font-medium">
+            Audio sound effects aur step-by-step control ke sath dekho elements kaise slide karke sort hote hain.
           </p>
         </div>
 
-        <div class="bg-card border border-textSecondary/20 p-5 rounded-2xl space-y-2">
-          <div class="text-2xl">🎯</div>
-          <h3 class="font-bold text-lg text-main">Zero Exam Pressure</h3>
-          <p class="text-xs sm:text-sm text-textSecondary leading-relaxed">
-            Koi marane wala marks system nahi hai. Wrong answer doge toh funny feedback milega, gussa nahi!
+        <div class="bg-card border border-textSecondary/20 p-6 rounded-2xl space-y-2">
+          <div class="text-3xl">🎯</div>
+          <h3 class="font-extrabold text-xl text-main">Zero Stress Learning</h3>
+          <p class="text-sm sm:text-base text-textSecondary leading-relaxed font-medium">
+            Bina kisi exam pressure ke apni speed par seekho. Wrong answer par helpful tips milegi!
           </p>
         </div>
       </div>
     </section>
 
     {/* Bottom Call to Action */}
-    <section class="max-w-2xl mx-auto text-center bg-card border border-textSecondary/20 p-8 rounded-3xl space-y-4 shadow-sm">
-      <h3 class="text-2xl font-bold">Tayyar Ho Seekhne Ke Liye?</h3>
-      <p class="text-sm text-textSecondary">
+    <section class="max-w-2xl mx-auto text-center bg-card border border-textSecondary/20 p-8 sm:p-10 rounded-3xl space-y-5 shadow-sm">
+      <h3 class="text-3xl font-extrabold">Tayyar Ho Seekhne Ke Liye?</h3>
+      <p class="text-base sm:text-lg text-textSecondary font-medium">
         Chalo apne favourite topics select karo aur bubble sort ko mast tariqe se samjho!
       </p>
       <div class="pt-2">
         <a
           href="/onboarding"
-          class="btn-primary inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold text-base shadow-chalk"
+          class="btn-primary inline-flex items-center gap-2 px-9 py-4 rounded-xl font-extrabold text-lg sm:text-xl shadow-chalk"
         >
           <span>Shuru Karo</span>
           <span>→</span>

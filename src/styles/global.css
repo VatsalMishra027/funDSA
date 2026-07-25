@@ -37,6 +37,7 @@
 
   html {
     scroll-behavior: smooth;
+    font-size: 17px; /* Increased base font size from default 16px */
   }
 
   body {
@@ -44,6 +45,7 @@
     color: var(--color-text);
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     min-height: 100vh;
+    line-height: 1.65;
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   }
 }
@@ -51,7 +53,7 @@
 /* Helper Utilities for Focus Callout & Buttons */
 .dhyan-do-box {
   background-color: var(--color-focus-bg);
-  border-left: 4px solid var(--color-focus-border);
+  border-left: 5px solid var(--color-focus-border);
   color: var(--color-focus-text);
 }
 

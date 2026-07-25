@@ -27,11 +27,63 @@ interface StepState {
   isFullySorted?: boolean;
 }
 
+// Web Audio API Synthesizer for Sound Effects
+const playSound = (type: 'compare' | 'swap' | 'sorted', enabled: boolean) => {
+  if (!enabled || typeof window === 'undefined') return;
+  try {
+    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+    if (!AudioContextClass) return;
+    const ctx = new AudioContextClass();
+    const now = ctx.currentTime;
+
+    if (type === 'compare') {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(350, now);
+      osc.frequency.exponentialRampToValueAtTime(480, now + 0.08);
+      gain.gain.setValueAtTime(0.12, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.08);
+    } else if (type === 'swap') {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(650, now);
+      osc.frequency.exponentialRampToValueAtTime(280, now + 0.16);
+      gain.gain.setValueAtTime(0.18, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.16);
+    } else if (type === 'sorted') {
+      const freqs = [523.25, 659.25, 783.99, 1046.5];
+      freqs.forEach((freq, i) => {
+        const noteOsc = ctx.createOscillator();
+        const noteGain = ctx.createGain();
+        noteOsc.type = 'sine';
+        noteOsc.frequency.setValueAtTime(freq, now + i * 0.07);
+        noteGain.gain.setValueAtTime(0.12, now + i * 0.07);
+        noteGain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.07 + 0.18);
+        noteOsc.connect(noteGain);
+        noteGain.connect(ctx.destination);
+        noteOsc.start(now + i * 0.07);
+        noteOsc.stop(now + i * 0.07 + 0.18);
+      });
+    }
+  } catch (e) {
+    // Audio autoplay fail silent catch
+  }
+};
+
 export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
   items: initialItems,
   title = 'Bubble Sort Visualizer',
 }) => {
-  // Add stable IDs to initial items if not provided
   const prepareItems = (rawItems: VisualizerItem[]): InternalItem[] =>
     rawItems.map((item, idx) => ({
       ...item,
@@ -41,18 +93,17 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
   const [steps, setSteps] = useState<StepState[]>([]);
   const [currentStepIndex, setCurrentStepIndex] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [speedMs, setSpeedMs] = useState<number>(800);
+  const [speedMs, setSpeedMs] = useState<number>(750);
+  const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Pre-generate all bubble sort steps for deterministic step-by-step playback
   const generateSteps = (startItems: InternalItem[]) => {
     const generatedSteps: StepState[] = [];
     const arr = [...startItems];
     const n = arr.length;
     const sortedIndices: number[] = [];
 
-    // Initial state step
     generatedSteps.push({
       items: [...arr],
       compareIndices: null,
@@ -120,7 +171,6 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
         }
       }
 
-      // Mark settled element at index (n - 1 - i)
       const settledIndex = n - 1 - i;
       sortedIndices.push(settledIndex);
 
@@ -136,9 +186,7 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
 
       pass++;
 
-      // Optimization check: if no swaps occurred during this pass, array is sorted
       if (!swappedInThisPass) {
-        // Mark all remaining elements as sorted
         for (let k = 0; k < n; k++) {
           if (!sortedIndices.includes(k)) {
             sortedIndices.push(k);
@@ -148,7 +196,6 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
       }
     }
 
-    // Final state: Entire array sorted
     const allSorted = arr.map((_, idx) => idx);
     generatedSteps.push({
       items: [...arr],
@@ -163,7 +210,6 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
     return generatedSteps;
   };
 
-  // Initialize steps when initialItems change
   useEffect(() => {
     const formatted = prepareItems(initialItems);
     const newSteps = generateSteps(formatted);
@@ -172,7 +218,21 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
     setIsPlaying(false);
   }, [initialItems]);
 
-  // Handle Autoplay timer
+  // Trigger sound effect on step changes
+  useEffect(() => {
+    const step = steps[currentStepIndex];
+    if (step) {
+      if (step.isFullySorted) {
+        playSound('sorted', soundEnabled);
+      } else if (step.isSwapping) {
+        playSound('swap', soundEnabled);
+      } else if (step.compareIndices) {
+        playSound('compare', soundEnabled);
+      }
+    }
+  }, [currentStepIndex, soundEnabled, steps]);
+
+  // Autoplay handler
   useEffect(() => {
     if (isPlaying) {
       timerRef.current = setTimeout(() => {
@@ -220,27 +280,36 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
     message: 'Loading...',
   };
 
-  // Find max value to render proportional height bars
   const maxValue = Math.max(...initialItems.map((item) => item.value), 1);
 
   return (
-    <div className="w-full bg-card border border-textSecondary/20 rounded-2xl p-4 sm:p-6 shadow-md transition-all">
+    <div className="w-full bg-card border border-textSecondary/20 rounded-2xl p-5 sm:p-7 shadow-md transition-all">
       {/* Header Info */}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
         <div>
-          <h3 className="text-xl font-bold tracking-tight text-main">{title}</h3>
-          <p className="text-xs text-textSecondary">
+          <h3 className="text-2xl font-extrabold tracking-tight text-main">{title}</h3>
+          <p className="text-sm text-textSecondary font-medium">
             Step {currentStepIndex + 1} of {steps.length} • Pass {currentStep.pass}
           </p>
         </div>
 
-        {/* Pass Badge */}
-        <div className="flex items-center gap-2">
-          <span className="bg-bg border border-textSecondary/30 text-textSecondary text-xs px-3 py-1.5 rounded-lg font-mono font-semibold">
-            Pass: <strong className="text-accent font-bold">{currentStep.pass}</strong>
+        <div className="flex items-center gap-3">
+          {/* Sound Toggle Button */}
+          <button
+            type="button"
+            onClick={() => setSoundEnabled(!soundEnabled)}
+            className="px-3 py-1.5 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent text-xs font-bold transition-all flex items-center gap-1.5"
+            title="Toggle Sound Effects"
+          >
+            <span>{soundEnabled ? '🔊 Sound On' : '🔇 Muted'}</span>
+          </button>
+
+          {/* Pass Badge */}
+          <span className="bg-bg border border-textSecondary/30 text-textSecondary text-xs px-3.5 py-1.5 rounded-xl font-mono font-bold">
+            Pass: <strong className="text-accent text-sm font-extrabold">{currentStep.pass}</strong>
           </span>
           {currentStep.isFullySorted && (
-            <span className="bg-focusBg border border-focusBorder text-focusText text-xs px-3 py-1.5 rounded-lg font-bold animate-bounce">
+            <span className="bg-focusBg border border-focusBorder text-focusText text-xs px-3.5 py-1.5 rounded-xl font-extrabold animate-bounce">
               ✓ SORTED!
             </span>
           )}
@@ -249,16 +318,16 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
 
       {/* Hinglish Status Message Banner */}
       <div
-        className={`mb-6 p-3.5 rounded-xl text-sm font-medium border transition-all ${
+        className={`mb-6 p-4 rounded-xl text-base font-semibold border transition-all duration-300 ${
           currentStep.isPassComplete || currentStep.isFullySorted
-            ? 'bg-focusBg border-focusBorder text-focusText font-semibold ring-2 ring-focusBorder/50'
+            ? 'bg-focusBg border-focusBorder text-focusText ring-2 ring-focusBorder/50'
             : currentStep.isSwapping
-            ? 'bg-accent/15 border-accent text-accent font-semibold'
+            ? 'bg-accent/15 border-accent text-accent'
             : 'bg-bg border-textSecondary/20 text-main'
         }`}
       >
-        <div className="flex items-start gap-2.5">
-          <span className="text-base leading-none">
+        <div className="flex items-start gap-3">
+          <span className="text-xl leading-none">
             {currentStep.isFullySorted
               ? '🏆'
               : currentStep.isSwapping
@@ -267,46 +336,54 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
               ? '🔍'
               : '📌'}
           </span>
-          <span>{currentStep.message}</span>
+          <span className="leading-snug">{currentStep.message}</span>
         </div>
       </div>
 
-      {/* Array Cards Visualization Row */}
-      <div className="relative my-8 min-h-[220px] flex items-end justify-center gap-2 sm:gap-4 px-2 py-4 border-b border-textSecondary/15 overflow-x-auto">
+      {/* Array Cards Visualization Row with Smooth Spring Animations */}
+      <div className="relative my-8 min-h-[250px] flex items-end justify-center gap-3 sm:gap-5 px-3 py-6 border-b border-textSecondary/15 overflow-x-auto">
         {currentStep.items.map((item, idx) => {
           const isComparing = currentStep.compareIndices?.includes(idx);
           const isSorted = currentStep.sortedIndices.includes(idx);
-          const heightPercent = Math.max((item.value / maxValue) * 100, 24);
+          const heightPercent = Math.max((item.value / maxValue) * 100, 28);
 
           let cardStyle = 'bg-bg border-textSecondary/30 text-main';
+          let transformStyle = '';
+
           if (isSorted) {
-            cardStyle = 'bg-focusBg border-focusBorder text-focusText font-bold shadow-sm';
+            cardStyle = 'bg-focusBg border-focusBorder text-focusText font-extrabold shadow-sm';
           } else if (isComparing) {
             if (currentStep.isSwapping) {
               cardStyle =
-                'bg-accent text-onAccent border-accent font-bold scale-105 shadow-md -translate-y-2 ring-2 ring-accent/40';
+                'bg-accent text-onAccent border-accent font-extrabold scale-110 shadow-lg ring-4 ring-accent/40 z-20';
+              // Smooth sliding transform effect
+              if (currentStep.compareIndices && currentStep.compareIndices[0] === idx) {
+                transformStyle = 'translate-x-3 -translate-y-3 rotate-2';
+              } else if (currentStep.compareIndices && currentStep.compareIndices[1] === idx) {
+                transformStyle = '-translate-x-3 -translate-y-3 -rotate-2';
+              }
             } else {
               cardStyle =
-                'bg-accent2/20 border-accent2 text-main font-bold scale-105 shadow-sm -translate-y-1 ring-2 ring-accent2/60';
+                'bg-accent2/25 border-accent2 text-main font-bold scale-105 shadow-sm -translate-y-2 ring-2 ring-accent2/60 z-10';
             }
           }
 
           return (
             <div
               key={item.id}
-              className="flex flex-col items-center flex-1 max-w-[80px] min-w-[54px] transition-all duration-300 ease-out"
+              className={`flex flex-col items-center flex-1 max-w-[90px] min-w-[60px] transition-all duration-500 ease-out transform ${transformStyle}`}
             >
               {/* Dynamic Value Height Bar */}
-              <div className="w-full flex flex-col justify-end items-center h-28 mb-2">
+              <div className="w-full flex flex-col justify-end items-center h-32 mb-2">
                 <div
-                  className={`w-full rounded-t-lg transition-all duration-300 flex items-center justify-center text-xs font-mono font-bold ${
+                  className={`w-full rounded-t-xl transition-all duration-500 flex items-center justify-center text-xs font-mono font-extrabold shadow-xs ${
                     isComparing && currentStep.isSwapping
                       ? 'bg-accent text-onAccent'
                       : isComparing
                       ? 'bg-accent2 text-focusText'
                       : isSorted
                       ? 'bg-focusBorder text-focusText'
-                      : 'bg-textSecondary/20 text-textSecondary'
+                      : 'bg-textSecondary/25 text-textSecondary'
                   }`}
                   style={{ height: `${heightPercent}%` }}
                 >
@@ -316,13 +393,13 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
 
               {/* Card Badge */}
               <div
-                className={`w-full p-2 rounded-xl border text-center transition-all duration-300 flex flex-col items-center justify-center gap-1 ${cardStyle}`}
+                className={`w-full p-2.5 rounded-xl border text-center transition-all duration-500 flex flex-col items-center justify-center gap-1 ${cardStyle}`}
               >
-                {item.icon && <span className="text-base">{item.icon}</span>}
-                <span className="text-xs font-semibold truncate w-full" title={item.label}>
+                {item.icon && <span className="text-lg">{item.icon}</span>}
+                <span className="text-xs font-bold truncate w-full" title={item.label}>
                   {item.label}
                 </span>
-                <span className="text-[10px] opacity-75 font-mono">[{idx}]</span>
+                <span className="text-[11px] opacity-75 font-mono font-semibold">[{idx}]</span>
               </div>
             </div>
           );
@@ -331,12 +408,11 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
 
       {/* Control Toolbar */}
       <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
-        {/* Play / Step Buttons */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2.5">
           <button
             onClick={() => setIsPlaying(!isPlaying)}
             disabled={currentStepIndex >= steps.length - 1 && !isPlaying}
-            className={`btn-primary px-4 py-2 rounded-xl font-bold text-sm shadow-sm flex items-center gap-1.5 disabled:opacity-50 disabled:cursor-not-allowed`}
+            className="btn-primary px-5 py-2.5 rounded-xl font-bold text-sm shadow-sm flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isPlaying ? '⏸️ Pause' : '▶️ Autoplay'}
           </button>
@@ -344,7 +420,7 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
           <button
             onClick={handleStepBackward}
             disabled={currentStepIndex === 0 || isPlaying}
-            className="px-3 py-2 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent text-sm font-semibold disabled:opacity-40 disabled:cursor-not-allowed"
+            className="px-3.5 py-2.5 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent text-sm font-bold disabled:opacity-40 disabled:cursor-not-allowed"
           >
             ⏮️ Prev
           </button>
@@ -352,21 +428,21 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
           <button
             onClick={handleStepForward}
             disabled={currentStepIndex >= steps.length - 1 || isPlaying}
-            className="px-3 py-2 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent text-sm font-semibold disabled:opacity-40 disabled:cursor-not-allowed"
+            className="px-3.5 py-2.5 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent text-sm font-bold disabled:opacity-40 disabled:cursor-not-allowed"
           >
             Next ⏭️
           </button>
 
           <button
             onClick={handleReset}
-            className="px-3 py-2 rounded-xl border border-textSecondary/30 bg-bg text-textSecondary hover:text-main hover:border-textSecondary text-sm font-medium"
+            className="px-3.5 py-2.5 rounded-xl border border-textSecondary/30 bg-bg text-textSecondary hover:text-main hover:border-textSecondary text-sm font-semibold"
           >
             🔄 Reset
           </button>
         </div>
 
         {/* Speed Slider */}
-        <div className="flex items-center gap-2 text-xs font-semibold text-textSecondary bg-bg border border-textSecondary/20 px-3 py-1.5 rounded-xl">
+        <div className="flex items-center gap-2.5 text-xs font-bold text-textSecondary bg-bg border border-textSecondary/20 px-3.5 py-2 rounded-xl">
           <span>Speed:</span>
           <input
             type="range"
@@ -375,7 +451,7 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
             step="100"
             value={speedMs}
             onChange={(e) => setSpeedMs(Number(e.target.value))}
-            className="w-20 accent-accent cursor-pointer"
+            className="w-24 accent-accent cursor-pointer"
           />
           <span className="font-mono w-12 text-right">{speedMs}ms</span>
         </div>
