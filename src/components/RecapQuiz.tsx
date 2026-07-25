@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { playAudioSFX } from './BubbleSortVisualizer';
 
 interface QuestionItem {
   id: number;
@@ -78,6 +79,7 @@ export const RecapQuiz: React.FC = () => {
 
   const handleSelectOption = (qId: number, optIndex: number) => {
     if (submitted) return;
+    playAudioSFX('click', true);
     setUserAnswers({ ...userAnswers, [qId]: optIndex });
   };
 
@@ -175,7 +177,10 @@ export const RecapQuiz: React.FC = () => {
           <div>
             <button
               type="button"
-              onClick={() => setSubmitted(true)}
+              onClick={() => {
+                playAudioSFX('click', true);
+                setSubmitted(true);
+              }}
               disabled={!allAnswered}
               className="btn-primary px-9 py-4 rounded-xl font-extrabold text-lg shadow-chalk disabled:opacity-50 disabled:cursor-not-allowed"
             >
@@ -209,6 +214,7 @@ export const RecapQuiz: React.FC = () => {
               <button
                 type="button"
                 onClick={() => {
+                  playAudioSFX('click', true);
                   setSubmitted(false);
                   setUserAnswers({});
                 }}
@@ -219,6 +225,7 @@ export const RecapQuiz: React.FC = () => {
 
               <a
                 href="/complete"
+                onClick={() => playAudioSFX('click', true)}
                 className="btn-primary px-7 py-2.5 rounded-xl font-bold text-sm shadow-sm flex items-center gap-1.5"
               >
                 <span>Get Completion Badge</span>

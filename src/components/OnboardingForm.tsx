@@ -5,6 +5,7 @@ import {
   setStudentName,
   setStudentInterests,
 } from '../stores/student';
+import { playAudioSFX } from './BubbleSortVisualizer';
 
 const INTEREST_CHIPS = [
   { id: 'Food', label: 'Food', icon: '🥟' },
@@ -31,12 +32,13 @@ export const OnboardingForm: React.FC = () => {
   }, [profile]);
 
   const toggleInterest = (id: string) => {
+    playAudioSFX('click', true);
     setErrorMsg('');
     if (selectedInterests.includes(id)) {
       setSelectedInterests(selectedInterests.filter((item) => item !== id));
     } else {
       if (selectedInterests.length >= 3) {
-        setErrorMsg('Max 3 interests hi chun sakte ho, bro! 🛑');
+        setErrorMsg('Max 3 interests hi chun sakte ho! 🛑');
         return;
       }
       setSelectedInterests([...selectedInterests, id]);
@@ -45,6 +47,7 @@ export const OnboardingForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    playAudioSFX('click', true);
     const trimmedName = name.trim();
 
     if (!trimmedName) {
@@ -65,7 +68,6 @@ export const OnboardingForm: React.FC = () => {
     setStudentName(trimmedName);
     setStudentInterests(selectedInterests);
 
-    // Route directly to the single comprehensive learning guide page
     window.location.href = '/learn';
   };
 

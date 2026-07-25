@@ -7,8 +7,8 @@ interface Props {
 }
 
 const {
-  title = 'Bubble Sort | funDSA',
-  description = 'Learn Bubble Sort algorithm with fun analogies, step-by-step visualizations, and zero stress!',
+  title = 'DSA 101 | Visual Algorithm Learning Platform',
+  description = 'Interactive visual learning platform for Data Structures and Algorithms with step-by-step audio visualizers and intuitive analogies.',
 } = Astro.props;
 ---
 
@@ -40,17 +40,18 @@ const {
     <!-- Navigation Header -->
     <header class="border-b border-textSecondary/20 bg-card/80 backdrop-blur-md sticky top-0 z-40">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        <a href="/" class="flex items-center gap-2 group">
-          <span class="bg-accent text-onAccent text-xs font-extrabold px-2.5 py-1 rounded tracking-wider uppercase font-mono">
-            funDSA
+        <!-- Platform Brand Title -->
+        <a href="/" class="flex items-center gap-2.5 group">
+          <span class="bg-accent text-onAccent text-xs font-black px-2.5 py-1 rounded-lg tracking-widest uppercase font-mono shadow-xs">
+            DSA 101
           </span>
-          <span class="font-bold text-lg sm:text-xl tracking-tight group-hover:text-accent transition-colors">
-            Bubble Sort <span class="font-handwritten text-xl sm:text-2xl text-accent2 font-bold ml-1">apne style mein</span>
+          <span class="font-extrabold text-lg sm:text-xl tracking-tight group-hover:text-accent transition-colors">
+            Visual Platform <span class="text-xs font-mono font-bold text-accent2 bg-focusBg px-2 py-0.5 rounded border border-focusBorder ml-1.5 hidden sm:inline-block">Bubble Sort Active</span>
           </span>
         </a>
 
         <!-- Header Nav Links -->
-        <div class="flex items-center gap-3 sm:gap-5">
+        <div class="flex items-center gap-3 sm:gap-6">
           <a href="/learn" class="text-sm font-bold text-textSecondary hover:text-accent transition-colors hidden sm:inline-block">
             Learn Guide
           </a>
@@ -88,13 +89,13 @@ const {
     <footer class="border-t border-textSecondary/20 bg-card py-6 mt-12 text-center text-sm text-textSecondary">
       <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p class="font-semibold">
-          funDSA 🧼 | Koi tension nahi, sirf comparison aur swapping
+          DSA 101 🧼 | Interactive Visual Algorithm Platform
         </p>
         <div class="flex items-center gap-4 font-bold text-xs">
           <a href="/learn" class="hover:text-accent">Learn Guide</a>
           <a href="/playground" class="hover:text-accent">Playground</a>
           <a href="/examples" class="hover:text-accent">Examples</a>
-          <a href="/quiz" class="hover:text-accent">Quiz</a>
+          <a href="/quiz" class="hover:text-accent">Master Quiz</a>
         </div>
       </div>
     </footer>
