@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
-import CategoryIcon from './CategoryIcon';
+import React, { useState, useEffect } from 'react';
+import CategoryIcon, { type IconType } from './CategoryIcon';
 
 interface BubbleNode {
   id: string;
   val: number;
   label: string;
-  category: 'cricket' | 'gaming' | 'food' | 'movies' | 'fitness';
+  category: IconType;
 }
 
 const INITIAL_NODES: BubbleNode[] = [
@@ -20,93 +20,8 @@ export const SpatialAudioHeroVisualizer: React.FC = () => {
   const [nodes, setNodes] = useState<BubbleNode[]>(INITIAL_NODES);
   const [comparePair, setComparePair] = useState<[number, number] | null>([0, 1]);
   const [isSwapping, setIsSwapping] = useState<boolean>(false);
-  const [spatialAudioEnabled, setSpatialAudioEnabled] = useState<boolean>(false);
-  const [proximityVolume, setProximityVolume] = useState<number>(0);
 
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const audioCtxRef = useRef<AudioContext | null>(null);
-  const gainNodeRef = useRef<GainNode | null>(null);
-  const oscNodeRef = useRef<OscillatorNode | null>(null);
-
-  // Initialize Web Audio Engine for Spatial Audio on User Gesture
-  const toggleSpatialAudio = () => {
-    try {
-      if (!spatialAudioEnabled) {
-        const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
-        const ctx = new AudioCtx();
-
-        if (ctx.state === 'suspended') {
-          ctx.resume();
-        }
-
-        const gainNode = ctx.createGain();
-        gainNode.gain.setValueAtTime(0.01, ctx.currentTime);
-        gainNode.connect(ctx.destination);
-
-        // Continuous Ambient Harmonic Drone
-        const osc = ctx.createOscillator();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(320, ctx.currentTime); // 320 Hz fundamental tone
-        osc.connect(gainNode);
-        osc.start();
-
-        audioCtxRef.current = ctx;
-        gainNodeRef.current = gainNode;
-        oscNodeRef.current = osc;
-
-        setSpatialAudioEnabled(true);
-      } else {
-        if (oscNodeRef.current) {
-          oscNodeRef.current.stop();
-          oscNodeRef.current.disconnect();
-        }
-        if (audioCtxRef.current) {
-          audioCtxRef.current.close();
-        }
-        audioCtxRef.current = null;
-        gainNodeRef.current = null;
-        oscNodeRef.current = null;
-        setSpatialAudioEnabled(false);
-      }
-    } catch (e) {
-      console.error('Audio initialization error:', e);
-    }
-  };
-
-  // Scroll Distance Distance Attenuation Effect
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-
-      const rect = containerRef.current.getBoundingClientRect();
-      const viewportCenter = window.innerHeight / 2;
-      const containerCenter = rect.top + rect.height / 2;
-
-      const maxDistance = window.innerHeight * 0.85;
-      const distance = Math.abs(viewportCenter - containerCenter);
-
-      let volRatio = 0;
-      if (distance < maxDistance) {
-        // Smooth linear distance attenuation (1 when centered, 0 when far)
-        volRatio = Math.max(0, 1 - distance / maxDistance);
-      }
-
-      setProximityVolume(volRatio);
-
-      // Dynamically adjust Web Audio GainNode volume on every scroll frame!
-      if (gainNodeRef.current && audioCtxRef.current) {
-        const targetGain = volRatio * 0.15; // Max 15% volume
-        gainNodeRef.current.gain.setTargetAtTime(targetGain, audioCtxRef.current.currentTime, 0.05);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial check
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [spatialAudioEnabled]);
-
-  // Bubble Sort Pass Loop with Pitch Frequency Pulses
+  // Bubble Sort Pass Loop
   useEffect(() => {
     let arr = [...INITIAL_NODES];
     let i = 0;
@@ -118,10 +33,6 @@ export const SpatialAudioHeroVisualizer: React.FC = () => {
       if (i >= n - 1) {
         setComparePair(null);
         setIsSwapping(false);
-
-        if (oscNodeRef.current && audioCtxRef.current) {
-          oscNodeRef.current.frequency.setValueAtTime(523.25, audioCtxRef.current.currentTime);
-        }
 
         setTimeout(() => {
           arr = [
@@ -147,17 +58,8 @@ export const SpatialAudioHeroVisualizer: React.FC = () => {
           arr[j] = arr[j + 1];
           arr[j + 1] = temp;
           setNodes([...arr]);
-
-          // Shift audio pitch frequency dynamically on swap
-          if (oscNodeRef.current && audioCtxRef.current) {
-            const pitch = 300 + arr[j].val * 2.5;
-            oscNodeRef.current.frequency.setTargetAtTime(pitch, audioCtxRef.current.currentTime, 0.05);
-          }
         } else {
           setIsSwapping(false);
-          if (oscNodeRef.current && audioCtxRef.current) {
-            oscNodeRef.current.frequency.setTargetAtTime(320, audioCtxRef.current.currentTime, 0.05);
-          }
         }
 
         j++;
@@ -168,16 +70,15 @@ export const SpatialAudioHeroVisualizer: React.FC = () => {
     }, 1500);
 
     return () => clearInterval(interval);
-  }, [spatialAudioEnabled]);
+  }, []);
 
   const maxValue = Math.max(...nodes.map((n) => n.val), 1);
 
   return (
     <div
-      ref={containerRef}
       className="w-full bg-card/90 backdrop-blur-xl border-2 border-accent/40 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden my-8 transition-all duration-500"
     >
-      {/* Header Bar with Vector SVG Badges */}
+      {/* Header Bar with Premium Badges */}
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-textSecondary/15 pb-4 mb-6">
         <div className="flex items-center gap-3">
           <span className="relative flex h-3.5 w-3.5">
@@ -185,63 +86,24 @@ export const SpatialAudioHeroVisualizer: React.FC = () => {
             <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-accent"></span>
           </span>
           <span className="text-xs sm:text-sm font-mono font-black text-accent tracking-widest uppercase flex items-center gap-2">
-            <CategoryIcon name="sparkles" className="w-4 h-4 text-accent" />
-            <span>3D SPATIAL AUDIO ALGORITHM WAVE</span>
+            <CategoryIcon name="sparkles" className="w-5 h-5 text-accent" />
+            <span>INTERACTIVE ALGORITHM WAVE VISUALIZER</span>
           </span>
         </div>
 
-        <div className="flex items-center gap-3">
-          {/* Spatial Sound Toggle Button */}
-          <button
-            type="button"
-            onClick={toggleSpatialAudio}
-            className={`px-4 py-2 rounded-xl border text-xs font-extrabold transition-all flex items-center gap-2 ${
-              spatialAudioEnabled
-                ? 'bg-accent text-onAccent border-accent ring-2 ring-accent/50 shadow-md scale-105'
-                : 'bg-bg text-main border-textSecondary/30 hover:border-accent'
-            }`}
-          >
-            <span>{spatialAudioEnabled ? '🎧 Spatial Audio Active' : '🔇 Turn On Spatial Audio'}</span>
-          </button>
-
-          {/* Distance Volume Meter */}
-          {spatialAudioEnabled && (
-            <div className="flex items-center gap-2 bg-bg border border-textSecondary/20 px-3.5 py-1.5 rounded-xl text-xs font-mono font-bold text-textSecondary">
-              <span>Scroll Vol:</span>
-              <div className="w-16 bg-textSecondary/20 h-2.5 rounded-full overflow-hidden">
-                <div
-                  className="bg-accent h-full transition-all duration-200"
-                  style={{ width: `${Math.round(proximityVolume * 100)}%` }}
-                ></div>
-              </div>
-              <span className="text-accent font-extrabold w-8 text-right">
-                {Math.round(proximityVolume * 100)}%
-              </span>
-            </div>
-          )}
-        </div>
+        <span className="text-xs font-mono bg-focusBg text-focusText border border-focusBorder px-3 py-1 rounded-xl font-extrabold">
+          🫧 Real-time Bubbling
+        </span>
       </div>
 
-      {/* Proximity Sound Status Banner */}
-      {spatialAudioEnabled && (
-        <div className="mb-4 text-center bg-focusBg border border-focusBorder p-3 rounded-2xl">
-          <p className="text-xs sm:text-sm font-mono text-focusText font-bold flex items-center justify-center gap-2">
-            <span>🔊</span>
-            <span>
-              Spatial Audio is playing! Scroll up and down to hear the volume increase near this section ({Math.round(proximityVolume * 100)}%) and fade out when moving away.
-            </span>
-          </p>
-        </div>
-      )}
-
-      {/* Floating 3D Bubble Wave Stream with Vector SVG Icons */}
-      <div className="relative my-4 min-h-[170px] flex items-end justify-center gap-4 sm:gap-8 px-4 py-4 border-b border-textSecondary/10 overflow-x-auto">
+      {/* Floating 3D Bubble Wave Stream with Premium Dual-Tone Icons */}
+      <div className="relative my-4 min-h-[180px] flex items-end justify-center gap-4 sm:gap-8 px-4 py-4 border-b border-textSecondary/10 overflow-x-auto">
         {nodes.map((node, idx) => {
           const isComparing = comparePair?.includes(idx);
           const heightPercent = Math.max((node.val / maxValue) * 100, 35);
 
           let transformClass = '';
-          let glowClass = 'border-textSecondary/30 bg-bg text-main';
+          let glowClass = 'border-textSecondary/30 bg-bg text-main shadow-sm';
 
           if (isComparing) {
             if (isSwapping) {
@@ -261,7 +123,7 @@ export const SpatialAudioHeroVisualizer: React.FC = () => {
           return (
             <div
               key={node.id}
-              className={`flex flex-col items-center flex-1 max-w-[90px] min-w-[62px] transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] transform ${transformClass}`}
+              className={`flex flex-col items-center flex-1 max-w-[95px] min-w-[65px] transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] transform ${transformClass}`}
             >
               {/* Dynamic Height Bar */}
               <div className="w-full flex flex-col justify-end items-center h-32 mb-2">
@@ -279,13 +141,15 @@ export const SpatialAudioHeroVisualizer: React.FC = () => {
                 </div>
               </div>
 
-              {/* Bubbly Glass Pill with Category Vector SVG Icon */}
+              {/* Premium Dual-Tone Glass Pill Card */}
               <div
-                className={`w-full p-2.5 rounded-2xl border text-center transition-all duration-700 flex flex-col items-center justify-center gap-1 ${glowClass}`}
+                className={`w-full p-3 rounded-2xl border text-center transition-all duration-700 flex flex-col items-center justify-center gap-1.5 ${glowClass}`}
               >
-                <CategoryIcon name={node.category} className="w-4 h-4" />
-                <span className="text-xs font-extrabold truncate w-full">{node.label}</span>
-                <span className="text-[10px] opacity-75 font-mono font-semibold">[{idx}]</span>
+                <div className="p-2 bg-card rounded-xl border border-textSecondary/15 shadow-xs flex items-center justify-center">
+                  <CategoryIcon name={node.category} className="w-5 h-5" />
+                </div>
+                <span className="text-xs font-black truncate w-full tracking-tight">{node.label}</span>
+                <span className="text-[10px] opacity-75 font-mono font-bold">[{idx}]</span>
               </div>
             </div>
           );

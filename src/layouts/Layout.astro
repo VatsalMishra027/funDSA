@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Interactive3DFigures from '../components/Interactive3DFigures';
 
 interface Props {
   title?: string;
@@ -36,7 +37,10 @@ const {
       })();
     </script>
   </head>
-  <body class="bg-bg text-main min-h-screen flex flex-col selection:bg-accent2 selection:text-focusText">
+  <body class="bg-bg text-main min-h-screen flex flex-col selection:bg-accent2 selection:text-focusText relative overflow-x-hidden">
+    <!-- Interactive 3D Figures WebGL Background -->
+    <Interactive3DFigures client:load />
+
     <!-- Navigation Header -->
     <header class="border-b border-textSecondary/20 bg-card/85 backdrop-blur-md sticky top-0 z-40 shadow-xs">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
@@ -96,12 +100,12 @@ const {
     </header>
 
     <!-- Main Content Container -->
-    <main class="flex-grow w-full max-w-6xl mx-auto px-4 sm:px-6 py-8">
+    <main class="flex-grow w-full max-w-6xl mx-auto px-4 sm:px-6 py-8 relative z-10">
       <slot />
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-textSecondary/20 bg-card py-8 mt-16 text-center text-sm text-textSecondary">
+    <footer class="border-t border-textSecondary/20 bg-card py-8 mt-16 text-center text-sm text-textSecondary relative z-10">
       <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div class="flex items-center gap-2">
           <span class="bg-accent text-onAccent text-xs font-black px-2 py-0.5 rounded font-mono">DSA 101</span>
