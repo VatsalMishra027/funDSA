@@ -113,9 +113,21 @@ export const UnifiedLearningView: React.FC = () => {
           "Bubble Sort is an elementary comparison-based sorting algorithm. It repeatedly steps through an array A[0..N-1], compares adjacent elements at indices i and i+1, and swaps them if A[i] &gt; A[i+1]. After each pass k, the k-th largest element is guaranteed to settle into its final position at index N-k. The algorithm terminates when a full pass executes with 0 swaps."
         </blockquote>
         <div className="flex flex-wrap gap-3 pt-2 text-xs font-mono font-bold">
-          <span className="bg-focusBg text-focusText border border-focusBorder px-3 py-1 rounded-lg">Time Complexity: O(N²)</span>
-          <span className="bg-focusBg text-focusText border border-focusBorder px-3 py-1 rounded-lg">Space Complexity: O(1) Auxiliary</span>
-          <span className="bg-focusBg text-focusText border border-focusBorder px-3 py-1 rounded-lg">Algorithmic Property: Stable & In-Place</span>
+          <span className="bg-focusBg text-focusText border border-focusBorder px-3 py-1.5 rounded-xl">
+            <GlossaryTerm term="Time Complexity" definition="Time Complexity = Total TIME kitna lagega. O(N²) ka matlab hai N items ke liye ~N × N operations (e.g. 10 items ➔ ~100 steps).">
+              Time Complexity: O(N²)
+            </GlossaryTerm>
+          </span>
+          <span className="bg-focusBg text-focusText border border-focusBorder px-3 py-1.5 rounded-xl">
+            <GlossaryTerm term="Space Complexity" definition="Space Complexity = Extra MEMORY kitni lagegi. O(1) Auxiliary ka matlab ZERO extra memory! Nayi list nahi banani padti.">
+              Space Complexity: O(1) Auxiliary
+            </GlossaryTerm>
+          </span>
+          <span className="bg-focusBg text-focusText border border-focusBorder px-3 py-1.5 rounded-xl">
+            <GlossaryTerm term="Stable & In-Place" definition="In-Place = Zero extra array memory. Stable = Same value waale items ka original sequence order hamesha intact rehta hai!">
+              Property: Stable & In-Place
+            </GlossaryTerm>
+          </span>
         </div>
 
         {/* Beginner-Friendly "Ye Sab Hawabazi Hai" Encouragement Banner */}

@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import LiveMovingBanner from '../components/LiveMovingBanner';
+import CategoryIcon from '../components/CategoryIcon';
 ---
 
 <Layout title="DSA 101 | Visual Algorithm Learning Platform">
@@ -29,15 +30,17 @@ import LiveMovingBanner from '../components/LiveMovingBanner';
           href="/onboarding"
           class="w-full sm:w-auto btn-primary px-10 py-4 sm:py-5 rounded-2xl font-black text-xl shadow-chalk flex items-center justify-center gap-3 tracking-wide hover:scale-105 transition-transform"
         >
-          <span>Shuru Karo</span>
-          <span class="text-2xl">🚀</span>
+          <span>Start</span>
+          <CategoryIcon name="rocket" className="w-6 h-6 text-onAccent" />
         </a>
         <a
           href="/learn"
-          class="w-full sm:w-auto px-8 py-4 sm:py-5 rounded-2xl border-2 border-textSecondary/30 bg-bg text-main hover:border-accent hover:shadow-lg text-lg font-extrabold transition-all flex items-center justify-center gap-3 hover:-translate-y-1"
+          class="w-full sm:w-auto px-8 py-4 sm:py-5 rounded-2xl border-2 border-textSecondary/30 bg-bg text-main hover:border-accent hover:shadow-lg text-lg font-extrabold transition-all flex items-center justify-center gap-3 hover:-translate-y-1 group"
         >
           <span>Complete Learn Guide</span>
-          <span>📖</span>
+          <div class="p-1.5 bg-card border border-textSecondary/20 rounded-xl group-hover:border-accent transition-colors">
+            <CategoryIcon name="book" className="w-5 h-5 text-accent" />
+          </div>
         </a>
       </div>
 
@@ -118,7 +121,9 @@ import LiveMovingBanner from '../components/LiveMovingBanner';
         </div>
 
         <div class="bg-card border border-textSecondary/20 p-6 sm:p-7 rounded-3xl space-y-3 shadow-sm hover:shadow-xl hover:border-accent/40 hover:-translate-y-1.5 transition-all duration-300">
-          <div class="text-4xl">🧼</div>
+          <div class="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl w-14 h-14 flex items-center justify-center">
+            <CategoryIcon name="book" className="w-8 h-8 text-emerald-500" />
+          </div>
           <h3 class="font-extrabold text-2xl text-main">Single Comprehensive Guide</h3>
           <p class="text-base text-textSecondary leading-relaxed font-medium">
             No fragmented steps! Saare core concepts ek hi unified learning page par available hain.
@@ -126,7 +131,9 @@ import LiveMovingBanner from '../components/LiveMovingBanner';
         </div>
 
         <div class="bg-card border border-textSecondary/20 p-6 sm:p-7 rounded-3xl space-y-3 shadow-sm hover:shadow-xl hover:border-accent/40 hover:-translate-y-1.5 transition-all duration-300">
-          <div class="text-4xl">⚡</div>
+          <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-2xl w-14 h-14 flex items-center justify-center">
+            <CategoryIcon name="sparkles" className="w-8 h-8 text-amber-500" />
+          </div>
           <h3 class="font-extrabold text-2xl text-main">Live Visualizer & Audio SFX</h3>
           <p class="text-base text-textSecondary leading-relaxed font-medium">
             Audio sound effects aur step-by-step control ke sath dekho elements kaise slide karke sort hote hain.
@@ -134,7 +141,9 @@ import LiveMovingBanner from '../components/LiveMovingBanner';
         </div>
 
         <div class="bg-card border border-textSecondary/20 p-6 sm:p-7 rounded-3xl space-y-3 shadow-sm hover:shadow-xl hover:border-accent/40 hover:-translate-y-1.5 transition-all duration-300">
-          <div class="text-4xl">🎯</div>
+          <div class="p-3 bg-rose-500/10 border border-rose-500/30 rounded-2xl w-14 h-14 flex items-center justify-center">
+            <CategoryIcon name="target" className="w-8 h-8 text-rose-500" />
+          </div>
           <h3 class="font-extrabold text-2xl text-main">Master Quiz & Certificate</h3>
           <p class="text-base text-textSecondary leading-relaxed font-medium">
             6-question master quiz attempt karke instant completion badge and WhatsApp share certificate claim karo!
@@ -154,8 +163,8 @@ import LiveMovingBanner from '../components/LiveMovingBanner';
           href="/onboarding"
           class="btn-primary inline-flex items-center gap-3 px-10 py-4.5 rounded-2xl font-black text-xl shadow-chalk hover:scale-105 transition-transform"
         >
-          <span>Shuru Karo</span>
-          <span>→</span>
+          <span>Start</span>
+          <CategoryIcon name="rocket" className="w-6 h-6 text-onAccent" />
         </a>
       </div>
     </section>
