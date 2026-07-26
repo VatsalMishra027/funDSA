@@ -14,12 +14,28 @@ interface InterestPreset {
 
 const INTEREST_PRESETS: InterestPreset[] = [
   {
-    interest: 'Cricket',
-    name: 'IPL High Scores',
-    icon: '🏏',
-    criteriaExplanation: '🏏 Cricket Sorting Basis: Players ke Highest ODI Scores (Runs) ke basis par lowest se highest order mein sort kiya jata hai.',
-    placeholderHint: 'Item Label (e.g. Kohli, Dhoni)',
+    interest: 'Food/Cooking',
+    name: 'Food Menu Prices (₹)',
+    icon: '🍕',
+    criteriaExplanation: '🍕 Food Sorting Basis: Menu items unke Relative Price (in ₹) ke basis par cheapest se most expensive order mein sort hote hain.',
+    placeholderHint: 'Item Label (e.g. Momos, Cold Drink)',
     items: [
+      { label: 'Chai', value: 10, icon: '☕' },
+      { label: 'Samosa', value: 15, icon: '🥟' },
+      { label: 'Maggi', value: 45, icon: '🍜' },
+      { label: 'Roll', value: 80, icon: '🌯' },
+      { label: 'Burger', value: 120, icon: '🍔' },
+      { label: 'Pizza', value: 250, icon: '🍕' },
+    ],
+  },
+  {
+    interest: 'Cricket',
+    name: 'Cricket High Scores (Runs)',
+    icon: '🏏',
+    criteriaExplanation: '🏏 Cricket Sorting Basis: Batter stats unke Highest Match Score (Runs) ke basis par lowest se highest inning score order mein sort hote hain.',
+    placeholderHint: 'Item Label (e.g. Bumrah, Kohli)',
+    items: [
+      { label: 'Bumrah', value: 16, icon: '⚡' },
       { label: 'Gill', value: 91, icon: '⭐' },
       { label: 'Pant', value: 125, icon: '🔥' },
       { label: 'Dhoni', value: 148, icon: '🧤' },
@@ -28,81 +44,77 @@ const INTEREST_PRESETS: InterestPreset[] = [
     ],
   },
   {
-    interest: 'Food',
-    name: 'Canteen Menu Bill (₹)',
-    icon: '🥟',
-    criteriaExplanation: '🥟 Food Sorting Basis: Canteen items ke Price (in ₹) ke basis par sabse saste se mehange order mein sort kiya jata hai.',
-    placeholderHint: 'Item Label (e.g. Samosa, Pizza)',
-    items: [
-      { label: 'Chai', value: 10, icon: '☕' },
-      { label: 'Samosa', value: 15, icon: '🥟' },
-      { label: 'Maggi', value: 45, icon: '🍜' },
-      { label: 'Roll', value: 80, icon: '🌯' },
-      { label: 'Pizza', value: 250, icon: '🍕' },
-    ],
-  },
-  {
     interest: 'Gaming',
-    name: 'PUBG Squad Kills',
+    name: 'Gaming Player Stats (Kills)',
     icon: '🎮',
-    criteriaExplanation: '🎮 Gaming Sorting Basis: Players/Squads ke total Kill Counts ke basis par lowest kills se maximum kills (Leaderboard) order mein sort kiya jata hai.',
-    placeholderHint: 'Item Label (e.g. Sniper, Rusher)',
+    criteriaExplanation: '🎮 Gaming Sorting Basis: Squad members unke Total Match Kills ke basis par lowest se highest MVP score order mein sort hote hain.',
+    placeholderHint: 'Item Label (e.g. Medic, Sniper)',
     items: [
       { label: 'Medic', value: 4, icon: '💊' },
       { label: 'Scout', value: 11, icon: '🔭' },
       { label: 'Sniper', value: 14, icon: '🎯' },
       { label: 'Rusher', value: 22, icon: '⚡' },
+      { label: 'Captain', value: 28, icon: '🎖️' },
+      { label: 'Leader', value: 35, icon: '🏆' },
     ],
   },
   {
     interest: 'Bollywood/Movies',
-    name: 'Movie Ratings (%)',
+    name: 'Box Office Hits (₹ Cr)',
     icon: '🎬',
-    criteriaExplanation: '🎬 Bollywood Sorting Basis: Movies ke Audience Rating Percentage (%) ke basis par flop se blockbuster order mein sort kiya jata hai.',
-    placeholderHint: 'Item Label (e.g. Hit Film, Blockbuster)',
+    criteriaExplanation: '🎬 Movies Sorting Basis: Films unke Box Office Earnings (in ₹ Crores) ke basis par flop/cult se blockbuster hit order mein sort hoti hain.',
+    placeholderHint: 'Item Label (e.g. Indie Film, Blockbuster)',
     items: [
+      { label: 'Dissected', value: 18, icon: '🎟️' },
       { label: 'Flop', value: 30, icon: '🍅' },
-      { label: 'Average', value: 65, icon: '🎟️' },
-      { label: 'Hit', value: 82, icon: '🍿' },
+      { label: 'Average', value: 65, icon: '🎥' },
+      { label: 'Cult Classic', value: 74, icon: '🎬' },
+      { label: 'Hit Film', value: 82, icon: '🍿' },
       { label: 'Blockbuster', value: 96, icon: '🏆' },
     ],
   },
   {
     interest: 'Music/Singing',
-    name: 'Playlist Stream Counts (M)',
+    name: 'Song Streams (Millions)',
     icon: '🎧',
-    criteriaExplanation: '🎧 Music Sorting Basis: Songs ke total Stream Counts (Millions mein) ke basis par least played se viral hit order mein sort kiya jata hai.',
-    placeholderHint: 'Item Label (e.g. Pop Song, Acoustic)',
+    criteriaExplanation: '🎧 Music Sorting Basis: Tracks unke Streaming Plays (in Millions) ke basis par garage demo se global chartbuster order mein sort hote hain.',
+    placeholderHint: 'Item Label (e.g. Demo Track, Chartbuster)',
     items: [
-      { label: 'Indie Song', value: 12, icon: '🎸' },
-      { label: 'Acoustic', value: 45, icon: '🎙️' },
+      { label: 'Garage Song', value: 8, icon: '🎸' },
+      { label: 'Indie Track', value: 12, icon: '🎙️' },
+      { label: 'Acoustic', value: 45, icon: '🎼' },
+      { label: 'Rock Single', value: 95, icon: '📻' },
       { label: 'Pop Hit', value: 120, icon: '🎧' },
       { label: 'Viral Track', value: 340, icon: '🔥' },
     ],
   },
   {
     interest: 'Fitness',
-    name: 'Workout Bench Press (kg)',
+    name: 'Gym Lifts (kg)',
     icon: '🏋️‍♂️',
-    criteriaExplanation: '🏋️‍♂️ Fitness Sorting Basis: Exercises/Sets ke Weight (in kg) ke basis par light weight se Personal Record (PR Max) order mein sort kiya jata hai.',
-    placeholderHint: 'Item Label (e.g. Bench Press, Squat)',
+    criteriaExplanation: '🏋️‍♂️ Fitness Sorting Basis: Workouts unke Lift Weight (in kg) ke basis par warmup set se personal record (PR max) order mein sort hote hain.',
+    placeholderHint: 'Item Label (e.g. Dumbbell, Bench PR)',
     items: [
       { label: 'Warmup', value: 40, icon: '👟' },
-      { label: 'Set 1', value: 60, icon: '🏋️‍♂️' },
-      { label: 'Set 2', value: 85, icon: '💪' },
+      { label: 'Light Set', value: 50, icon: '🏋️‍♂️' },
+      { label: 'Set 1', value: 65, icon: '👟' },
+      { label: 'Heavy Set', value: 95, icon: '💪' },
       { label: 'PR Max', value: 110, icon: '⚡' },
+      { label: 'Peak Lift', value: 125, icon: '🏆' },
     ],
   },
   {
     interest: 'Fashion',
-    name: 'Designer Sneaker Prices ($)',
+    name: 'Sneaker & Fit Prices ($)',
     icon: '👗',
-    criteriaExplanation: '👗 Fashion Sorting Basis: Outfits/Sneakers ke Price (in $) ke basis par affordable se limited edition luxury order mein sort kiya jata hai.',
-    placeholderHint: 'Item Label (e.g. Sneakers, Jacket)',
+    criteriaExplanation: '👗 Fashion Sorting Basis: Outfits unke Retail Value (in $) ke basis par casual basics se grail sneaker order mein sort hote hain.',
+    placeholderHint: 'Item Label (e.g. Socks, High Tops)',
     items: [
+      { label: 'Socks', value: 15, icon: '🧦' },
       { label: 'Canvas', value: 50, icon: '👟' },
-      { label: 'Streetwear', value: 120, icon: '🧢' },
+      { label: 'Streetwear', value: 120, icon: '👕' },
       { label: 'Vintage', value: 250, icon: '👗' },
+      { label: 'High Tops', value: 320, icon: '🧢' },
       { label: 'Limited Ed', value: 500, icon: '💎' },
     ],
   },
@@ -113,8 +125,10 @@ const INTEREST_PRESETS: InterestPreset[] = [
     criteriaExplanation: '✈️ Travel Sorting Basis: Travel destinations ke Distance (in km) ke basis par nearby trip se overseas flight order mein sort kiya jata hai.',
     placeholderHint: 'Item Label (e.g. Short Hop, Overseas)',
     items: [
-      { label: 'Short Hop', value: 450, icon: '🚕' },
-      { label: 'Domestic', value: 1200, icon: '🚆' },
+      { label: 'Taxi Ride', value: 85, icon: '🛵' },
+      { label: 'Local Hop', value: 450, icon: '🚕' },
+      { label: 'Domestic', value: 1200, icon: '✈️' },
+      { label: 'Intercity', value: 1800, icon: '🚆' },
       { label: 'Island Trip', value: 2800, icon: '🏖️' },
       { label: 'Overseas', value: 7500, icon: '✈️' },
     ],
@@ -138,6 +152,12 @@ export const PlaygroundBuilder: React.FC = () => {
   const [newIcon, setNewIcon] = useState<string>('⭐');
   const [error, setError] = useState<string>('');
 
+  // Item Editing State
+  const [editingIndex, setEditingIndex] = useState<number | null>(null);
+  const [editLabel, setEditLabel] = useState<string>('');
+  const [editValue, setEditValue] = useState<string>('');
+  const [editIcon, setEditIcon] = useState<string>('⭐');
+
   useEffect(() => {
     if (displayPresets.length > 0) {
       setActivePreset(displayPresets[0]);
@@ -148,6 +168,7 @@ export const PlaygroundBuilder: React.FC = () => {
   const handleSelectPreset = (preset: InterestPreset) => {
     playAudioSFX('click', true);
     setError('');
+    setEditingIndex(null);
     setActivePreset(preset);
     setItems([...preset.items]);
   };
@@ -194,7 +215,53 @@ export const PlaygroundBuilder: React.FC = () => {
       return;
     }
     setError('');
+    if (editingIndex === index) {
+      setEditingIndex(null);
+    }
     setItems(items.filter((_, idx) => idx !== index));
+  };
+
+  const handleStartEdit = (index: number) => {
+    playAudioSFX('click', true);
+    setEditingIndex(index);
+    setEditLabel(items[index].label);
+    setEditValue(String(items[index].value));
+    setEditIcon(items[index].icon || '⭐');
+    setError('');
+  };
+
+  const handleSaveEdit = (index: number) => {
+    playAudioSFX('click', true);
+    const trimmedLabel = editLabel.trim();
+    const numValue = Number(editValue);
+
+    if (!trimmedLabel) {
+      setError('Item ka naam khali nahi reh sakta! ✏️');
+      return;
+    }
+
+    if (isNaN(numValue) || editValue.trim() === '') {
+      setError('Value ek valid number honi chahiye! 🔢');
+      return;
+    }
+
+    const updatedItems = [...items];
+    updatedItems[index] = {
+      ...updatedItems[index],
+      label: trimmedLabel,
+      value: numValue,
+      icon: editIcon,
+    };
+
+    setItems(updatedItems);
+    setEditingIndex(null);
+    setError('');
+  };
+
+  const handleCancelEdit = () => {
+    playAudioSFX('click', true);
+    setEditingIndex(null);
+    setError('');
   };
 
   return (
@@ -205,7 +272,7 @@ export const PlaygroundBuilder: React.FC = () => {
           <div>
             <h3 className="font-extrabold text-xl text-main">Build Your Custom List</h3>
             <p className="text-sm text-textSecondary font-medium">
-              {profile.name ? `${profile.name}'s Onboarding Interests matched below!` : 'Pick from your selected interests or create custom items:'}
+              {profile.name ? `${profile.name}'s Onboarding Interests matched below!` : 'Pick from your selected interests or create & edit custom items:'}
             </p>
           </div>
           <span className="text-xs font-mono bg-bg border border-textSecondary/20 px-3 py-1.5 rounded-lg text-textSecondary font-bold">
@@ -262,30 +329,104 @@ export const PlaygroundBuilder: React.FC = () => {
           </div>
         </div>
 
-        {/* Current Items Pills */}
+        {/* Current Items Pills with Inline Edit Support */}
         <div className="space-y-2">
           <label className="block text-xs font-extrabold text-textSecondary uppercase tracking-wider">
-            📋 Current Active Items in Visualizer:
+            📋 Current Active Items in Visualizer (Click ✏️ to Edit):
           </label>
           <div className="flex flex-wrap gap-2.5">
-            {items.map((item, idx) => (
-              <div
-                key={idx}
-                className="bg-bg border border-textSecondary/30 text-main text-xs sm:text-sm font-bold px-3.5 py-2 rounded-xl flex items-center gap-2 shadow-xs hover:border-accent transition-colors"
-              >
-                <span>{item.icon}</span>
-                <span>{item.label}</span>
-                <span className="text-accent font-mono">({item.value})</span>
-                <button
-                  type="button"
-                  onClick={() => handleRemoveItem(idx)}
-                  className="text-textSecondary hover:text-accent font-bold ml-1 text-sm"
-                  title="Remove item"
+            {items.map((item, idx) => {
+              const isEditing = editingIndex === idx;
+
+              if (isEditing) {
+                return (
+                  <div
+                    key={idx}
+                    className="bg-focusBg border-2 border-focusBorder text-main text-xs sm:text-sm font-bold p-2.5 rounded-2xl flex items-center gap-2 shadow-md animate-fadeIn"
+                  >
+                    <select
+                      value={editIcon}
+                      onChange={(e) => setEditIcon(e.target.value)}
+                      className="bg-bg border border-textSecondary/30 rounded-lg p-1 text-xs focus:outline-none"
+                    >
+                      <option value="⭐">⭐</option>
+                      <option value="🍕">🍕</option>
+                      <option value="🥟">🥟</option>
+                      <option value="🏏">🏏</option>
+                      <option value="🎮">🎮</option>
+                      <option value="🔥">🔥</option>
+                      <option value="🎧">🎧</option>
+                      <option value="✈️">✈️</option>
+                    </select>
+
+                    <input
+                      type="text"
+                      value={editLabel}
+                      onChange={(e) => setEditLabel(e.target.value)}
+                      placeholder="Name"
+                      className="w-24 px-2 py-1 bg-bg border border-textSecondary/30 rounded-lg text-xs font-medium focus:outline-none focus:ring-1 focus:ring-accent"
+                    />
+
+                    <input
+                      type="number"
+                      value={editValue}
+                      onChange={(e) => setEditValue(e.target.value)}
+                      placeholder="Value"
+                      className="w-16 px-2 py-1 bg-bg border border-textSecondary/30 rounded-lg text-xs font-mono font-medium focus:outline-none focus:ring-1 focus:ring-accent"
+                    />
+
+                    <button
+                      type="button"
+                      onClick={() => handleSaveEdit(idx)}
+                      className="bg-accent text-onAccent px-2.5 py-1 rounded-lg text-xs font-black shadow-xs hover:scale-105 transition-transform"
+                      title="Save Changes"
+                    >
+                      ✓ Save
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={handleCancelEdit}
+                      className="bg-bg border border-textSecondary/30 text-textSecondary px-2 py-1 rounded-lg text-xs font-bold hover:text-main"
+                      title="Cancel"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                );
+              }
+
+              return (
+                <div
+                  key={idx}
+                  className="bg-bg border border-textSecondary/30 text-main text-xs sm:text-sm font-bold px-3.5 py-2 rounded-xl flex items-center gap-2 shadow-xs hover:border-accent transition-all group"
                 >
-                  ✕
-                </button>
-              </div>
-            ))}
+                  <span>{item.icon}</span>
+                  <span>{item.label}</span>
+                  <span className="text-accent font-mono">({item.value})</span>
+
+                  <div className="flex items-center gap-1 ml-1 border-l border-textSecondary/20 pl-1.5">
+                    <button
+                      type="button"
+                      onClick={() => handleStartEdit(idx)}
+                      className="text-textSecondary hover:text-accent font-bold text-xs p-1 rounded hover:bg-accent/10 transition-colors"
+                      title="Edit Item"
+                    >
+                      ✏️
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveItem(idx)}
+                      className="text-textSecondary hover:text-rose-500 font-bold text-xs p-1 rounded hover:bg-rose-500/10 transition-colors"
+                      title="Remove item"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -324,6 +465,8 @@ export const PlaygroundBuilder: React.FC = () => {
                 <option value="🎮">🎮 Gaming</option>
                 <option value="🍕">🍕 Pizza</option>
                 <option value="🔥">🔥 Fire</option>
+                <option value="🎧">🎧 Music</option>
+                <option value="✈️">✈️ Travel</option>
               </select>
 
               <button
@@ -349,10 +492,7 @@ export const PlaygroundBuilder: React.FC = () => {
         <h3 className="font-extrabold text-xl text-main flex items-center gap-2">
           <span>⚡</span> Live Sorting Visualizer ({activePreset.name})
         </h3>
-        <BubbleSortVisualizer
-          items={items}
-          title={`${activePreset.interest} Custom List`}
-        />
+        <BubbleSortVisualizer items={items} title={`Playground: ${activePreset.name}`} />
       </div>
     </div>
   );
