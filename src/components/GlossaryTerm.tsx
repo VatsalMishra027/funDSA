@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import CategoryIcon from './CategoryIcon';
 
 export interface GlossaryTermProps {
   term: string;
@@ -31,15 +32,17 @@ export const GlossaryTerm: React.FC<GlossaryTermProps> = ({
         onClick={() => setIsOpen(!isOpen)}
         onMouseEnter={() => setIsOpen(true)}
         onMouseLeave={() => setIsOpen(false)}
-        className="underline decoration-accent2 decoration-2 underline-offset-4 font-bold text-accent cursor-pointer hover:bg-focusBg/50 px-1 rounded transition-colors"
+        className="underline decoration-accent2 decoration-2 underline-offset-4 font-bold text-accent cursor-pointer hover:bg-focusBg/50 px-1 rounded transition-colors inline-flex items-center gap-1"
       >
-        {children || term} 📖
+        <span>{children || term}</span>
+        <CategoryIcon name="book" className="w-3.5 h-3.5 inline-block text-accent opacity-90" />
       </button>
 
       {isOpen && (
         <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-card border border-focusBorder text-main rounded-xl shadow-lg text-xs z-50 animate-fadeIn pointer-events-none block">
-          <span className="font-bold text-accent block mb-1">
-            📚 Glossary: {term}
+          <span className="font-bold text-accent flex items-center gap-1 mb-1">
+            <CategoryIcon name="brain" className="w-3.5 h-3.5 text-accent" />
+            <span>Glossary: {term}</span>
           </span>
           <span className="text-textSecondary leading-relaxed block">{def}</span>
           <span className="w-2.5 h-2.5 bg-card border-b border-r border-focusBorder rotate-45 absolute -bottom-1.5 left-1/2 -translate-x-1/2 block"></span>
