@@ -250,7 +250,7 @@ export const Interactive3DFigures: React.FC = () => {
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
       <canvas ref={canvasRef} className="w-full h-full pointer-events-auto cursor-crosshair opacity-80 dark:opacity-60" />
-      
+
       {/* 3D Interaction Hint Badge */}
       <div className="absolute bottom-6 right-6 z-20 bg-card/85 backdrop-blur-md border border-textSecondary/20 px-3.5 py-1.5 rounded-xl text-[11px] font-mono font-extrabold text-textSecondary shadow-md flex items-center gap-2">
         <span className="w-2 h-2 rounded-full bg-accent animate-ping"></span>

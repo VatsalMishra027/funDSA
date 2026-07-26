@@ -3,6 +3,7 @@ import { useStore } from '@nanostores/react';
 import { studentStore } from '../stores/student';
 import BubbleSortVisualizer, { type VisualizerItem, playAudioSFX } from './BubbleSortVisualizer';
 import GlossaryTerm from './GlossaryTerm';
+import CategoryIcon from './CategoryIcon';
 
 export const UnifiedLearningView: React.FC = () => {
   const profile = useStore(studentStore);
@@ -100,10 +101,12 @@ export const UnifiedLearningView: React.FC = () => {
         </p>
       </div>
 
-      {/* 📘 Formal CS Definition Box for Professionalism */}
+      {/* Premium Dual-Tone Formal CS Definition Box */}
       <div className="bg-card border-2 border-accent/40 rounded-3xl p-6 sm:p-8 shadow-md space-y-3">
-        <div className="flex items-center gap-2 text-accent">
-          <span className="text-2xl">📘</span>
+        <div className="flex items-center gap-3 text-accent">
+          <div className="p-2.5 bg-accent/10 border border-accent/30 rounded-2xl flex items-center justify-center shadow-xs">
+            <CategoryIcon name="book" className="w-6 h-6 text-accent" />
+          </div>
           <h3 className="font-extrabold text-xl">Formal CS Definition (Textbook Specification)</h3>
         </div>
         <blockquote className="text-sm sm:text-base italic text-main leading-relaxed border-l-4 border-accent pl-4 py-1 font-mono bg-bg/50 rounded-r-xl">
@@ -114,12 +117,26 @@ export const UnifiedLearningView: React.FC = () => {
           <span className="bg-focusBg text-focusText border border-focusBorder px-3 py-1 rounded-lg">Space Complexity: O(1) Auxiliary</span>
           <span className="bg-focusBg text-focusText border border-focusBorder px-3 py-1 rounded-lg">Algorithmic Property: Stable & In-Place</span>
         </div>
+
+        {/* Beginner-Friendly "Ye Sab Hawabazi Hai" Encouragement Banner */}
+        <div className="bg-focusBg border-2 border-focusBorder text-focusText p-4 sm:p-5 rounded-2xl space-y-1 shadow-xs mt-3">
+          <div className="font-extrabold text-sm sm:text-base flex items-center gap-2">
+            <span className="text-xl">😎</span>
+            <span>TENSION MAT LO — YE SAB TEXTBOOK HAWABAZI HAI!</span>
+          </div>
+          <p className="text-xs sm:text-sm font-semibold opacity-95 leading-relaxed">
+            Agar computer science ke ye heavy jargon & formal terms pehli baar mein samajh nahi aaye, toh zero stress! 
+            Ye sirf interviews ke liye textbook definition hai. Neeche hum poore Bubble Sort ko bilkul simple everyday Hinglish mein step-by-step master karenge! 🚀
+          </p>
+        </div>
       </div>
 
-      {/* 1. What is an Array / List? */}
+      {/* 1. Concept 1: List & Index Mechanics */}
       <div className="bg-card border border-textSecondary/20 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4">
-        <div className="flex items-center gap-2">
-          <span className="text-2xl">📋</span>
+        <div className="flex items-center gap-3">
+          <div className="p-2.5 bg-amber-500/10 border border-amber-500/30 rounded-2xl flex items-center justify-center shadow-xs">
+            <CategoryIcon name="list" className="w-6 h-6 text-amber-500" />
+          </div>
           <h2 className="text-2xl font-extrabold text-main">1. Concept 1: List & Index Mechanics</h2>
         </div>
         <p className="text-base sm:text-lg leading-relaxed font-medium text-main">
@@ -135,10 +152,12 @@ export const UnifiedLearningView: React.FC = () => {
         </p>
       </div>
 
-      {/* 2. Core Mechanics: Comparison & Swapping */}
+      {/* 2. Concept 2: Adjacent Comparison & Swapping */}
       <div className="bg-card border border-textSecondary/20 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4">
-        <div className="flex items-center gap-2">
-          <span className="text-2xl">🔍</span>
+        <div className="flex items-center gap-3">
+          <div className="p-2.5 bg-accent/10 border border-accent/30 rounded-2xl flex items-center justify-center shadow-xs">
+            <CategoryIcon name="swap" className="w-6 h-6 text-accent" />
+          </div>
           <h2 className="text-2xl font-extrabold text-main">2. Concept 2: Adjacent Comparison & Swapping</h2>
         </div>
         <p className="text-base sm:text-lg leading-relaxed font-medium text-main">
@@ -165,8 +184,11 @@ export const UnifiedLearningView: React.FC = () => {
       {/* 3. Live Interactive Visualizer */}
       <div className="space-y-3">
         <div className="flex items-center justify-between px-1">
-          <h2 className="text-2xl font-extrabold text-main flex items-center gap-2">
-            <span>⚡</span> 3. Interactive Audio Visualizer (6 Unsorted Items)
+          <h2 className="text-2xl font-extrabold text-main flex items-center gap-3">
+            <div className="p-2.5 bg-amber-500/10 border border-amber-500/30 rounded-2xl flex items-center justify-center shadow-xs">
+              <CategoryIcon name="sparkles" className="w-6 h-6 text-amber-500" />
+            </div>
+            <span>3. Interactive Audio Visualizer (6 Unsorted Items)</span>
           </h2>
           <span className="text-xs font-mono bg-focusBg text-focusText border border-focusBorder px-2.5 py-1 rounded font-bold">
             Interactive Island
@@ -175,10 +197,12 @@ export const UnifiedLearningView: React.FC = () => {
         <BubbleSortVisualizer items={demoItems} title="Bubble Sort Step-by-Step Action" />
       </div>
 
-      {/* 4. One Pass & Settle Property */}
+      {/* 4. Concept 3: Pass Settlement & Termination */}
       <div className="bg-card border border-textSecondary/20 rounded-3xl p-6 sm:p-8 shadow-sm space-y-4">
-        <div className="flex items-center gap-2">
-          <span className="text-2xl">🎯</span>
+        <div className="flex items-center gap-3">
+          <div className="p-2.5 bg-rose-500/10 border border-rose-500/30 rounded-2xl flex items-center justify-center shadow-xs">
+            <CategoryIcon name="target" className="w-6 h-6 text-rose-500" />
+          </div>
           <h2 className="text-2xl font-extrabold text-main">4. Concept 3: Pass Settlement & Termination</h2>
         </div>
         <p className="text-base sm:text-lg leading-relaxed font-medium text-main">
@@ -194,11 +218,14 @@ export const UnifiedLearningView: React.FC = () => {
         </div>
       </div>
 
-      {/* 5. Time Complexity Section */}
+      {/* 5. Asymptotic Time & Space Complexity */}
       <details className="bg-card border border-textSecondary/20 rounded-3xl p-6 sm:p-8 shadow-sm group cursor-pointer">
         <summary className="font-extrabold text-xl text-main flex items-center justify-between list-none">
-          <span className="flex items-center gap-2">
-            <span>⏱️</span> 5. Asymptotic Time & Space Complexity
+          <span className="flex items-center gap-3">
+            <div className="p-2.5 bg-sky-500/10 border border-sky-500/30 rounded-2xl flex items-center justify-center shadow-xs">
+              <CategoryIcon name="clock" className="w-6 h-6 text-sky-500" />
+            </div>
+            <span>5. Asymptotic Time & Space Complexity</span>
           </span>
           <span className="text-accent group-open:rotate-180 transition-transform">▼</span>
         </summary>
@@ -222,7 +249,9 @@ export const UnifiedLearningView: React.FC = () => {
 
       {/* Action Banner to Master Quiz */}
       <div className="bg-card border-2 border-focusBorder rounded-3xl p-8 text-center space-y-5 shadow-md">
-        <span className="text-4xl">🧠</span>
+        <div className="p-3 bg-purple-500/10 border border-purple-500/30 rounded-2xl w-14 h-14 mx-auto flex items-center justify-center shadow-xs">
+          <CategoryIcon name="brain" className="w-8 h-8 text-purple-500" />
+        </div>
         <h3 className="text-2xl sm:text-3xl font-extrabold">Ready to test your understanding?</h3>
         <p className="text-base sm:text-lg text-textSecondary max-w-md mx-auto font-medium">
           Saare core concepts aur formal definitions review ho chuke hain. Now attempt the 6-Question Master Quiz!
@@ -235,7 +264,7 @@ export const UnifiedLearningView: React.FC = () => {
             className="btn-primary px-8 py-3.5 rounded-xl font-extrabold text-lg shadow-chalk inline-flex items-center gap-2"
           >
             <span>Take 6-Question Master Quiz</span>
-            <span>🎯</span>
+            <CategoryIcon name="target" className="w-5 h-5 text-onAccent" />
           </a>
           <a
             href="/playground"
