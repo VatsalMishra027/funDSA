@@ -118,7 +118,7 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
   const [steps, setSteps] = useState<StepState[]>([]);
   const [currentStepIndex, setCurrentStepIndex] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [speedMs, setSpeedMs] = useState<number>(750);
+  const [speedMs, setSpeedMs] = useState<number>(1500);
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);

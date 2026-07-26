@@ -7,10 +7,10 @@ export const CompletionBadge: React.FC = () => {
   const [copied, setCopied] = useState<boolean>(false);
 
   const studentName = profile.name || 'Champ';
-  const interestsList = profile.interests.join(', ') || 'Fun Scenarios';
 
-  const shareText = `🎉 Maine ${studentName} ne Bubble Sort bina kisi stress ke seekha apne favourite topics (${interestsList}) ke saath! Check karo:`;
-  const shareUrl = typeof window !== 'undefined' ? window.location.origin : 'https://fundsa.vercel.app';
+  // Share text without any interests/hobbies mention
+  const shareText = `🎉 Maine ${studentName} ne DSA 101 visual platform par Bubble Sort bina kisi stress ke master kar liya hai! Check karo:`;
+  const shareUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dsa101.vercel.app';
 
   const handleCopyLink = () => {
     if (navigator.clipboard) {
@@ -39,25 +39,12 @@ export const CompletionBadge: React.FC = () => {
             Official Completion Certificate
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-main tracking-tight">
-            Mubarak Ho, <span class="text-accent font-handwritten text-4xl sm:text-5xl">{studentName}!</span>
+            Mubarak Ho, <span className="text-accent font-handwritten text-4xl sm:text-5xl">{studentName}!</span>
           </h2>
           <p className="text-textSecondary text-sm sm:text-base max-w-md mx-auto leading-relaxed">
             Tumne Bubble Sort ka har single step — comparing, swapping, aur repeat passes — 
             bilkul champion ki tarah master kar liya hai!
           </p>
-        </div>
-
-        {/* Interests Pills */}
-        <div className="flex flex-wrap justify-center items-center gap-2 pt-1">
-          <span className="text-xs font-mono text-textSecondary">Interests Mastered:</span>
-          {profile.interests.map((int, idx) => (
-            <span
-              key={idx}
-              className="bg-bg border border-textSecondary/30 text-main text-xs font-bold px-2.5 py-1 rounded-lg"
-            >
-              {int}
-            </span>
-          ))}
         </div>
 
         {/* Share Action Buttons */}

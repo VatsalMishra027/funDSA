@@ -37,7 +37,8 @@
 
   html {
     scroll-behavior: smooth;
-    font-size: 17px; /* Increased base font size from default 16px */
+    font-size: 17px;
+    /* Increased base font size from default 16px */
   }
 
   body {

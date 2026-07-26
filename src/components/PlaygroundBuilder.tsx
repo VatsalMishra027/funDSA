@@ -254,7 +254,7 @@ export const PlaygroundBuilder: React.FC = () => {
           <div className="dhyan-do-box p-4 sm:p-5 rounded-2xl space-y-1 mt-3 animate-fadeIn">
             <div className="font-extrabold text-xs sm:text-sm flex items-center gap-2">
               <span>💡</span>
-              <span>HOW SORTING WORKS FOR THIS HOBBY:</span>
+              <span>HOW SORTING WORKS:</span>
             </div>
             <p className="text-sm sm:text-base font-semibold leading-relaxed">
               {activePreset.criteriaExplanation}

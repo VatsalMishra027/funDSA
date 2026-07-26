@@ -26,7 +26,6 @@ export const LiveMovingBanner: React.FC = () => {
     let currentArr = [...INITIAL_ITEMS];
     let i = 0;
     let j = 0;
-    let currentSorted: number[] = [];
 
     const interval = setInterval(() => {
       const n = currentArr.length;
@@ -47,7 +46,6 @@ export const LiveMovingBanner: React.FC = () => {
           ];
           i = 0;
           j = 0;
-          currentSorted = [];
           setItems([...currentArr]);
           setSortedIndices([]);
           setIsComplete(false);
