@@ -498,8 +498,8 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
           <span>Speed:</span>
           <input
             type="range"
-            min="300"
-            max="1800"
+            min="1000"
+            max="2500"
             step="100"
             value={speedMs}
             onChange={(e) => setSpeedMs(Number(e.target.value))}
