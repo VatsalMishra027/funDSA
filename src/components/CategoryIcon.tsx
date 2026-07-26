@@ -17,14 +17,22 @@ export type IconType =
   | 'sparkles'
   | 'swap'
   | 'quiz'
-  | 'star';
+  | 'star'
+  | 'rocket'
+  | 'book'
+  | 'brain'
+  | 'badge'
+  | 'share'
+  | 'check'
+  | 'refresh'
+  | 'target';
 
 interface CategoryIconProps {
   name: IconType;
   className?: string;
 }
 
-export const CategoryIcon: React.FC<CategoryIconProps> = ({ name, className = 'w-4 h-4' }) => {
+export const CategoryIcon: React.FC<CategoryIconProps> = ({ name, className = 'w-5 h-5' }) => {
   switch (name) {
     case 'cricket':
       return (
@@ -74,6 +82,48 @@ export const CategoryIcon: React.FC<CategoryIconProps> = ({ name, className = 'w
           <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
         </svg>
       );
+    case 'rocket':
+      return (
+        <svg className={`fill-current ${className}`} viewBox="0 0 24 24">
+          <path d="M9.19 6.35c-2.04 2.29-3.44 5.2-3.84 8.36l2.12 2.12c3.16-.4 6.07-1.8 8.36-3.84L9.19 6.35zM13.17 4l6.83 6.83c.78-.78 1.4-1.68 1.83-2.66-1.55-1.55-3.6-2.56-5.83-2.83L13.17 4zM4 14.5c0 1.38.56 2.63 1.46 3.54L4 20l1.96-1.46C6.87 19.44 8.12 20 9.5 20c.5 0 .99-.07 1.46-.2l-2.76-2.76A4.957 4.957 0 014 14.5z" />
+        </svg>
+      );
+    case 'book':
+      return (
+        <svg className={`fill-current ${className}`} viewBox="0 0 24 24">
+          <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z" />
+        </svg>
+      );
+    case 'brain':
+      return (
+        <svg className={`fill-current ${className}`} viewBox="0 0 24 24">
+          <path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.2 19.57 10.55 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z" />
+        </svg>
+      );
+    case 'badge':
+      return (
+        <svg className={`fill-current ${className}`} viewBox="0 0 24 24">
+          <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+        </svg>
+      );
+    case 'share':
+      return (
+        <svg className={`fill-current ${className}`} viewBox="0 0 24 24">
+          <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z" />
+        </svg>
+      );
+    case 'target':
+      return (
+        <svg className={`fill-current ${className}`} viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm-1-13h2v4h-2zm0 6h2v2h-2z" />
+        </svg>
+      );
+    case 'refresh':
+      return (
+        <svg className={`fill-current ${className}`} viewBox="0 0 24 24">
+          <path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
+        </svg>
+      );
     case 'trophy':
       return (
         <svg className={`fill-current ${className}`} viewBox="0 0 24 24">
@@ -117,6 +167,7 @@ export const CategoryIcon: React.FC<CategoryIconProps> = ({ name, className = 'w
         </svg>
       );
     case 'quiz':
+    case 'check':
       return (
         <svg className={`fill-current ${className}`} viewBox="0 0 24 24">
           <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />

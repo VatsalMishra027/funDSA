@@ -8,29 +8,79 @@ export const UnifiedLearningView: React.FC = () => {
   const profile = useStore(studentStore);
   const studentName = profile.name || 'Dost';
 
+  // Default 6 highly unsorted food items
   const [demoItems, setDemoItems] = useState<VisualizerItem[]>([
-    { label: 'Samosa', value: 15, icon: '🥟' },
-    { label: 'Chai', value: 10, icon: '☕' },
-    { label: 'Maggi', value: 45, icon: '🍜' },
     { label: 'Pizza', value: 250, icon: '🍕' },
+    { label: 'Chai', value: 10, icon: '☕' },
     { label: 'Roll', value: 80, icon: '🌯' },
+    { label: 'Samosa', value: 15, icon: '🥟' },
+    { label: 'Burger', value: 120, icon: '🍔' },
+    { label: 'Maggi', value: 45, icon: '🍜' },
   ]);
 
   useEffect(() => {
     if (profile.interests.includes('Cricket')) {
       setDemoItems([
-        { label: 'Gill', value: 91, icon: '⭐' },
-        { label: 'Pant', value: 125, icon: '🔥' },
-        { label: 'Dhoni', value: 148, icon: '🧤' },
-        { label: 'Kohli', value: 183, icon: '🏏' },
         { label: 'Rohit', value: 264, icon: '💥' },
+        { label: 'Gill', value: 91, icon: '⭐' },
+        { label: 'Dhoni', value: 148, icon: '🧤' },
+        { label: 'Bumrah', value: 16, icon: '⚡' },
+        { label: 'Kohli', value: 183, icon: '🏏' },
+        { label: 'Pant', value: 125, icon: '🔥' },
       ]);
     } else if (profile.interests.includes('Gaming')) {
       setDemoItems([
-        { label: 'Medic', value: 4, icon: '💊' },
-        { label: 'Scout', value: 11, icon: '🔭' },
-        { label: 'Sniper', value: 14, icon: '🎯' },
         { label: 'Rusher', value: 22, icon: '⚡' },
+        { label: 'Medic', value: 4, icon: '💊' },
+        { label: 'Leader', value: 35, icon: '🏆' },
+        { label: 'Scout', value: 11, icon: '🔭' },
+        { label: 'Captain', value: 28, icon: '🎖️' },
+        { label: 'Sniper', value: 14, icon: '🎯' },
+      ]);
+    } else if (profile.interests.includes('Bollywood/Movies')) {
+      setDemoItems([
+        { label: 'Blockbuster', value: 96, icon: '🏆' },
+        { label: 'Flop', value: 30, icon: '🍅' },
+        { label: 'Cult Classic', value: 74, icon: '🎬' },
+        { label: 'Dissected', value: 18, icon: '🎟️' },
+        { label: 'Hit Film', value: 82, icon: '🍿' },
+        { label: 'Average', value: 65, icon: '🎥' },
+      ]);
+    } else if (profile.interests.includes('Music/Singing')) {
+      setDemoItems([
+        { label: 'Viral Track', value: 340, icon: '🔥' },
+        { label: 'Garage Song', value: 8, icon: '🎸' },
+        { label: 'Pop Hit', value: 120, icon: '🎧' },
+        { label: 'Indie Track', value: 12, icon: '🎙️' },
+        { label: 'Rock Single', value: 95, icon: '📻' },
+        { label: 'Acoustic', value: 45, icon: '🎼' },
+      ]);
+    } else if (profile.interests.includes('Fitness')) {
+      setDemoItems([
+        { label: 'PR Max', value: 110, icon: '⚡' },
+        { label: 'Warmup', value: 40, icon: '👟' },
+        { label: 'Heavy Set', value: 95, icon: '💪' },
+        { label: 'Light Set', value: 50, icon: '🏋️‍♂️' },
+        { label: 'Peak Lift', value: 125, icon: '🏆' },
+        { label: 'Set 1', value: 65, icon: '👟' },
+      ]);
+    } else if (profile.interests.includes('Fashion')) {
+      setDemoItems([
+        { label: 'Limited Ed', value: 500, icon: '💎' },
+        { label: 'Canvas', value: 50, icon: '👟' },
+        { label: 'Vintage', value: 250, icon: '👗' },
+        { label: 'Socks', value: 15, icon: '🧦' },
+        { label: 'High Tops', value: 320, icon: '🧢' },
+        { label: 'Streetwear', value: 120, icon: '👕' },
+      ]);
+    } else if (profile.interests.includes('Travel')) {
+      setDemoItems([
+        { label: 'Overseas', value: 7500, icon: '✈️' },
+        { label: 'Local Hop', value: 450, icon: '🚕' },
+        { label: 'Island Trip', value: 2800, icon: '🏖️' },
+        { label: 'Taxi Ride', value: 85, icon: '🛵' },
+        { label: 'Intercity', value: 1800, icon: '🚆' },
+        { label: 'Domestic', value: 1200, icon: '✈️' },
       ]);
     }
   }, [profile.interests]);
@@ -116,7 +166,7 @@ export const UnifiedLearningView: React.FC = () => {
       <div className="space-y-3">
         <div className="flex items-center justify-between px-1">
           <h2 className="text-2xl font-extrabold text-main flex items-center gap-2">
-            <span>⚡</span> 3. Interactive Audio Visualizer
+            <span>⚡</span> 3. Interactive Audio Visualizer (6 Unsorted Items)
           </h2>
           <span className="text-xs font-mono bg-focusBg text-focusText border border-focusBorder px-2.5 py-1 rounded font-bold">
             Interactive Island
