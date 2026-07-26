@@ -86,6 +86,25 @@ export const UnifiedLearningView: React.FC = () => {
     }
   }, [profile.interests]);
 
+  // Context Explanation Generator based on Active Interest
+  let activeContextExplanation = '🍕 Food Context: Yahan numbers items ke Relative Prices in ₹ (e.g., Pizza ₹250, Chai ₹10) ko represent kar rahe hain. Lower price items left aur higher price right mein bubble up honge!';
+
+  if (profile.interests.includes('Cricket')) {
+    activeContextExplanation = '🏏 Cricket Context: Yahan numbers players ke Highest Match Runs / Scores (e.g., Rohit 264 runs, Kohli 183 runs) ko represent kar rahe hain!';
+  } else if (profile.interests.includes('Gaming')) {
+    activeContextExplanation = '🎮 Gaming Context: Yahan numbers players ke Total Match Kills (e.g., Leader 35 kills, Rusher 22 kills) ko represent kar rahe hain!';
+  } else if (profile.interests.includes('Bollywood/Movies')) {
+    activeContextExplanation = '🎬 Movies Context: Yahan numbers films ke Box Office Collections in ₹ Crores (e.g., Blockbuster 96Cr, Flop 30Cr) ko represent kar rahe hain!';
+  } else if (profile.interests.includes('Music/Singing')) {
+    activeContextExplanation = '🎧 Music Context: Yahan numbers tracks ke Total Streams in Millions (e.g., Viral Track 340M, Indie 12M) ko represent kar rahe hain!';
+  } else if (profile.interests.includes('Fitness')) {
+    activeContextExplanation = '🏋️‍♂️ Fitness Context: Yahan numbers Bench Press / Lift Weights in kg (e.g., PR Max 110kg, Warmup 40kg) ko represent kar rahe hain!';
+  } else if (profile.interests.includes('Fashion')) {
+    activeContextExplanation = '👗 Fashion Context: Yahan numbers fashion items ke Price in $ / ₹ (e.g., Limited Ed $500, Socks $15) ko represent kar rahe hain!';
+  } else if (profile.interests.includes('Travel')) {
+    activeContextExplanation = '✈️ Travel Context: Yahan numbers travel destinations ke Distance in km (e.g., Overseas 7500km, Local Hop 450km) ko represent kar rahe hain!';
+  }
+
   return (
     <div className="max-w-4xl mx-auto py-4 sm:py-8 space-y-10">
       {/* Welcome Header */}
@@ -193,19 +212,26 @@ export const UnifiedLearningView: React.FC = () => {
         </div>
       </div>
 
-      {/* 3. Live Interactive Visualizer */}
+      {/* 3. Interactive Step-by-Step Visualizer */}
       <div className="space-y-3">
         <div className="flex items-center justify-between px-1">
           <h2 className="text-2xl font-extrabold text-main flex items-center gap-3">
             <div className="p-2.5 bg-amber-500/10 border border-amber-500/30 rounded-2xl flex items-center justify-center shadow-xs">
               <CategoryIcon name="sparkles" className="w-6 h-6 text-amber-500" />
             </div>
-            <span>3. Interactive Audio Visualizer (6 Unsorted Items)</span>
+            <span>3. Interactive Step-by-Step Visualizer (6 Unsorted Items)</span>
           </h2>
           <span className="text-xs font-mono bg-focusBg text-focusText border border-focusBorder px-2.5 py-1 rounded font-bold">
             Interactive Island
           </span>
         </div>
+
+        {/* Dynamic Context Explanation Helper Card */}
+        <div className="bg-bg border border-textSecondary/20 p-4 rounded-2xl text-xs sm:text-sm font-semibold text-textSecondary flex items-start gap-2 shadow-xs">
+          <span className="text-base">💡</span>
+          <span className="leading-relaxed">{activeContextExplanation}</span>
+        </div>
+
         <BubbleSortVisualizer items={demoItems} title="Bubble Sort Step-by-Step Action" />
       </div>
 

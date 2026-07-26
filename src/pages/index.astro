@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import LiveMovingBanner from '../components/LiveMovingBanner';
-import CategoryIcon from '../components/CategoryIcon';
 ---
 
 <Layout title="DSA 101 | Visual Algorithm Learning Platform">
@@ -20,7 +19,7 @@ import CategoryIcon from '../components/CategoryIcon';
       </h1>
 
       <p class="text-textSecondary text-lg sm:text-2xl max-w-2xl mx-auto leading-relaxed font-medium">
-        Data Structures & Algorithms seekhna ab bilkul easy hai. Live step-by-step audio visualizers, 
+        Data Structures & Algorithms seekhna ab bilkul easy hai. Step-by-step visual animations, 
         interactive playground, aur real-life analogies ke sath DSA ko master karo!
       </p>
 
@@ -31,16 +30,14 @@ import CategoryIcon from '../components/CategoryIcon';
           class="w-full sm:w-auto btn-primary px-10 py-4 sm:py-5 rounded-2xl font-black text-xl shadow-chalk flex items-center justify-center gap-3 tracking-wide hover:scale-105 transition-transform"
         >
           <span>Start</span>
-          <CategoryIcon name="rocket" className="w-6 h-6 text-onAccent" />
+          <span class="text-2xl">🚀</span>
         </a>
         <a
           href="/learn"
-          class="w-full sm:w-auto px-8 py-4 sm:py-5 rounded-2xl border-2 border-textSecondary/30 bg-bg text-main hover:border-accent hover:shadow-lg text-lg font-extrabold transition-all flex items-center justify-center gap-3 hover:-translate-y-1 group"
+          class="w-full sm:w-auto px-8 py-4 sm:py-5 rounded-2xl border-2 border-textSecondary/30 bg-bg text-main hover:border-accent hover:shadow-lg text-lg font-extrabold transition-all flex items-center justify-center gap-3 hover:-translate-y-1"
         >
           <span>Complete Learn Guide</span>
-          <div class="p-1.5 bg-card border border-textSecondary/20 rounded-xl group-hover:border-accent transition-colors">
-            <CategoryIcon name="book" className="w-5 h-5 text-accent" />
-          </div>
+          <span>📖</span>
         </a>
       </div>
 
@@ -121,9 +118,7 @@ import CategoryIcon from '../components/CategoryIcon';
         </div>
 
         <div class="bg-card border border-textSecondary/20 p-6 sm:p-7 rounded-3xl space-y-3 shadow-sm hover:shadow-xl hover:border-accent/40 hover:-translate-y-1.5 transition-all duration-300">
-          <div class="p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl w-14 h-14 flex items-center justify-center">
-            <CategoryIcon name="book" className="w-8 h-8 text-emerald-500" />
-          </div>
+          <div class="text-4xl">🧼</div>
           <h3 class="font-extrabold text-2xl text-main">Single Comprehensive Guide</h3>
           <p class="text-base text-textSecondary leading-relaxed font-medium">
             No fragmented steps! Saare core concepts ek hi unified learning page par available hain.
@@ -131,9 +126,7 @@ import CategoryIcon from '../components/CategoryIcon';
         </div>
 
         <div class="bg-card border border-textSecondary/20 p-6 sm:p-7 rounded-3xl space-y-3 shadow-sm hover:shadow-xl hover:border-accent/40 hover:-translate-y-1.5 transition-all duration-300">
-          <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-2xl w-14 h-14 flex items-center justify-center">
-            <CategoryIcon name="sparkles" className="w-8 h-8 text-amber-500" />
-          </div>
+          <div class="text-4xl">⚡</div>
           <h3 class="font-extrabold text-2xl text-main">Live Visualizer & Audio SFX</h3>
           <p class="text-base text-textSecondary leading-relaxed font-medium">
             Audio sound effects aur step-by-step control ke sath dekho elements kaise slide karke sort hote hain.
@@ -141,9 +134,7 @@ import CategoryIcon from '../components/CategoryIcon';
         </div>
 
         <div class="bg-card border border-textSecondary/20 p-6 sm:p-7 rounded-3xl space-y-3 shadow-sm hover:shadow-xl hover:border-accent/40 hover:-translate-y-1.5 transition-all duration-300">
-          <div class="p-3 bg-rose-500/10 border border-rose-500/30 rounded-2xl w-14 h-14 flex items-center justify-center">
-            <CategoryIcon name="target" className="w-8 h-8 text-rose-500" />
-          </div>
+          <div class="text-4xl">🎯</div>
           <h3 class="font-extrabold text-2xl text-main">Master Quiz & Certificate</h3>
           <p class="text-base text-textSecondary leading-relaxed font-medium">
             6-question master quiz attempt karke instant completion badge and WhatsApp share certificate claim karo!
@@ -164,7 +155,7 @@ import CategoryIcon from '../components/CategoryIcon';
           class="btn-primary inline-flex items-center gap-3 px-10 py-4.5 rounded-2xl font-black text-xl shadow-chalk hover:scale-105 transition-transform"
         >
           <span>Start</span>
-          <CategoryIcon name="rocket" className="w-6 h-6 text-onAccent" />
+          <span>→</span>
         </a>
       </div>
     </section>
