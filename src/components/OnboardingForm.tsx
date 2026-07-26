@@ -6,16 +6,23 @@ import {
   setStudentInterests,
 } from '../stores/student';
 import { playAudioSFX } from './BubbleSortVisualizer';
+import CategoryIcon, { type IconType } from './CategoryIcon';
 
-const INTEREST_CHIPS = [
-  { id: 'Food', label: 'Food', icon: '🥟' },
-  { id: 'Music/Singing', label: 'Music/Singing', icon: '🎧' },
-  { id: 'Cricket', label: 'Cricket', icon: '🏏' },
-  { id: 'Bollywood/Movies', label: 'Bollywood/Movies', icon: '🎬' },
-  { id: 'Gaming', label: 'Gaming', icon: '🎮' },
-  { id: 'Fitness', label: 'Fitness', icon: '🏋️‍♂️' },
-  { id: 'Fashion', label: 'Fashion', icon: '👗' },
-  { id: 'Travel', label: 'Travel', icon: '✈️' },
+interface InterestChip {
+  id: string;
+  label: string;
+  iconName: IconType;
+}
+
+const INTEREST_CHIPS: InterestChip[] = [
+  { id: 'Food', label: 'Food', iconName: 'food' },
+  { id: 'Music/Singing', label: 'Music/Singing', iconName: 'music' },
+  { id: 'Cricket', label: 'Cricket', iconName: 'cricket' },
+  { id: 'Bollywood/Movies', label: 'Bollywood/Movies', iconName: 'movies' },
+  { id: 'Gaming', label: 'Gaming', iconName: 'gaming' },
+  { id: 'Fitness', label: 'Fitness', iconName: 'fitness' },
+  { id: 'Fashion', label: 'Fashion', iconName: 'fashion' },
+  { id: 'Travel', label: 'Travel', iconName: 'travel' },
 ];
 
 export const OnboardingForm: React.FC = () => {
@@ -100,7 +107,7 @@ export const OnboardingForm: React.FC = () => {
           <label className="block text-sm font-bold text-main">
             Tumhare Top 2 ya 3 Hobbies Kya Hain? <span className="text-accent">*</span>
           </label>
-          <span className="text-xs font-mono px-2 py-0.5 rounded bg-bg border border-textSecondary/20 text-textSecondary font-semibold">
+          <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-bg border border-textSecondary/20 text-textSecondary font-semibold">
             {selectedInterests.length}/3 Selected
           </span>
         </div>
@@ -117,13 +124,13 @@ export const OnboardingForm: React.FC = () => {
                 key={chip.id}
                 type="button"
                 onClick={() => toggleInterest(chip.id)}
-                className={`px-3 py-2.5 rounded-xl border text-sm font-semibold flex items-center justify-center gap-2 transition-all duration-200 ${
+                className={`px-3 py-3 rounded-xl border text-sm font-extrabold flex items-center justify-center gap-2.5 transition-all duration-200 ${
                   isSelected
                     ? 'bg-accent text-onAccent border-accent shadow-sm scale-[1.02]'
-                    : 'bg-bg text-main border-textSecondary/30 hover:border-accent2/80'
+                    : 'bg-bg text-main border-textSecondary/30 hover:border-accent2/80 hover:-translate-y-0.5'
                 }`}
               >
-                <span>{chip.icon}</span>
+                <CategoryIcon name={chip.iconName} className="w-4 h-4" />
                 <span className="truncate">{chip.label}</span>
               </button>
             );
@@ -148,7 +155,7 @@ export const OnboardingForm: React.FC = () => {
         <button
           type="submit"
           disabled={!isSelectionValid}
-          className="w-full btn-primary py-3.5 rounded-xl font-bold text-base shadow-chalk flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none transition-all"
+          className="w-full btn-primary py-4 rounded-xl font-black text-base shadow-chalk flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none transition-all"
         >
           <span>Aao Seekhein! 🚀</span>
         </button>
