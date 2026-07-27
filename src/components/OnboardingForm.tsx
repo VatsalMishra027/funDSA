@@ -148,9 +148,22 @@ export const OnboardingForm: React.FC = () => {
         <button
           type="submit"
           disabled={!isSelectionValid}
-          className="w-full btn-primary py-3.5 rounded-xl font-bold text-base shadow-chalk flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none transition-all"
+          className="group relative w-full inline-flex items-center justify-center gap-3.5 bg-gradient-to-r from-accent via-[#E05338] to-accent2 text-onAccent px-8 py-4.5 rounded-2xl font-black text-xl shadow-xl shadow-accent/25 border border-accent2/50 ring-1 ring-white/30 hover:scale-[1.02] hover:shadow-2xl hover:shadow-accent/40 active:scale-98 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:shadow-none transition-all duration-300 overflow-hidden"
         >
-          <span>Aao Seekhein! 🚀</span>
+          {/* Light Shimmer Effect */}
+          <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></span>
+
+          <span className="tracking-wide text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]">Start Learning</span>
+
+          {/* Hyper-Crisp Official Vector Rocket Launch Icon */}
+          <span className="p-2 rounded-xl bg-white/20 border border-white/30 text-white shadow-sm group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-300 flex items-center justify-center">
+            <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+              <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-3.05 11a22.35 22.35 0 0 1-3.95 2z"/>
+              <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+              <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+            </svg>
+          </span>
         </button>
       </div>
     </form>
