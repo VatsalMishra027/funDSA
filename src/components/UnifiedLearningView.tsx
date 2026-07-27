@@ -484,21 +484,44 @@ class Program {
           Saare core concepts, formal definitions, aur multi-language code snippets review ho chuke hain. Now attempt the 6-Question Master Quiz!
         </p>
 
-        <div className="pt-2 flex flex-wrap justify-center gap-4">
+        <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+          {/* Primary Quiz Button */}
           <a
             href="/quiz"
             onClick={() => playAudioSFX('click', true)}
-            className="btn-primary px-8 py-3.5 rounded-xl font-extrabold text-lg shadow-chalk inline-flex items-center gap-2"
+            className="group relative inline-flex items-center justify-center gap-3 bg-gradient-to-r from-accent via-[#E05338] to-accent2 text-onAccent px-8 sm:px-10 py-4.5 rounded-2xl font-black text-lg sm:text-xl shadow-xl shadow-accent/25 border border-accent2/50 ring-1 ring-white/30 hover:scale-105 hover:shadow-2xl hover:shadow-accent/40 active:scale-98 transition-all duration-300 overflow-hidden"
           >
-            <span>Take 6-Question Master Quiz</span>
-            <CategoryIcon name="target" className="w-5 h-5 text-onAccent" />
+            {/* Light Shimmer Effect */}
+            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></span>
+
+            <span className="tracking-wide text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]">Take Master Quiz</span>
+
+            {/* Hyper-Crisp Target Vector Icon */}
+            <span className="p-2 rounded-xl bg-white/20 border border-white/30 text-white shadow-sm group-hover:rotate-12 transition-transform duration-300 flex items-center justify-center">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <circle cx="12" cy="12" r="6" />
+                <circle cx="12" cy="12" r="2" />
+              </svg>
+            </span>
           </a>
+
+          {/* Secondary Playground Button */}
           <a
             href="/playground"
             onClick={() => playAudioSFX('click', true)}
-            className="px-6 py-3.5 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent font-bold text-base inline-flex items-center gap-2"
+            className="group inline-flex items-center justify-center gap-3 bg-card border-2 border-textSecondary/30 hover:border-accent text-main px-7 py-4.5 rounded-2xl font-extrabold text-base sm:text-lg shadow-md hover:shadow-xl hover:scale-105 active:scale-98 transition-all duration-300"
           >
-            <span>🧪 Try Playground</span>
+            {/* Vector Beaker Icon */}
+            <span className="p-2 rounded-xl bg-accent/10 border border-accent/20 text-accent group-hover:bg-accent group-hover:text-onAccent transition-colors duration-300 flex items-center justify-center">
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4.5 3h15" />
+                <path d="M6 3v16a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V3" />
+                <path d="M6 14h12" />
+              </svg>
+            </span>
+
+            <span>Try Playground</span>
           </a>
         </div>
       </div>
