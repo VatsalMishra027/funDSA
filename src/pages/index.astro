@@ -27,14 +27,23 @@ import Layout from '../layouts/Layout.astro';
         interactive playground, aur real-life analogies ke sath DSA ko master karo!
       </p>
 
-      {/* Main Single CTA Button */}
-      <div class="pt-4 flex items-center justify-center">
+      {/* Main Single Premium CTA Button */}
+      <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
         <a
           href="/onboarding"
-          class="w-full sm:w-auto btn-primary px-12 py-5 rounded-2xl font-black text-2xl shadow-chalk flex items-center justify-center gap-3 tracking-wide hover:scale-105 transition-transform"
+          class="group relative inline-flex items-center justify-center gap-3.5 bg-gradient-to-r from-accent via-[#E05338] to-accent2 text-onAccent px-10 sm:px-12 py-5 rounded-2xl font-black text-xl sm:text-2xl shadow-xl shadow-accent/25 border border-accent2/50 ring-1 ring-white/30 hover:scale-105 hover:shadow-2xl hover:shadow-accent/40 active:scale-98 transition-all duration-300 overflow-hidden"
         >
-          <span>Start</span>
-          <span class="text-3xl">🚀</span>
+          <!-- Light Shimmer Effect -->
+          <span class="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></span>
+          
+          <span class="tracking-wide text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]">Start Learning</span>
+          
+          <!-- Premium Vector SVG Rocket Launch Icon -->
+          <span class="p-2 rounded-xl bg-white/20 border border-white/30 text-focusBg shadow-inner group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300 flex items-center justify-center">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7 fill-current" viewBox="0 0 24 24">
+              <path d="M13.13 2.21c1.86 1.86 2.45 4.54 1.76 6.94l4.24 4.24c.78.78.78 2.05 0 2.83l-1.41 1.41c-.78.78-2.05.78-2.83 0l-4.24-4.24c-2.4.69-5.08.1-6.94-1.76-1.58-1.58-2.17-3.8-1.77-5.91L5 4l3.09 3.09 1.41-1.41L6.41 2.59l1.83-1.83c.39-.39 1.02-.39 1.41 0l3.48 3.45zM2.81 16.59l4.59-4.59 4.59 4.59-4.59 4.59z"/>
+            </svg>
+          </span>
         </a>
       </div>
     </section>
@@ -144,10 +153,14 @@ import Layout from '../layouts/Layout.astro';
       <div class="pt-2">
         <a
           href="/onboarding"
-          class="btn-primary inline-flex items-center gap-3 px-10 py-4.5 rounded-2xl font-black text-xl shadow-chalk hover:scale-105 transition-transform"
+          class="group relative inline-flex items-center gap-3 bg-gradient-to-r from-accent via-[#E05338] to-accent2 text-onAccent px-10 py-4.5 rounded-2xl font-black text-xl shadow-xl shadow-accent/20 border border-accent2/40 ring-1 ring-white/20 hover:scale-105 hover:shadow-2xl transition-all duration-300 overflow-hidden"
         >
-          <span>Start</span>
-          <span>→</span>
+          <span class="tracking-wide text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]">Start Learning</span>
+          <span class="p-1.5 rounded-lg bg-white/20 text-focusBg group-hover:translate-x-1 transition-transform flex items-center justify-center">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </span>
         </a>
       </div>
     </section>
