@@ -10,7 +10,7 @@ export const CompletionBadge: React.FC = () => {
   const studentName = profile.name || 'Student';
 
   // Official & Professional Certificate Share Message
-  const shareText = `🏆 Official Achievement Unlocked! I, ${studentName}, have successfully completed & mastered the Bubble Sort Algorithm Module on the DSA 101 Visual Platform! 🚀 Verify & explore interactive algorithms:`;
+  const shareText = `🏆 Official Achievement Unlocked! I, ${studentName}, have successfully completed & mastered the Bubble Sort Algorithm Module on the padhDSA Visual Platform! 🚀 Verify & explore interactive algorithms:`;
   const shareUrl = typeof window !== 'undefined' ? window.location.origin : 'https://dsa101.vercel.app';
 
   const handleCopyLink = () => {
