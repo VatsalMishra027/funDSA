@@ -41,57 +41,50 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </section>
 
-    {/* Visual Card Preview Illustration with Hover Effects */}
+    {/* Visual Card Preview Illustration showcasing General DSA Mechanics */}
     <section class="max-w-4xl mx-auto">
       <div class="bg-card border-2 border-textSecondary/20 rounded-3xl p-6 sm:p-8 shadow-md hover:shadow-2xl hover:border-accent/40 transition-all duration-300 space-y-6">
         <div class="flex items-center justify-between border-b border-textSecondary/15 pb-4">
           <div class="flex items-center gap-2">
             <span class="w-3.5 h-3.5 rounded-full bg-accent inline-block"></span>
             <span class="w-3.5 h-3.5 rounded-full bg-accent2 inline-block"></span>
-            <span class="text-sm font-mono text-textSecondary font-bold ml-2">bubble-sort-visualizer.preview</span>
+            <span class="text-sm font-mono text-textSecondary font-bold ml-2">dsa-algorithm-visualizer.preview</span>
           </div>
           <span class="text-xs sm:text-sm font-mono bg-focusBg text-focusText border border-focusBorder px-3 py-1 rounded-lg font-extrabold">
-            Pass 1: Comparing & Swapping
+            Interactive Algorithm Engine
           </span>
         </div>
 
-        {/* Mock Comparison Graphic */}
-        <div class="flex items-end justify-center gap-3 sm:gap-6 py-6 border-b border-textSecondary/10">
-          <div class="flex flex-col items-center gap-2 hover:-translate-y-1 transition-transform">
-            <span class="text-xs font-mono text-textSecondary font-bold">Index [0]</span>
-            <div class="bg-bg border border-textSecondary/30 p-4 rounded-2xl text-center font-bold text-base w-24 sm:w-28 shadow-xs">
-              <div class="text-2xl mb-1">🥟</div>
-              <div>Samosa</div>
-              <div class="text-sm font-mono text-accent font-extrabold">₹15</div>
-            </div>
+        {/* General DSA Concept Preview Graphic */}
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 py-4 border-b border-textSecondary/10">
+          <div class="bg-bg border border-textSecondary/30 p-5 rounded-2xl space-y-2 text-center hover:-translate-y-1 transition-transform">
+            <div class="text-3xl">📋</div>
+            <h4 class="font-extrabold text-base text-main">1. Data Structures</h4>
+            <p class="text-xs text-textSecondary font-semibold leading-relaxed">
+              Arrays, Lists, & Memory Indices ko visual blocks mein organize karo.
+            </p>
           </div>
 
-          <div class="text-3xl text-accent font-bold animate-pulse pb-6">
-            ⇄
+          <div class="bg-accent text-onAccent border border-accent p-5 rounded-2xl space-y-2 text-center shadow-md scale-105 ring-2 ring-accent/40 hover:-translate-y-1 transition-transform">
+            <div class="text-3xl">⚡</div>
+            <h4 class="font-black text-base">2. Step-by-Step Logic</h4>
+            <p class="text-xs font-semibold leading-relaxed opacity-95">
+              Comparison, Traversal, & Swapping operations ko live step-by-step execute karo!
+            </p>
           </div>
 
-          <div class="flex flex-col items-center gap-2 hover:-translate-y-1 transition-transform">
-            <span class="text-xs font-mono text-accent font-bold">Index [1]</span>
-            <div class="bg-accent text-onAccent border border-accent p-4 rounded-2xl text-center font-bold text-base w-24 sm:w-28 shadow-md scale-105 ring-2 ring-accent/40">
-              <div class="text-2xl mb-1">🍕</div>
-              <div>Pizza</div>
-              <div class="text-sm font-mono font-extrabold">₹250</div>
-            </div>
-          </div>
-
-          <div class="flex flex-col items-center gap-2 hover:-translate-y-1 transition-transform">
-            <span class="text-xs font-mono text-textSecondary font-bold">Index [2]</span>
-            <div class="bg-bg border border-textSecondary/30 p-4 rounded-2xl text-center font-bold text-base w-24 sm:w-28 opacity-60">
-              <div class="text-2xl mb-1">☕</div>
-              <div>Chai</div>
-              <div class="text-sm font-mono text-textSecondary font-bold">₹10</div>
-            </div>
+          <div class="bg-bg border border-textSecondary/30 p-5 rounded-2xl space-y-2 text-center hover:-translate-y-1 transition-transform">
+            <div class="text-3xl">⏱️</div>
+            <h4 class="font-extrabold text-base text-main">3. Asymptotic Analysis</h4>
+            <p class="text-xs text-textSecondary font-semibold leading-relaxed">
+              Time Complexity O(N²) & Space Complexity O(1) ko intuitive Hinglish mein samjho.
+            </p>
           </div>
         </div>
 
-        {/* Hinglish Callout Quote */}
+        {/* General DSA Hinglish Callout Quote */}
         <div class="dhyan-do-box p-5 rounded-2xl text-base font-semibold shadow-xs">
-          <strong>Dhyan do! 💡</strong> Pehle do items compare honge. Agar pehla wala bada hai, toh simply jagah swap kar do. Phir repeat!
+          <strong>Dhyan do! 💡</strong> Data Structures & Algorithms matlab sirf code ratna nahi — step-by-step logic, array indexing, and memory mechanics ko visually feel karna!
         </div>
       </div>
     </section>
@@ -115,7 +108,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="text-4xl">📚</div>
           <h3 class="font-extrabold text-2xl text-main">Single Comprehensive Guide</h3>
           <p class="text-base text-textSecondary leading-relaxed font-medium">
-            No fragmented steps! Saare core concepts ek hi unified learning page par available hain.
+            No fragmented steps! Saare core DSA concepts ek hi unified learning page par available hain.
           </p>
         </div>
 
@@ -123,7 +116,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="text-4xl">⚡</div>
           <h3 class="font-extrabold text-2xl text-main">Live Visualizer & Audio SFX</h3>
           <p class="text-base text-textSecondary leading-relaxed font-medium">
-            Audio sound effects aur step-by-step control ke sath dekho elements kaise slide karke sort hote hain.
+            Audio sound effects aur step-by-step control ke sath dekho algorithms memory mein kaise execute hote hain.
           </p>
         </div>
 

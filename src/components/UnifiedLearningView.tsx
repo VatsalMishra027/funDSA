@@ -200,15 +200,21 @@ export const UnifiedLearningView: React.FC = () => {
           ho jaati hai!
         </p>
 
-        <div className="dhyan-do-box p-4 sm:p-5 rounded-2xl space-y-1">
+        <div className="dhyan-do-box p-4 sm:p-5 rounded-2xl space-y-2">
           <div className="font-extrabold text-sm sm:text-base flex items-center gap-2">
             <span>💡</span>
-            <span>KEY TAKEAWAY</span>
+            <span>GOLDEN RULE (Bohot Simple Hai!):</span>
           </div>
-          <p className="text-base sm:text-lg font-semibold">
-            If A[i] &gt; A[i+1] 👉 Swap positions! <br />
-            If A[i] ≤ A[i+1] 👉 Maintain position, advance index!
-          </p>
+          <div className="text-base sm:text-lg font-semibold space-y-2 leading-relaxed">
+            <div className="flex items-start gap-2">
+              <span className="text-accent font-bold">1.</span>
+              <span><strong>Agar Pehla Item Bada Hai (Left &gt; Right):</strong> Dono ki jagah aapas mein SWAP kar do! 🔀</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-accent font-bold">2.</span>
+              <span><strong>Agar Pehla Item Chhota Ya Barabar Hai:</strong> Bilkul mat chhedo, chupchap agle pair par aage badh jaao! ➡️</span>
+            </div>
+          </div>
         </div>
       </div>
 
