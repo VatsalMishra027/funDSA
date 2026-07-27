@@ -122,6 +122,27 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const instanceIdRef = useRef<string>(
+    `viz-${Math.random().toString(36).substring(2, 9)}`
+  );
+
+  // Global listener: Pause this visualizer if any OTHER visualizer starts playing
+  useEffect(() => {
+    const handleOtherVisualizerPlay = (e: Event) => {
+      const customEvent = e as CustomEvent<{ instanceId: string }>;
+      if (
+        customEvent.detail &&
+        customEvent.detail.instanceId !== instanceIdRef.current
+      ) {
+        setIsPlaying(false);
+      }
+    };
+
+    window.addEventListener('dsa_visualizer_play', handleOtherVisualizerPlay);
+    return () => {
+      window.removeEventListener('dsa_visualizer_play', handleOtherVisualizerPlay);
+    };
+  }, []);
 
   const generateSteps = (startItems: InternalItem[]) => {
     const generatedSteps: StepState[] = [];
@@ -435,7 +456,15 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
           <button
             onClick={() => {
               playAudioSFX('click', soundEnabled);
-              setIsPlaying(!isPlaying);
+              const nextState = !isPlaying;
+              setIsPlaying(nextState);
+              if (nextState) {
+                window.dispatchEvent(
+                  new CustomEvent('dsa_visualizer_play', {
+                    detail: { instanceId: instanceIdRef.current },
+                  })
+                );
+              }
             }}
             disabled={currentStepIndex >= steps.length - 1 && !isPlaying}
             className="btn-primary px-6 py-3 rounded-xl font-black text-sm shadow-md flex items-center gap-2.5 hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:cursor-not-allowed"

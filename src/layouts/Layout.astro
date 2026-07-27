@@ -62,15 +62,15 @@ const {
 
         <!-- Header Nav Links & Dynamic Onboarding Protection State -->
         <div class="flex items-center gap-3 sm:gap-5">
-          <!-- Motivating Professional & Official Gen-Z Badge (Shown on Landing Page & when un-onboarded) -->
+          <!-- Motivating Professional & Official Gen-Z Badge (Shown on First & Second Pages) -->
           <div
             id="nav-genz-badge"
             class="inline-flex items-center gap-2 bg-focusBg border border-focusBorder text-focusText text-xs font-mono font-black px-3.5 py-1.5 rounded-xl tracking-wide shadow-xs"
           >
-            <span>⚡ HIGH-KEY INTUITION • ZERO RATTA</span>
+            <span>⚡ ZERO RATTA • HIGH-KEY INTUITION • LOCK IN YOUR VIBE 🚀</span>
           </div>
 
-          <!-- Module Navigation Links (Hidden on First Page; only visible on inner pages when onboarded) -->
+          <!-- Module Navigation Links (Hidden until Onboarding is completed) -->
           <div id="nav-protected-links" class="hidden items-center gap-4 sm:gap-6">
             <a
               href="/learn"
@@ -92,10 +92,11 @@ const {
             </a>
           </div>
 
-          <!-- Onboarding / Setup Profile Header CTA Button -->
+          <!-- Optional Start Button (Controlled via JS) -->
           <a
+            id="nav-start-btn"
             href="/onboarding"
-            class="btn-primary text-xs sm:text-sm font-black px-4 py-2 rounded-xl shadow-xs hover:scale-105 transition-transform flex items-center gap-1.5"
+            class="hidden btn-primary text-xs sm:text-sm font-black px-4 py-2 rounded-xl shadow-xs hover:scale-105 transition-transform items-center gap-1.5"
           >
             <span>Start</span>
             <span>🚀</span>
@@ -146,20 +147,29 @@ const {
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
       });
 
-      // Navigation Visibility Guard
+      // Navigation Visibility & Protection Guard
       (function () {
         try {
           const currentPath = window.location.pathname;
-          const isHomePage = currentPath === '/' || currentPath === '/index.html' || currentPath === '';
+          const isPreOnboardingPage =
+            currentPath === '/' ||
+            currentPath === '/index.html' ||
+            currentPath === '' ||
+            currentPath.includes('/onboarding');
 
           const links = document.getElementById('nav-protected-links');
           const badge = document.getElementById('nav-genz-badge');
+          const startBtn = document.getElementById('nav-start-btn');
 
-          // On home landing page (very first page), ALWAYS hide module nav links & show motivating badge
-          if (isHomePage) {
+          // If on First Page (Home) or Second Page (Onboarding), REMOVE all 4 nav links & show motivating Gen-Z badge
+          if (isPreOnboardingPage) {
             if (links) {
               links.classList.add('hidden');
               links.classList.remove('flex');
+            }
+            if (startBtn) {
+              startBtn.classList.add('hidden');
+              startBtn.classList.remove('flex');
             }
             if (badge) {
               badge.classList.remove('hidden');
@@ -167,19 +177,32 @@ const {
             return;
           }
 
-          // On inner pages, check if onboarded
+          // On inner module pages (/learn, /playground, /quiz), check if onboarded
           const rawProfile = localStorage.getItem('bubble_sort_student_profile_v1');
+          let isOnboarded = false;
           if (rawProfile) {
             const parsed = JSON.parse(rawProfile);
             if (parsed && parsed.name && parsed.name.trim() !== '') {
-              if (links) {
-                links.classList.remove('hidden');
-                links.classList.add('flex');
-              }
-              if (badge) {
-                badge.classList.add('hidden');
-              }
+              isOnboarded = true;
             }
+          }
+
+          if (isOnboarded) {
+            // User is onboarded: Show module navigation links!
+            if (links) {
+              links.classList.remove('hidden');
+              links.classList.add('flex');
+            }
+            if (startBtn) {
+              startBtn.classList.add('hidden');
+              startBtn.classList.remove('flex');
+            }
+            if (badge) {
+              badge.classList.add('hidden');
+            }
+          } else {
+            // Un-onboarded user trying to access inner pages -> Redirect to /onboarding
+            window.location.href = '/onboarding';
           }
         } catch (e) {}
       })();

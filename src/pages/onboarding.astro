@@ -3,30 +3,30 @@ import Layout from '../layouts/Layout.astro';
 import OnboardingForm from '../components/OnboardingForm';
 ---
 
-<Layout title="Student Setup | Bubble Sort Made Fun">
+<Layout title="Lock In Your Profile | DSA 101 Visual Platform">
   <div class="max-w-xl mx-auto py-6 sm:py-10 space-y-6">
     {/* Page Header */}
     <div class="text-center space-y-3">
-      <span class="bg-focusBg border border-focusBorder text-focusText text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
-        Pehle Thoda Setup
-      </span>
-      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
-        Apne baare mein <span class="text-accent font-handwritten text-4xl sm:text-5xl">thoda batao</span>
+      <div class="inline-flex items-center gap-2 bg-focusBg border border-focusBorder text-focusText text-xs font-mono font-black px-4 py-1.5 rounded-full uppercase tracking-wider shadow-xs">
+        <span>⚡ STEP 01 · INITIALIZE YOUR VIBE</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
+        Apne baare mein <span class="text-accent font-handwritten text-4xl sm:text-6xl">thoda batao!</span>
       </h1>
-      <p class="text-textSecondary text-sm sm:text-base leading-relaxed">
-        Koi formal exam registration nahi hai. Hum tumhare interests ke according 
-        funny examples aur real-life scenarios custom banayenge!
+      <p class="text-textSecondary text-sm sm:text-base leading-relaxed font-medium max-w-md mx-auto">
+        No formal exam setup. Bas 10 seconds mein profile lock-in karo aur visual algorithms tumhare favourite topics par custom compile hone lagenge! 🚀
       </p>
     </div>
 
     {/* Form Card */}
-    <div class="bg-card border border-textSecondary/20 rounded-2xl p-6 sm:p-8 shadow-md">
+    <div class="bg-card border-2 border-textSecondary/20 rounded-3xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-all duration-300">
       <OnboardingForm client:load />
     </div>
 
     {/* Footer encouragement */}
-    <p class="text-center text-xs text-textSecondary">
-      🔒 Secret info nahi hai — tumhare preferences tumhare browser mein hi save rahenge.
+    <p class="text-center text-xs font-medium text-textSecondary flex items-center justify-center gap-1.5">
+      <span>🔒</span>
+      <span>Secret info nahi hai — tumhare preferences local browser storage mein secure hain.</span>
     </p>
   </div>
 </Layout>

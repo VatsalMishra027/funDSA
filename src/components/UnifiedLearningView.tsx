@@ -19,6 +19,89 @@ export const UnifiedLearningView: React.FC = () => {
     { label: 'Maggi', value: 45, icon: '🍜' },
   ]);
 
+  const [selectedLang, setSelectedLang] = useState<'python' | 'js' | 'cpp' | 'java' | 'csharp'>('python');
+  const [copied, setCopied] = useState<boolean>(false);
+
+  const CODE_SNIPPETS = {
+    python: `# 🐍 Python - Bubble Sort Implementation
+def bubble_sort(arr):
+    n = len(arr) # Step 1: Calculate array size 📏
+    
+    for i in range(n): # Step 2: Outer pass loop 🔄
+        for j in range(n - 1 - i): # Step 3: Compare adjacent pairs 👥
+            if arr[j] > arr[j + 1]: # Step 4: Check if left > right 🔀
+                arr[j], arr[j + 1] = arr[j + 1], arr[j] # Step 5: Swap positions! ✨
+                
+    return arr # Step 6: Return sorted array 🏆
+
+# Example execution
+print(bubble_sort([250, 10, 80, 15]))`,
+
+    js: `// ⚡ JavaScript / TypeScript - Bubble Sort Implementation
+function bubbleSort(arr) {
+  let n = arr.length; // Step 1: Calculate array length 📏
+  
+  for (let i = 0; i < n; i++) { // Step 2: Outer pass loop 🔄
+    for (let j = 0; j < n - 1 - i; j++) { // Step 3: Compare adjacent pairs 👥
+      if (arr[j] > arr[j + 1]) { // Step 4: Check if left > right 🔀
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]; // Step 5: Swap elements! ✨
+      }
+    }
+  }
+  return arr; // Step 6: Return sorted array 🏆
+}
+
+console.log(bubbleSort([250, 10, 80, 15]));`,
+
+    cpp: `// ⚡ C++ - Bubble Sort Implementation
+#include <iostream>
+#include <vector>
+
+void bubbleSort(std::vector<int>& arr) {
+    int n = arr.size(); // Step 1: Get vector size 📏
+    
+    for (int i = 0; i < n; i++) { // Step 2: Outer pass loop 🔄
+        for (int j = 0; j < n - 1 - i; j++) { // Step 3: Compare adjacent pairs 👥
+            if (arr[j] > arr[j + 1]) { // Step 4: Check if left > right 🔀
+                std::swap(arr[j], arr[j + 1]); // Step 5: Swap elements! ✨
+            }
+        }
+    }
+}`,
+
+    java: `// ☕ Java - Bubble Sort Implementation
+public class BubbleSort {
+    public static void bubbleSort(int[] arr) {
+        int n = arr.length; // Step 1: Calculate array length 📏
+        
+        for (int i = 0; i < n; i++) { // Step 2: Outer pass loop 🔄
+            for (int j = 0; j < n - 1 - i; j++) { // Step 3: Compare adjacent pairs 👥
+                if (arr[j] > arr[j + 1]) { // Step 4: Check if left > right 🔀
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp; // Step 5: Swap elements! ✨
+                }
+            }
+        }
+    }
+}`,
+
+    csharp: `// 🔷 C# - Bubble Sort Implementation
+class Program {
+    static void BubbleSort(int[] arr) {
+        int n = arr.Length; // Step 1: Calculate array length 📏
+        
+        for (int i = 0; i < n; i++) { // Step 2: Outer pass loop 🔄
+            for (int j = 0; j < n - 1 - i; j++) { // Step 3: Compare adjacent pairs 👥
+                if (arr[j] > arr[j + 1]) { // Step 4: Check if left > right 🔀
+                    (arr[j], arr[j + 1]) = (arr[j + 1], arr[j]); // Step 5: Swap elements! ✨
+                }
+            }
+        }
+    }
+}`
+  };
+
   useEffect(() => {
     if (profile.interests.includes('Cricket')) {
       setDemoItems([
@@ -85,6 +168,13 @@ export const UnifiedLearningView: React.FC = () => {
       ]);
     }
   }, [profile.interests]);
+
+  const handleCopyCode = () => {
+    playAudioSFX('click', true);
+    navigator.clipboard.writeText(CODE_SNIPPETS[selectedLang]);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   // Context Explanation Generator based on Active Interest
   let activeContextExplanation = '🍕 Food Context: Yahan numbers items ke Relative Prices in ₹ (e.g., Pizza ₹250, Chai ₹10) ko represent kar rahe hain. Lower price items left aur higher price right mein bubble up honge!';
@@ -291,6 +381,99 @@ export const UnifiedLearningView: React.FC = () => {
         </div>
       </details>
 
+      {/* 6. Module 6: Simple & Light Bubble Sort Code Implementations */}
+      <div className="bg-card border-2 border-accent/30 rounded-3xl p-6 sm:p-8 shadow-md space-y-6">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-textSecondary/15 pb-4">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 bg-emerald-500/10 border border-emerald-500/30 rounded-2xl flex items-center justify-center shadow-xs">
+              <span className="text-2xl">💻</span>
+            </div>
+            <div>
+              <h2 className="text-2xl font-extrabold text-main">6. Module 6: Code Implementation</h2>
+              <p className="text-xs sm:text-sm text-textSecondary font-medium">
+                Clean, production-ready code snippets with line-by-line step explanations!
+              </p>
+            </div>
+          </div>
+
+          {/* Language Switcher Tabs */}
+          <div className="flex flex-wrap gap-1.5 bg-bg border border-textSecondary/30 p-1.5 rounded-2xl">
+            {[
+              { id: 'python', label: 'Python 🐍' },
+              { id: 'js', label: 'JS / TS ⚡' },
+              { id: 'cpp', label: 'C++ ⚡' },
+              { id: 'java', label: 'Java ☕' },
+              { id: 'csharp', label: 'C# 🔷' },
+            ].map((lang) => (
+              <button
+                key={lang.id}
+                type="button"
+                onClick={() => {
+                  playAudioSFX('click', true);
+                  setSelectedLang(lang.id as any);
+                }}
+                className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+                  selectedLang === lang.id
+                    ? 'bg-accent text-onAccent shadow-sm scale-105'
+                    : 'text-textSecondary hover:text-main hover:bg-card'
+                }`}
+              >
+                {lang.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Beginner-Friendly Slang Motivation Banner */}
+        <div className="bg-focusBg border-2 border-focusBorder text-focusText p-4 sm:p-5 rounded-2xl space-y-1 shadow-xs">
+          <div className="font-extrabold text-sm sm:text-base flex items-center gap-2">
+            <span className="text-xl">😎</span>
+            <span>CODE DEKH KE TENSION MAT LO — BILKUL CHILL MAARO!</span>
+          </div>
+          <p className="text-xs sm:text-sm font-semibold opacity-95 leading-relaxed">
+            Agar pehli baar code dekh rahe ho toh tension lene ki zero zaroorat hai! Yeh site 100% beginner-friendly hai. Step-by-step logic samajh aagayi toh code likhna bilkul easy aur automatic ho jaayega — pure flex! 🚀
+          </p>
+        </div>
+
+        {/* Crisp Light Code Container */}
+        <div className="relative bg-[#fdfbf7] dark:bg-[#1c1917] text-main border-2 border-accent/25 rounded-2xl p-4 sm:p-6 shadow-sm font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto">
+          {/* Light Header Bar */}
+          <div className="flex items-center justify-between border-b border-textSecondary/20 pb-3 mb-4">
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-accent inline-block"></span>
+              <span className="w-3 h-3 rounded-full bg-accent2 inline-block"></span>
+              <span className="w-3 h-3 rounded-full bg-focusBorder inline-block"></span>
+              <span className="text-xs text-textSecondary font-bold uppercase tracking-wider ml-1">
+                {selectedLang}_simple_sort.code
+              </span>
+            </div>
+
+            {/* Copy Button */}
+            <button
+              type="button"
+              onClick={handleCopyCode}
+              className="px-3.5 py-1.5 rounded-xl border border-textSecondary/30 bg-bg hover:border-accent text-xs font-bold text-main shadow-xs transition-all flex items-center gap-1.5"
+            >
+              {copied ? (
+                <>
+                  <span className="text-accent">✓</span>
+                  <span className="text-accent font-extrabold">Copied!</span>
+                </>
+              ) : (
+                <>
+                  <span>📋</span>
+                  <span>Copy Code</span>
+                </>
+              )}
+            </button>
+          </div>
+
+          <pre className="whitespace-pre overflow-x-auto font-mono text-main leading-relaxed">
+            <code>{CODE_SNIPPETS[selectedLang]}</code>
+          </pre>
+        </div>
+      </div>
+
       {/* Action Banner to Master Quiz */}
       <div className="bg-card border-2 border-focusBorder rounded-3xl p-8 text-center space-y-5 shadow-md">
         <div className="p-3 bg-purple-500/10 border border-purple-500/30 rounded-2xl w-14 h-14 mx-auto flex items-center justify-center shadow-xs">
@@ -298,7 +481,7 @@ export const UnifiedLearningView: React.FC = () => {
         </div>
         <h3 className="text-2xl sm:text-3xl font-extrabold">Ready to test your understanding?</h3>
         <p className="text-base sm:text-lg text-textSecondary max-w-md mx-auto font-medium">
-          Saare core concepts aur formal definitions review ho chuke hain. Now attempt the 6-Question Master Quiz!
+          Saare core concepts, formal definitions, aur multi-language code snippets review ho chuke hain. Now attempt the 6-Question Master Quiz!
         </p>
 
         <div className="pt-2 flex flex-wrap justify-center gap-4">

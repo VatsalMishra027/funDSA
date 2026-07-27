@@ -176,7 +176,7 @@ export const RecapQuiz: React.FC = () => {
         })}
       </div>
 
-      {/* Action / Result Box with Party Sound */}
+      {/* Action / Result Box with Vector SVG Icons */}
       <div className="bg-card border-2 border-accent/40 rounded-3xl p-6 sm:p-10 text-center space-y-5 shadow-md hover:shadow-2xl hover:border-accent transition-all duration-300">
         {!submitted ? (
           <div>
@@ -197,7 +197,7 @@ export const RecapQuiz: React.FC = () => {
         ) : (
           <div className="space-y-5 animate-fadeIn">
             <div className="inline-block bg-focusBg border-2 border-focusBorder text-focusText text-sm sm:text-base font-black px-5 py-2 rounded-full uppercase tracking-wider shadow-sm animate-bounce">
-              🎉 Master Quiz Completed! (Party Time 🥳)
+              Master Quiz Completed! 🏆
             </div>
 
             <h3 className="text-3xl sm:text-5xl font-black text-main tracking-tight">
@@ -206,13 +206,14 @@ export const RecapQuiz: React.FC = () => {
 
             <p className="text-lg font-bold text-textSecondary max-w-md mx-auto leading-relaxed">
               {finalScore === 6
-                ? '🏆 BUBBLE SORT MASTER! 100% Perfect Score! Saare concepts crystal clear hain!'
+                ? 'BUBBLE SORT MASTER! 100% Perfect Score! Saare concepts crystal clear hain!'
                 : finalScore >= 4
-                ? '🌟 SHABASH! Zabarjast performance. Bas 1-2 minor points revision chahiye.'
-                : '👍 GOOD TRY! Koi tension nahi, concept guide dobara dekho aur retry karo.'}
+                ? 'SHABASH! Zabarjast performance. Bas 1-2 minor points revision chahiye.'
+                : 'GOOD TRY! Koi tension nahi, concept guide dobara dekho aur retry karo.'}
             </p>
 
             <div className="pt-3 flex flex-wrap justify-center gap-4">
+              {/* Retry Quiz Vector SVG Button */}
               <button
                 type="button"
                 onClick={() => {
@@ -220,18 +221,24 @@ export const RecapQuiz: React.FC = () => {
                   setSubmitted(false);
                   setUserAnswers({});
                 }}
-                className="px-6 py-3 rounded-xl border border-textSecondary/30 bg-bg text-main hover:border-accent hover:-translate-y-0.5 text-base font-bold transition-all"
+                className="px-6 py-3.5 rounded-2xl border-2 border-textSecondary/30 bg-bg text-main hover:border-accent hover:shadow-md text-base font-extrabold transition-all flex items-center justify-center gap-2.5 hover:-translate-y-0.5"
               >
-                🔄 Retry Quiz
+                <svg className="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                <span>Retry Quiz</span>
               </button>
 
+              {/* Get Completion Badge Vector SVG Button */}
               <a
                 href="/complete"
                 onClick={() => playAudioSFX('click', true)}
-                className="btn-primary px-8 py-3 rounded-xl font-extrabold text-base shadow-sm hover:scale-105 transition-transform flex items-center gap-2"
+                className="btn-primary px-8 py-3.5 rounded-2xl font-black text-base shadow-chalk hover:scale-105 transition-transform flex items-center justify-center gap-2.5"
               >
                 <span>Get Completion Badge</span>
-                <span>🏆</span>
+                <svg className="w-5 h-5 fill-current text-onAccent" viewBox="0 0 24 24">
+                  <path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94A5.01 5.01 0 0011 15.9V18H8v2h8v-2h-3v-2.1c2.12-.41 3.76-2.07 4.39-4.24C19.08 11.35 21 9.27 21 6.7V5c0-1.1-.9-2-2-2zM5 7.7V7h2v3.1c-1.15-.36-2-1.43-2-2.4zm14 0c0 .97-.85 2.04-2 2.4V7h2v.7z" />
+                </svg>
               </a>
             </div>
           </div>
