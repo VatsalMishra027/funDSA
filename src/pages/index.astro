@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import HeroLiveAlgorithmPreview from '../components/HeroLiveAlgorithmPreview';
 ---
 
 <Layout title="DSA 101 | Visual Algorithm Learning Platform">
@@ -41,52 +42,9 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </section>
 
-    {/* Visual Card Preview Illustration showcasing General DSA Mechanics */}
+    {/* Automated Live Algorithm Terminal Visualizer matching Image 2 & chaicode preview style */}
     <section class="max-w-4xl mx-auto">
-      <div class="bg-card border-2 border-textSecondary/20 rounded-3xl p-6 sm:p-8 shadow-md hover:shadow-2xl hover:border-accent/40 transition-all duration-300 space-y-6">
-        <div class="flex items-center justify-between border-b border-textSecondary/15 pb-4">
-          <div class="flex items-center gap-2">
-            <span class="w-3.5 h-3.5 rounded-full bg-accent inline-block"></span>
-            <span class="w-3.5 h-3.5 rounded-full bg-accent2 inline-block"></span>
-            <span class="text-sm font-mono text-textSecondary font-bold ml-2">dsa-algorithm-visualizer.preview</span>
-          </div>
-          <span class="text-xs sm:text-sm font-mono bg-focusBg text-focusText border border-focusBorder px-3 py-1 rounded-lg font-extrabold">
-            Interactive Algorithm Engine
-          </span>
-        </div>
-
-        {/* General DSA Concept Preview Graphic */}
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 py-4 border-b border-textSecondary/10">
-          <div class="bg-bg border border-textSecondary/30 p-5 rounded-2xl space-y-2 text-center hover:-translate-y-1 transition-transform">
-            <div class="text-3xl">📋</div>
-            <h4 class="font-extrabold text-base text-main">1. Data Structures</h4>
-            <p class="text-xs text-textSecondary font-semibold leading-relaxed">
-              Arrays, Lists, & Memory Indices ko visual blocks mein organize karo.
-            </p>
-          </div>
-
-          <div class="bg-accent text-onAccent border border-accent p-5 rounded-2xl space-y-2 text-center shadow-md scale-105 ring-2 ring-accent/40 hover:-translate-y-1 transition-transform">
-            <div class="text-3xl">⚡</div>
-            <h4 class="font-black text-base">2. Step-by-Step Logic</h4>
-            <p class="text-xs font-semibold leading-relaxed opacity-95">
-              Comparison, Traversal, & Swapping operations ko live step-by-step execute karo!
-            </p>
-          </div>
-
-          <div class="bg-bg border border-textSecondary/30 p-5 rounded-2xl space-y-2 text-center hover:-translate-y-1 transition-transform">
-            <div class="text-3xl">⏱️</div>
-            <h4 class="font-extrabold text-base text-main">3. Asymptotic Analysis</h4>
-            <p class="text-xs text-textSecondary font-semibold leading-relaxed">
-              Time Complexity O(N²) & Space Complexity O(1) ko intuitive Hinglish mein samjho.
-            </p>
-          </div>
-        </div>
-
-        {/* General DSA Hinglish Callout Quote */}
-        <div class="dhyan-do-box p-5 rounded-2xl text-base font-semibold shadow-xs">
-          <strong>Dhyan do! 💡</strong> Data Structures & Algorithms matlab sirf code ratna nahi — step-by-step logic, array indexing, and memory mechanics ko visually feel karna!
-        </div>
-      </div>
+      <HeroLiveAlgorithmPreview client:load />
     </section>
 
     {/* Why Learn With Us Features Grid */}
@@ -108,7 +66,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="text-4xl">📚</div>
           <h3 class="font-extrabold text-2xl text-main">Single Comprehensive Guide</h3>
           <p class="text-base text-textSecondary leading-relaxed font-medium">
-            No fragmented steps! Saare core DSA concepts ek hi unified learning page par available hain.
+            No fragmented steps! Saare core concepts ek hi unified learning page par available hain.
           </p>
         </div>
 
