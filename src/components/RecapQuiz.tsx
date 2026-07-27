@@ -17,7 +17,7 @@ const MASTER_QUIZ_QUESTIONS: QuestionItem[] = [
     question: 'Computer mein array/list ka sabse pehle element kis position (index) se shuru hota hai?',
     options: ['1 (pehle se shuru)', '0 (Zero-based index)', '10 (random position)'],
     correctIndex: 1,
-    explanation: 'Sahi! Array indices hamesha zero [0] se shuru hote hain.',
+    explanation: 'Array indices hamesha zero [0] se shuru hote hain.',
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ const MASTER_QUIZ_QUESTIONS: QuestionItem[] = [
     question: 'Bubble sort ek step mein kitne elements ko aapas mein compare karta hai?',
     options: ['Poore array ko ek sath', 'Sirf 2 adjacent (bagal waale) items ko', '3 random items ko'],
     correctIndex: 1,
-    explanation: 'Bilkul! Bubble sort ek baar mein sirf 2 adjacent elements ko dekhta hai.',
+    explanation: 'Bubble sort ek baar mein sirf 2 adjacent elements ko dekhta hai.',
   },
   {
     id: 3,
@@ -37,7 +37,7 @@ const MASTER_QUIZ_QUESTIONS: QuestionItem[] = [
       'Hamesha har step par random swap hota hai',
     ],
     correctIndex: 1,
-    explanation: 'Awesome! Bada element aage bhejne ke liye swap Tabhi hota hai jab Left > Right.',
+    explanation: 'Bada element aage bhejne ke liye swap Tabhi hota hai jab Left > Right.',
   },
   {
     id: 4,
@@ -49,7 +49,7 @@ const MASTER_QUIZ_QUESTIONS: QuestionItem[] = [
       'Kuch nahi badalta, waise hi rehta hai',
     ],
     correctIndex: 1,
-    explanation: 'Spot on! Floating bubble ki tarah largest element end par settle ho jata hai.',
+    explanation: 'Floating bubble ki tarah largest element end par settle ho jata hai.',
   },
   {
     id: 5,
@@ -61,7 +61,7 @@ const MASTER_QUIZ_QUESTIONS: QuestionItem[] = [
       'Jab browser close kar do',
     ],
     correctIndex: 1,
-    explanation: 'Bingo! Jab 0 swaps hote hain pass mein, matlab array 100% sorted hai.',
+    explanation: 'Jab 0 swaps hote hain pass mein, matlab array 100% sorted hai.',
   },
   {
     id: 6,
@@ -69,7 +69,7 @@ const MASTER_QUIZ_QUESTIONS: QuestionItem[] = [
     question: 'Worst-case scenario mein Bubble Sort ki Time Complexity kya hoti hai?',
     options: ['O(1) - Instant', 'O(N) - Linear', 'O(N²) - Quadratic (N × N operations)'],
     correctIndex: 2,
-    explanation: 'Great! Reversed list ke liye (N × N) comparisons ki zaroorat hoti hai, so O(N²).',
+    explanation: 'Reversed list ke liye (N × N) comparisons ki zaroorat hoti hai, so O(N²).',
   },
 ];
 
@@ -167,8 +167,37 @@ export const RecapQuiz: React.FC = () => {
               </div>
 
               {submitted && (
-                <div className="bg-bg border border-textSecondary/20 p-3.5 rounded-xl text-xs sm:text-sm font-medium text-textSecondary">
-                  💡 <strong>Explanation:</strong> {q.explanation}
+                <div
+                  className={`p-4 rounded-2xl text-xs sm:text-sm font-medium border transition-all ${
+                    isCorrect
+                      ? 'bg-focusBg/90 border-focusBorder text-focusText'
+                      : 'bg-accent/15 border-accent text-main'
+                  }`}
+                >
+                  {isCorrect ? (
+                    <div className="space-y-1">
+                      <div className="font-extrabold text-sm sm:text-base text-focusText flex items-center gap-1.5">
+                        <span>🎯</span>
+                        <span>Bingo! Bilkul Sahi Jawab!</span>
+                      </div>
+                      <p className="opacity-95 leading-relaxed font-semibold">
+                        💡 <strong>Explanation:</strong> {q.explanation}
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="space-y-1.5">
+                      <div className="font-extrabold text-sm sm:text-base text-accent flex items-center gap-1.5">
+                        <span>❌</span>
+                        <span>Galat Jawab!</span>
+                      </div>
+                      <p className="text-xs sm:text-sm font-semibold text-main">
+                        Sahi uttar tha: <strong className="text-accent font-mono underline">{q.options[q.correctIndex]}</strong>
+                      </p>
+                      <p className="text-xs sm:text-sm text-textSecondary leading-relaxed pt-0.5">
+                        💡 <strong>Explanation:</strong> {q.explanation}
+                      </p>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
