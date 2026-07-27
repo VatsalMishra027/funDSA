@@ -22,7 +22,6 @@ interface NetworkNode {
 
 export const Interactive3DFigures: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [activeInfo, setActiveInfo] = useState<string>('⚡ Dual-Hub DSA Concept Network');
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -444,8 +443,6 @@ export const Interactive3DFigures: React.FC = () => {
     // Click Impulse (Smooth Harmonic Boost)
     const handleClick = () => {
       impulseBoost = 25;
-      setActiveInfo('⚡ Smooth Harmonic Kinetic Impulse Active!');
-      setTimeout(() => setActiveInfo('⚡ Dual-Hub DSA Concept Network'), 2000);
     };
 
     window.addEventListener('click', handleClick);
@@ -461,12 +458,6 @@ export const Interactive3DFigures: React.FC = () => {
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
       <canvas ref={canvasRef} className="w-full h-full pointer-events-auto cursor-crosshair opacity-65 dark:opacity-55" />
-
-      {/* Interactive DSA Network Badge */}
-      <div className="absolute bottom-6 right-6 z-20 bg-card/90 backdrop-blur-md border border-textSecondary/20 px-4 py-2 rounded-2xl text-xs font-mono font-extrabold text-main shadow-lg flex items-center gap-2.5">
-        <span className="w-2.5 h-2.5 rounded-full bg-accent animate-ping"></span>
-        <span>{activeInfo}</span>
-      </div>
     </div>
   );
 };
