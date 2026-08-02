@@ -1,16 +1,72 @@
 ---
 import '../styles/global.css';
 import Interactive3DFigures from '../components/Interactive3DFigures';
+import LanguageSwitcher from '../components/LanguageSwitcher';
+import { FAQ_DATA } from '../components/FaqSection';
 
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
 }
 
 const {
-  title = 'padhDSA | Visual Algorithm Learning Platform',
-  description = 'Interactive visual learning platform for Data Structures and Algorithms with step-by-step audio visualizers and intuitive analogies.',
+  title = 'padhDSA | Best Resources & Best Way to Learn DSA for Beginners 2026',
+  description = 'Master Data Structures & Algorithms with padhDSA! The best resource to learn DSA for beginners with interactive step-by-step visualizers, real-world analogies in Java, Python & C++, and hands-on playgrounds.',
+  image = '/og-image.png',
 } = Astro.props;
+
+const siteUrl = 'https://padhdsa.com';
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || siteUrl);
+const fullImageUrl = new URL(image, Astro.site || siteUrl).href;
+
+const keywords = [
+  'dsa for beginners',
+  'best resources to learn dsa for beginners',
+  'best way to learn dsa for beginners',
+  'how to start dsa for beginners',
+  'how to start learning dsa for beginners',
+  'how to get better at dsa for beginners',
+  'java dsa for beginners',
+  'dsa for beginners in python',
+  'how to learn dsa for beginners',
+  'best resources to learn dsa for beginners 2026',
+  'best youtube channel to learn dsa for beginners',
+  'data structures and algorithms visualizer',
+  'bubble sort visualizer',
+].join(', ');
+
+const appJsonLdSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  'name': 'padhDSA',
+  'applicationCategory': 'EducationalApplication',
+  'operatingSystem': 'Any',
+  'offers': {
+    '@type': 'Offer',
+    'price': '0',
+    'priceCurrency': 'USD',
+  },
+  'description': description,
+  'url': canonicalURL.href,
+  'author': {
+    '@type': 'Organization',
+    'name': 'padhDSA Team',
+  },
+};
+
+const faqJsonLdSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  'mainEntity': FAQ_DATA.map((item) => ({
+    '@type': 'Question',
+    'name': item.question,
+    'acceptedAnswer': {
+      '@type': 'Answer',
+      'text': `<p>${item.answer}</p>`,
+    },
+  })),
+};
 ---
 
 <!DOCTYPE html>
@@ -18,9 +74,39 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Exclusive PNG Favicon -->
+    <link rel="icon" type="image/png" href="/favicon2.png" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="shortcut icon" href="/favicon2.png" />
+    <link rel="apple-touch-icon" href="/favicon2.png" />
+    
+    <!-- Primary Meta Tags -->
     <title>{title}</title>
+    <meta name="title" content={title} />
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="padhDSA" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullImageUrl} />
+    <meta property="og:site_name" content="padhDSA Platform" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={fullImageUrl} />
+
+    <!-- JSON-LD Structured Data for App & Google Rich FAQ Snippets -->
+    <script type="application/ld+json" set:html={JSON.stringify(appJsonLdSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqJsonLdSchema)} />
     
     <!-- Script to prevent dark mode FOUC -->
     <script is:inline>

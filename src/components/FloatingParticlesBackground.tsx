@@ -2,7 +2,7 @@ import React from 'react';
 
 export const FloatingParticlesBackground: React.FC = () => {
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-40 dark:opacity-30">
+    <div className="hidden md:block fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-40 dark:opacity-30">
       {/* Moving Ambient Glowing Orbs */}
       <div className="absolute top-1/4 left-10 w-72 h-72 bg-accent/20 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-1/3 right-12 w-96 h-96 bg-accent2/20 rounded-full blur-3xl animate-pulse duration-1000"></div>

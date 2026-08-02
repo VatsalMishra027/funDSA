@@ -301,11 +301,10 @@ export const PlaygroundBuilder: React.FC = () => {
                   key={idx}
                   type="button"
                   onClick={() => handleSelectPreset(preset)}
-                  className={`px-4 py-2.5 rounded-xl border text-xs sm:text-sm font-extrabold flex items-center gap-2 transition-all duration-200 shadow-xs ${
-                    isActive
+                  className={`px-4 py-2.5 rounded-xl border text-xs sm:text-sm font-extrabold flex items-center gap-2 transition-all duration-200 shadow-xs ${isActive
                       ? 'bg-accent text-onAccent border-accent shadow-md scale-105 ring-2 ring-accent/40'
                       : 'bg-bg text-main border-textSecondary/30 hover:border-accent hover:bg-accent/10 hover:-translate-y-0.5'
-                  }`}
+                    }`}
                 >
                   <span className="text-base">{preset.icon}</span>
                   <span>{preset.name}</span>

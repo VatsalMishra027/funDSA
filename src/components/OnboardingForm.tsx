@@ -117,11 +117,10 @@ export const OnboardingForm: React.FC = () => {
                 key={chip.id}
                 type="button"
                 onClick={() => toggleInterest(chip.id)}
-                className={`px-3 py-2.5 rounded-xl border text-sm font-semibold flex items-center justify-center gap-2 transition-all duration-200 ${
-                  isSelected
-                    ? 'bg-accent text-onAccent border-accent shadow-sm scale-[1.02]'
-                    : 'bg-bg text-main border-textSecondary/30 hover:border-accent2/80'
-                }`}
+                className={`px-3 py-2.5 rounded-xl border text-sm font-semibold flex items-center justify-center gap-2 transition-all duration-200 ${isSelected
+                  ? 'bg-accent text-onAccent border-accent shadow-sm scale-[1.02]'
+                  : 'bg-bg text-main border-textSecondary/30 hover:border-accent2/80'
+                  }`}
               >
                 <span>{chip.icon}</span>
                 <span className="truncate">{chip.label}</span>
@@ -158,10 +157,10 @@ export const OnboardingForm: React.FC = () => {
           {/* Hyper-Crisp Official Vector Rocket Launch Icon */}
           <span className="p-2 rounded-xl bg-white/20 border border-white/30 text-white shadow-sm group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform duration-300 flex items-center justify-center">
             <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
-              <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-3.05 11a22.35 22.35 0 0 1-3.95 2z"/>
-              <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
-              <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+              <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+              <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-3.05 11a22.35 22.35 0 0 1-3.95 2z" />
+              <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+              <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
             </svg>
           </span>
         </button>

@@ -24,6 +24,11 @@ export const Interactive3DFigures: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
+    // Disable animation loop entirely on mobile phones (< 768px) to eliminate mobile scroll lag
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      return;
+    }
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -456,7 +461,7 @@ export const Interactive3DFigures: React.FC = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div className="hidden md:block fixed inset-0 pointer-events-none z-0 overflow-hidden">
       <canvas ref={canvasRef} className="w-full h-full pointer-events-auto cursor-crosshair opacity-65 dark:opacity-55" />
     </div>
   );

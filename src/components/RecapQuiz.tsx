@@ -168,11 +168,10 @@ export const RecapQuiz: React.FC = () => {
 
               {submitted && (
                 <div
-                  className={`p-4 rounded-2xl text-xs sm:text-sm font-medium border transition-all ${
-                    isCorrect
+                  className={`p-4 rounded-2xl text-xs sm:text-sm font-medium border transition-all ${isCorrect
                       ? 'bg-focusBg/90 border-focusBorder text-focusText'
                       : 'bg-accent/15 border-accent text-main'
-                  }`}
+                    }`}
                 >
                   {isCorrect ? (
                     <div className="space-y-1">
@@ -237,8 +236,8 @@ export const RecapQuiz: React.FC = () => {
               {finalScore === 6
                 ? 'BUBBLE SORT MASTER! 100% Perfect Score! Saare concepts crystal clear hain!'
                 : finalScore >= 4
-                ? 'SHABASH! Zabarjast performance. Bas 1-2 minor points revision chahiye.'
-                : 'GOOD TRY! Koi tension nahi, concept guide dobara dekho aur retry karo.'}
+                  ? 'SHABASH! Zabarjast performance. Bas 1-2 minor points revision chahiye.'
+                  : 'GOOD TRY! Koi tension nahi, concept guide dobara dekho aur retry karo.'}
             </p>
 
             <div className="pt-3 flex flex-wrap justify-center gap-4">

@@ -356,23 +356,22 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
       </div>
 
       <div
-        className={`mb-6 p-4 rounded-xl text-base font-semibold border transition-all duration-300 ${
-          currentStep.isPassComplete || currentStep.isFullySorted
-            ? 'bg-focusBg border-focusBorder text-focusText ring-2 ring-focusBorder/50'
-            : currentStep.isSwapping
+        className={`mb-6 p-4 rounded-xl text-base font-semibold border transition-all duration-300 ${currentStep.isPassComplete || currentStep.isFullySorted
+          ? 'bg-focusBg border-focusBorder text-focusText ring-2 ring-focusBorder/50'
+          : currentStep.isSwapping
             ? 'bg-accent/15 border-accent text-accent'
             : 'bg-bg border-textSecondary/20 text-main'
-        }`}
+          }`}
       >
         <div className="flex items-center gap-3">
           <span className="text-xl">
             {currentStep.isFullySorted
               ? '🏆'
               : currentStep.isSwapping
-              ? '🔀'
-              : currentStep.compareIndices
-              ? '🔍'
-              : '📌'}
+                ? '🔀'
+                : currentStep.compareIndices
+                  ? '🔍'
+                  : '📌'}
           </span>
           <span className="leading-snug">{currentStep.message}</span>
         </div>
@@ -401,7 +400,7 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
             if (currentStep.isSwapping) {
               cardStyle =
                 'bg-accent text-onAccent border-accent font-extrabold scale-110 shadow-xl ring-4 ring-accent/50 z-20';
-              
+
               if (currentStep.compareIndices && currentStep.compareIndices[0] === idx) {
                 transformStyle = 'translate-x-4 -translate-y-4 rotate-3';
               } else if (currentStep.compareIndices && currentStep.compareIndices[1] === idx) {
@@ -420,15 +419,14 @@ export const BubbleSortVisualizer: React.FC<BubbleSortVisualizerProps> = ({
             >
               <div className="w-full flex flex-col justify-end items-center h-36 mb-2">
                 <div
-                  className={`w-full rounded-t-xl transition-all duration-700 flex items-center justify-center text-xs font-mono font-extrabold shadow-xs ${
-                    isComparing && currentStep.isSwapping
-                      ? 'bg-accent text-onAccent'
-                      : isComparing
+                  className={`w-full rounded-t-xl transition-all duration-700 flex items-center justify-center text-xs font-mono font-extrabold shadow-xs ${isComparing && currentStep.isSwapping
+                    ? 'bg-accent text-onAccent'
+                    : isComparing
                       ? 'bg-accent2 text-focusText'
                       : isSorted
-                      ? 'bg-focusBorder text-focusText'
-                      : 'bg-textSecondary/25 text-textSecondary'
-                  }`}
+                        ? 'bg-focusBorder text-focusText'
+                        : 'bg-textSecondary/25 text-textSecondary'
+                    }`}
                   style={{ height: `${heightPercent}%` }}
                 >
                   {item.value}

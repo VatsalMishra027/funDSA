@@ -246,7 +246,7 @@ class Program {
             <span>TENSION MAT LO — YE SAB TEXTBOOK HAWABAZI HAI!</span>
           </div>
           <p className="text-xs sm:text-sm font-semibold opacity-95 leading-relaxed">
-            Agar computer science ke ye heavy jargon & formal terms pehli baar mein samajh nahi aaye, toh zero stress! 
+            Agar computer science ke ye heavy jargon & formal terms pehli baar mein samajh nahi aaye, toh zero stress!
             Ye sirf interviews ke liye textbook definition hai. Neeche hum poore Bubble Sort ko bilkul simple everyday Hinglish mein step-by-step master karenge! 🚀
           </p>
         </div>
@@ -282,7 +282,7 @@ class Program {
           <h2 className="text-2xl font-extrabold text-main">2. Concept 2: Adjacent Comparison & Swapping</h2>
         </div>
         <p className="text-base sm:text-lg leading-relaxed font-medium text-main">
-          Bubble Sort pure list ko ek sath sort nahi karta. Yeh single step mein sirf <strong>2 adjacent (bagal waale)</strong> items ko compare karta hai. 
+          Bubble Sort pure list ko ek sath sort nahi karta. Yeh single step mein sirf <strong>2 adjacent (bagal waale)</strong> items ko compare karta hai.
           Agar pehla item doosre se bada hai (Left &gt; Right), toh dono ki position{' '}
           <GlossaryTerm term="swap" definition="Swap = Do items ki aapas mein position (jagah) exchange kar dena.">
             swap
@@ -412,11 +412,10 @@ class Program {
                   playAudioSFX('click', true);
                   setSelectedLang(lang.id as any);
                 }}
-                className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all ${
-                  selectedLang === lang.id
-                    ? 'bg-accent text-onAccent shadow-sm scale-105'
-                    : 'text-textSecondary hover:text-main hover:bg-card'
-                }`}
+                className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all ${selectedLang === lang.id
+                  ? 'bg-accent text-onAccent shadow-sm scale-105'
+                  : 'text-textSecondary hover:text-main hover:bg-card'
+                  }`}
               >
                 {lang.label}
               </button>
