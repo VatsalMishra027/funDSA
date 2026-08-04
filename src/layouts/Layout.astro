@@ -261,7 +261,9 @@ const faqJsonLdSchema = {
             currentPath.includes('/about') ||
             currentPath.includes('/privacy-policy') ||
             currentPath.includes('/terms') ||
-            currentPath.includes('/contact');
+            currentPath.includes('/contact') ||
+            currentPath.includes('/404') ||
+            currentPath.includes('/500');
 
           const links = document.getElementById('nav-protected-links');
           const badge = document.getElementById('nav-genz-badge');
