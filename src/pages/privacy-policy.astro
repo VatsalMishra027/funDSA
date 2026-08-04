@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Privacy Policy | padhDSA Visual Algorithm Learning Platform"
+  description="padhDSA Privacy Policy: Transparent data practices, client-side browser storage, and zero tracking cookies."
+>
+  <div class="max-w-4xl mx-auto space-y-8 py-6 sm:py-10">
+    
+    {/* Page Header */}
+    <div class="space-y-2 border-b border-textSecondary/20 pb-6 text-center sm:text-left">
+      <div class="inline-flex items-center gap-2 bg-focusBg border border-focusBorder text-focusText text-xs font-mono font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider">
+        <span>LEGAL TRANSPARENCY</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black text-main tracking-tight">Privacy Policy</h1>
+      <p class="text-xs font-mono text-textSecondary font-bold">Effective Date: January 1, 2026 • Last Updated: August 2026</p>
+    </div>
+
+    {/* Content Card */}
+    <div class="bg-card/90 backdrop-blur-xl border border-textSecondary/20 rounded-3xl p-8 sm:p-10 shadow-md space-y-6 text-textSecondary text-sm sm:text-base leading-relaxed font-medium">
+      
+      <div class="space-y-2">
+        <h2 class="text-lg font-black text-main flex items-center gap-2">
+          <span>💾 1. Client-Side Browser Storage</span>
+        </h2>
+        <p>
+          padhDSA prioritizes learner privacy. Your progress, chosen name, language preferences, and hobby selections are saved exclusively within your browser's local sandbox (<code>localStorage</code>). We do not transmit or store your profile data on remote databases.
+        </p>
+      </div>
+
+      <div class="space-y-2">
+        <h2 class="text-lg font-black text-main flex items-center gap-2">
+          <span>🚫 2. Zero Tracking & Ad-Free</span>
+        </h2>
+        <p>
+          We do not deploy third-party advertising trackers, profiling cookies, or data-monetization analytics. Your learning experience remains 100% ad-free and private.
+        </p>
+      </div>
+
+      <div class="space-y-2">
+        <h2 class="text-lg font-black text-main flex items-center gap-2">
+          <span>🛡️ 3. Full Data Control</span>
+        </h2>
+        <p>
+          Because your preferences are stored locally, you maintain complete control. Clearing your browser cache or site storage resets your profile data instantly.
+        </p>
+      </div>
+
+      <div class="pt-4 border-t border-textSecondary/15 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs font-mono font-bold text-textSecondary">Have privacy questions?</p>
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 bg-focusBg border border-focusBorder text-focusText text-xs font-mono font-extrabold px-4 py-2 rounded-xl hover:scale-105 transition-transform"
+        >
+          <span>Contact Privacy Desk ✉️</span>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</Layout>

@@ -1,0 +1,80 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="About Us | padhDSA Visual Algorithm Learning Platform"
+  description="Learn about padhDSA's mission: making Data Structures & Algorithms intuitive through visual animations, real-world analogies, and interactive playgrounds."
+>
+  <div class="max-w-4xl mx-auto space-y-10 py-6 sm:py-10">
+    
+    {/* Page Header */}
+    <div class="text-center space-y-3">
+      <div class="inline-flex items-center gap-2 bg-focusBg border border-focusBorder text-focusText text-xs font-mono font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider">
+        <span>MISSION & VISION</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black text-main tracking-tight">
+        Master Algorithms Through <br class="hidden sm:inline" />
+        <span class="bg-gradient-to-r from-accent via-[#FF7A57] to-accent2 bg-clip-text text-transparent font-handwritten text-4xl sm:text-6xl">
+          Visual Intuition
+        </span>
+      </h1>
+      <p class="text-textSecondary text-base sm:text-lg max-w-2xl mx-auto font-medium leading-relaxed">
+        padhDSA is designed to eliminate rote memorization in computer science by transforming static pseudocode into dynamic, step-by-step visual experiences.
+      </p>
+    </div>
+
+    {/* Mission Statement Glass Card */}
+    <div class="bg-card/90 backdrop-blur-xl border border-accent/30 rounded-3xl p-8 sm:p-10 shadow-lg space-y-4">
+      <h2 class="text-2xl font-black text-main flex items-center gap-2">
+        <span>🎯 Our Philosophy</span>
+      </h2>
+      <p class="text-textSecondary text-base leading-relaxed font-medium">
+        Understanding Data Structures & Algorithms shouldn't require deciphering cryptic mathematical notation. By combining interactive element swapping, spatial audio cues, interest-based analogies (Gaming, Cricket, Food), and multi-language code models (Java, Python, C++, JS), padhDSA helps every student build lasting mental models.
+      </p>
+    </div>
+
+    {/* 3 Core Pillars */}
+    <div class="grid sm:grid-cols-3 gap-6">
+      
+      <div class="bg-card/80 border border-textSecondary/20 p-6 rounded-3xl space-y-2 text-center shadow-xs hover:border-accent/40 transition-colors">
+        <div class="text-3xl mb-1">🍿</div>
+        <h3 class="font-extrabold text-main text-lg">Personalized Analogies</h3>
+        <p class="text-xs text-textSecondary leading-relaxed font-medium">
+          Relate algorithm steps to real-life hobbies like gaming, food, or sports.
+        </p>
+      </div>
+
+      <div class="bg-card/80 border border-textSecondary/20 p-6 rounded-3xl space-y-2 text-center shadow-xs hover:border-accent/40 transition-colors">
+        <div class="text-3xl mb-1">⚡</div>
+        <h3 class="font-extrabold text-main text-lg">Step-By-Step Controls</h3>
+        <p class="text-xs text-textSecondary leading-relaxed font-medium">
+          Play, pause, rewind, or inspect array index comparisons in real time.
+        </p>
+      </div>
+
+      <div class="bg-card/80 border border-textSecondary/20 p-6 rounded-3xl space-y-2 text-center shadow-xs hover:border-accent/40 transition-colors">
+        <div class="text-3xl mb-1">💻</div>
+        <h3 class="font-extrabold text-main text-lg">Multi-Language Code</h3>
+        <p class="text-xs text-textSecondary leading-relaxed font-medium">
+          Seamlessly switch code models across Java, Python, C++, and JavaScript.
+        </p>
+      </div>
+
+    </div>
+
+    {/* Callout */}
+    <div class="bg-gradient-to-r from-focusBg via-card to-focusBg border border-focusBorder p-8 rounded-3xl text-center space-y-4 shadow-sm">
+      <h3 class="text-xl sm:text-2xl font-black text-focusText">Ready to start your visual journey?</h3>
+      <div>
+        <a
+          href="/onboarding"
+          class="inline-flex items-center gap-2 bg-accent text-onAccent font-black px-7 py-3 rounded-2xl text-base shadow-md hover:scale-105 transition-transform"
+        >
+          <span>Start Learning Roadmap 🚀</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</Layout>

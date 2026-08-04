@@ -1,0 +1,84 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Contact Us | padhDSA Visual Algorithm Learning Platform"
+  description="Contact padhDSA for support, suggestions, or questions about Data Structures & Algorithms."
+>
+  <div class="max-w-4xl mx-auto space-y-10 py-6 sm:py-10">
+    
+    {/* Page Header */}
+    <div class="text-center space-y-3">
+      <div class="inline-flex items-center gap-2 bg-focusBg border border-focusBorder text-focusText text-xs font-mono font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider">
+        <span>STUDENT HELPDESK</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black text-main tracking-tight">
+        Get in Touch With Us
+      </h1>
+      <p class="text-textSecondary text-base max-w-md mx-auto font-medium">
+        Have questions, feedback, or feature suggestions? Send us a message below.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-3 gap-6">
+      
+      {/* Direct Contact Card */}
+      <div class="bg-card/90 backdrop-blur-xl border border-textSecondary/20 rounded-3xl p-6 space-y-4 shadow-md text-center flex flex-col items-center justify-center">
+        <div class="w-12 h-12 rounded-2xl bg-accent/15 border border-accent/30 text-2xl flex items-center justify-center">
+          💬
+        </div>
+        <h3 class="font-extrabold text-main text-lg">Direct Email</h3>
+        <p class="text-xs font-mono font-bold text-accent">support@padhdsa.com</p>
+        <span class="text-[11px] text-textSecondary font-medium">Response SLA: 24–48 Hours</span>
+      </div>
+
+      {/* Message Form */}
+      <div class="sm:col-span-2 bg-card/90 backdrop-blur-xl border border-accent/30 rounded-3xl p-8 shadow-xl space-y-5">
+        <h2 class="text-xl font-black text-main">Send Us a Message 🚀</h2>
+        
+        <form class="space-y-4" onsubmit="event.preventDefault(); alert('Thank you! Your message has been received.');">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="space-y-1">
+              <label class="text-xs font-mono font-extrabold uppercase text-textSecondary">Your Name</label>
+              <input 
+                type="text" 
+                required 
+                placeholder="Rahul Sharma"
+                class="w-full bg-bg border border-textSecondary/30 focus:border-accent text-main px-4 py-2.5 rounded-xl outline-none text-sm font-medium transition-colors"
+              />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-mono font-extrabold uppercase text-textSecondary">Your Email</label>
+              <input 
+                type="email" 
+                required 
+                placeholder="rahul@example.com"
+                class="w-full bg-bg border border-textSecondary/30 focus:border-accent text-main px-4 py-2.5 rounded-xl outline-none text-sm font-medium transition-colors"
+              />
+            </div>
+          </div>
+
+          <div class="space-y-1">
+            <label class="text-xs font-mono font-extrabold uppercase text-textSecondary">Your Message</label>
+            <textarea 
+              rows="3" 
+              required 
+              placeholder="How can we help you?"
+              class="w-full bg-bg border border-textSecondary/30 focus:border-accent text-main px-4 py-2.5 rounded-xl outline-none text-sm font-medium transition-colors resize-none"
+            ></textarea>
+          </div>
+
+          <button 
+            type="submit" 
+            class="w-full bg-accent text-onAccent py-3 rounded-xl font-black text-sm shadow-md hover:scale-[1.01] transition-transform"
+          >
+            Submit Message ✉️
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+</Layout>

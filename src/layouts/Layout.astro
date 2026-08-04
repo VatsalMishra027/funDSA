@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Interactive3DFigures from '../components/Interactive3DFigures';
 import LanguageSwitcher from '../components/LanguageSwitcher';
+import Footer from '../components/Footer.astro';
 import { FAQ_DATA } from '../components/FaqSection';
 
 interface Props {
@@ -236,25 +237,7 @@ const faqJsonLdSchema = {
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-textSecondary/20 bg-card py-8 mt-16 text-center text-sm text-textSecondary relative z-10">
-      <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div class="flex items-center gap-2">
-          <div class="bg-accent text-onAccent px-2.5 py-1 rounded font-mono flex items-center gap-0.5">
-            <span class="font-handwritten text-2xl font-bold lowercase text-onAccent leading-none">padh</span>
-            <span class="font-black text-xs uppercase text-onAccent leading-none">DSA</span>
-          </div>
-          <span class="font-bold text-main">Visual Algorithm Learning Platform</span>
-        </div>
-        <div class="flex items-center gap-5 font-extrabold text-xs sm:text-sm">
-          <a href="/onboarding" class="inline-flex items-center gap-1.5 hover:text-accent font-extrabold text-accent transition-colors">
-            <span>Start Onboarding</span>
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </footer>
+    <Footer />
 
 
     <!-- Theme Toggle & Navigation Protection Script -->
@@ -274,7 +257,11 @@ const faqJsonLdSchema = {
             currentPath === '/' ||
             currentPath === '/index.html' ||
             currentPath === '' ||
-            currentPath.includes('/onboarding');
+            currentPath.includes('/onboarding') ||
+            currentPath.includes('/about') ||
+            currentPath.includes('/privacy-policy') ||
+            currentPath.includes('/terms') ||
+            currentPath.includes('/contact');
 
           const links = document.getElementById('nav-protected-links');
           const badge = document.getElementById('nav-genz-badge');
