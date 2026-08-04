@@ -1,0 +1,6 @@
+# padhDSA Robots File
+User-agent: *
+Allow: /
+
+# Sitemap Index Reference
+Sitemap: https://padhdsa.com/sitemap.xml
