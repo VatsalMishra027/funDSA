@@ -1,6 +1,7 @@
-# padhDSA Robots File
+# padhDSA Search Engine Crawler Instructions
 User-agent: *
 Allow: /
 
-# Sitemap Index Reference
+# Host & Sitemap Location
+Host: https://padhdsa.com
 Sitemap: https://padhdsa.com/sitemap.xml
