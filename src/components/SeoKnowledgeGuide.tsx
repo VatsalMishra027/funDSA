@@ -85,7 +85,7 @@ export const SeoKnowledgeGuide: React.FC = () => {
 
       {/* Dual Modern Feature Cards */}
       <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
-        <div className="group relative bg-card/70 backdrop-blur-md border border-textSecondary/20 hover:border-accent/50 p-7 sm:p-9 rounded-3xl space-y-4 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+        <div className="group relative bg-card/90 backdrop-blur-xl border border-textSecondary/25 hover:border-accent/50 p-7 sm:p-9 rounded-3xl space-y-4 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
           <div className="w-14 h-14 rounded-2xl bg-accent/15 border border-accent/30 flex items-center justify-center text-3xl shadow-inner group-hover:scale-110 transition-transform">
             🚀
           </div>
@@ -97,7 +97,7 @@ export const SeoKnowledgeGuide: React.FC = () => {
           </p>
         </div>
 
-        <div className="group relative bg-card/70 backdrop-blur-md border border-textSecondary/20 hover:border-accent2/50 p-7 sm:p-9 rounded-3xl space-y-4 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+        <div className="group relative bg-card/90 backdrop-blur-xl border border-textSecondary/25 hover:border-accent2/50 p-7 sm:p-9 rounded-3xl space-y-4 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
           <div className="w-14 h-14 rounded-2xl bg-accent2/15 border border-accent2/30 flex items-center justify-center text-3xl shadow-inner group-hover:scale-110 transition-transform">
             🧠
           </div>
@@ -125,8 +125,8 @@ export const SeoKnowledgeGuide: React.FC = () => {
         </div>
 
         <div className="grid sm:grid-cols-2 gap-6">
-          <div className="bg-card/70 border border-textSecondary/20 hover:border-accent/40 p-6 rounded-3xl flex items-start gap-4 shadow-sm hover:shadow-xl transition-all duration-300">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-accent to-[#E05338] text-white font-black text-xl flex items-center justify-center shrink-0 shadow-md">
+          <div className="group relative bg-card/90 backdrop-blur-xl border border-textSecondary/25 hover:border-accent/50 p-6 sm:p-7 rounded-3xl flex items-start gap-4 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-accent to-[#E05338] text-white font-black text-xl flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform">
               1
             </div>
             <div className="space-y-1">
@@ -137,8 +137,8 @@ export const SeoKnowledgeGuide: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-card/70 border border-textSecondary/20 hover:border-accent/40 p-6 rounded-3xl flex items-start gap-4 shadow-sm hover:shadow-xl transition-all duration-300">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-accent to-[#E05338] text-white font-black text-xl flex items-center justify-center shrink-0 shadow-md">
+          <div className="group relative bg-card/90 backdrop-blur-xl border border-textSecondary/25 hover:border-accent/50 p-6 sm:p-7 rounded-3xl flex items-start gap-4 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-accent to-[#E05338] text-white font-black text-xl flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform">
               2
             </div>
             <div className="space-y-1">
@@ -149,8 +149,8 @@ export const SeoKnowledgeGuide: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-card/70 border border-textSecondary/20 hover:border-accent/40 p-6 rounded-3xl flex items-start gap-4 shadow-sm hover:shadow-xl transition-all duration-300">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-accent to-[#E05338] text-white font-black text-xl flex items-center justify-center shrink-0 shadow-md">
+          <div className="group relative bg-card/90 backdrop-blur-xl border border-textSecondary/25 hover:border-accent/50 p-6 sm:p-7 rounded-3xl flex items-start gap-4 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-accent to-[#E05338] text-white font-black text-xl flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform">
               3
             </div>
             <div className="space-y-1">
@@ -161,8 +161,8 @@ export const SeoKnowledgeGuide: React.FC = () => {
             </div>
           </div>
 
-          <div className="bg-card/70 border border-textSecondary/20 hover:border-accent/40 p-6 rounded-3xl flex items-start gap-4 shadow-sm hover:shadow-xl transition-all duration-300">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-accent to-[#E05338] text-white font-black text-xl flex items-center justify-center shrink-0 shadow-md">
+          <div className="group relative bg-card/90 backdrop-blur-xl border border-textSecondary/25 hover:border-accent/50 p-6 sm:p-7 rounded-3xl flex items-start gap-4 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-accent to-[#E05338] text-white font-black text-xl flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform">
               4
             </div>
             <div className="space-y-1">
