@@ -161,10 +161,10 @@ const faqJsonLdSchema = {
 
         <!-- Header Nav Links & Dynamic Onboarding Protection State -->
         <div class="flex items-center gap-3 sm:gap-5">
-          <!-- Motivating Professional & Official Gen-Z Badge (Shown on First & Second Pages) -->
+          <!-- Motivating Professional & Official Gen-Z Badge (Shown on Desktop/Tablet only) -->
           <div
             id="nav-genz-badge"
-            class="inline-flex items-center gap-2 bg-focusBg border border-focusBorder text-focusText text-xs font-mono font-black px-3.5 py-1.5 rounded-xl tracking-wide shadow-xs"
+            class="hidden md:inline-flex items-center gap-2 bg-focusBg border border-focusBorder text-focusText text-xs font-mono font-black px-3.5 py-1.5 rounded-xl tracking-wide shadow-xs"
           >
             <span>⚡ ZERO RATTA • HIGH-KEY INTUITION • LOCK IN YOUR VIBE 🚀</span>
           </div>
@@ -288,6 +288,7 @@ const faqJsonLdSchema = {
             }
             if (badge) {
               badge.classList.remove('hidden');
+              badge.classList.add('md:inline-flex');
             }
             return;
           }
@@ -314,6 +315,7 @@ const faqJsonLdSchema = {
             }
             if (badge) {
               badge.classList.add('hidden');
+              badge.classList.remove('md:inline-flex');
             }
           } else {
             // Un-onboarded user trying to access inner pages -> Redirect to /onboarding
