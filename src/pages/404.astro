@@ -6,47 +6,49 @@ import Layout from '../layouts/Layout.astro';
   title="404: Page Not Found | padhDSA Visual Algorithm Learning Platform"
   description="Oops! The page you are looking for does not exist or has been moved. Return to padhDSA home page to continue learning."
 >
-  <div id="is-404-page" class="min-h-[70vh] flex flex-col items-center justify-center text-center py-12 px-4 space-y-8 relative z-10">
+  <div id="is-404-page" class="min-h-[75vh] flex flex-col items-center justify-center text-center py-16 px-4 space-y-8 relative z-10">
     
-    {/* Animated 404 Pill Badge */}
-    <div class="space-y-4">
-      <div class="inline-flex items-center gap-2 bg-focusBg border border-focusBorder text-focusText text-xs font-mono font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-xs">
-        <span>ERROR CODE 404</span>
-      </div>
+    {/* Glowing Status Badge */}
+    <div class="inline-flex items-center gap-2 bg-accent/10 border border-accent/30 text-accent text-xs font-mono font-bold px-4 py-1.5 rounded-full uppercase tracking-widest shadow-xs">
+      <span class="w-2 h-2 rounded-full bg-accent animate-ping"></span>
+      <span>404 • Page Not Found</span>
+    </div>
 
-      <h1 class="text-7xl sm:text-9xl font-black tracking-tighter text-main drop-shadow-sm">
-        4<span class="bg-gradient-to-r from-accent via-[#FF7A57] to-accent2 bg-clip-text text-transparent font-handwritten text-8xl sm:text-[10rem]">0</span>4
+    {/* Crisp Bold 404 Typography */}
+    <div class="space-y-3 max-w-xl mx-auto">
+      <h1 class="text-8xl sm:text-[11rem] font-extrabold tracking-tight leading-none select-none">
+        <span class="bg-gradient-to-r from-accent via-[#FF7A57] to-accent2 bg-clip-text text-transparent">404</span>
       </h1>
 
-      <h2 class="text-2xl sm:text-4xl font-black text-main tracking-tight">
-        Page Sorted Out of Existence 🔍
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-main tracking-tight pt-2">
+        Page Not Found
       </h2>
 
-      <p class="text-textSecondary text-base sm:text-lg max-w-md mx-auto font-medium leading-relaxed">
-        The route you tried to access doesn't exist, was moved, or got swapped during an algorithm pass!
+      <p class="text-textSecondary text-base sm:text-lg max-w-lg mx-auto font-normal leading-relaxed pt-1">
+        The page you are looking for doesn't exist, has been removed, or the URL might be mistyped.
       </p>
     </div>
 
-    {/* Quick Action Navigation Buttons */}
-    <div class="flex flex-col sm:flex-row items-center gap-4 pt-2">
+    {/* Professional CTA Action Buttons */}
+    <div class="flex flex-col sm:flex-row items-center gap-4 pt-4 w-full max-w-md">
       <a
         href="/"
-        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-accent text-onAccent font-black px-7 py-3.5 rounded-2xl text-base shadow-lg hover:scale-105 transition-transform"
+        class="w-full sm:w-1/2 inline-flex items-center justify-center gap-2 bg-accent text-onAccent font-bold px-6 py-3.5 rounded-xl text-base shadow-md hover:bg-accent/90 transition-all hover:scale-[1.02]"
       >
-        <span>🏠 Return Home</span>
+        <span>Return to Home</span>
       </a>
 
       <a
         href="/onboarding"
-        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-card border border-textSecondary/30 hover:border-accent text-main font-extrabold px-7 py-3.5 rounded-2xl text-base shadow-sm hover:scale-105 transition-all"
+        class="w-full sm:w-1/2 inline-flex items-center justify-center gap-2 bg-card border border-textSecondary/30 hover:border-accent text-main font-bold px-6 py-3.5 rounded-xl text-base shadow-xs hover:bg-cardHover transition-all hover:scale-[1.02]"
       >
-        <span>🚀 Start Learning Roadmap</span>
+        <span>Learning Roadmap</span>
       </a>
     </div>
 
-    {/* Secondary Contact Link */}
-    <div class="pt-4 text-xs font-mono text-textSecondary font-medium">
-      Think this is a broken link? <a href="/contact" class="text-accent underline font-bold">Report it to our support team 💬</a>
+    {/* Helpful Support Footer Link */}
+    <div class="pt-6 text-xs font-mono text-textSecondary font-normal">
+      Need assistance? <a href="/contact" class="text-accent hover:underline font-semibold">Contact padhDSA Support 💬</a>
     </div>
 
   </div>
